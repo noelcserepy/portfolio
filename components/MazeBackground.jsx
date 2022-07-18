@@ -8,17 +8,55 @@ const lowContrastBlue = "#D4DBE8";
 
 const mainVariants = {};
 
-const ballVariants = {};
+const ballVariants = {
+	hidden: {
+		opacity: 0,
+	},
+	visible: {
+		opacity: 1,
+		transition: {
+			duration: 0.3,
+			ease: "easeIn",
+		},
+	},
+	fullScreen: {
+		r: "300vh",
+		transition: {
+			duration: 0.3,
+			ease: "easeIn",
+		},
+	},
+};
 
 const concentricVariants = {};
 
 const radialVariants = {};
 
-function MazeBackground() {
+function MazeBackground({ showMenu }) {
 	const mainControls = useAnimationControls();
 	const ballControls = useAnimationControls();
 	const concentricControls = useAnimationControls();
 	const radialControls = useAnimationControls();
+
+	useEffect(() => {
+		const open = async () => {
+			ballControls.set("visible");
+			await ballControls.start("fullScreen");
+			ballControls.set("hidden");
+		};
+
+		const close = async () => {
+			ballControls.set("fullScreen");
+			await ballControls.start("visible");
+			ballControls.set("hidden");
+		};
+
+		if (showMenu) {
+			open();
+			return;
+		}
+		close();
+	}, [showMenu]);
 
 	return (
 		<motion.svg
@@ -27,6 +65,18 @@ function MazeBackground() {
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg">
 			<motion.g strokeWidth="2" strokeLinecap="square">
+				<motion.circle
+					// CENTER CIRCLE
+					className={"z-40"}
+					variants={ballVariants}
+					animate={ballControls}
+					initial="hidden"
+					fill={orange}
+					stroke="none"
+					r={0}
+					cx={582}
+					cy={582}
+				/>
 				<motion.path
 					variants={concentricVariants}
 					animate={concentricControls}

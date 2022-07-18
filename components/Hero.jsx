@@ -86,7 +86,7 @@ const lineVariants = {
 	},
 };
 
-function Hero() {
+function Hero({ showMenu }) {
 	const titleText = "Heyo, I'm Noël Cserépy";
 	const subtitleText = "I build stuff for the web.";
 
@@ -121,7 +121,7 @@ function Hero() {
 						variants={mazeVariants}
 						initial="hidden"
 						animate="visible">
-						<MazeBackground />
+						<MazeBackground showMenu={showMenu} />
 					</motion.div>
 				</div>
 

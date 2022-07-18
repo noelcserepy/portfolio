@@ -7,20 +7,23 @@ import Socials from "../components/Socials";
 import Menu from "../components/Menu";
 
 export default function Home() {
-	const [animDone, setAnimDone] = useState(true);
+	const [mazeAnimDone, setMazeAnimDone] = useState(true);
+	const [navAnimDone, setNavAnimDone] = useState(false);
 	const [showMenu, setShowMenu] = useState(false);
 
-	useEffect(() => {}, [animDone]);
+	useEffect(() => {}, [mazeAnimDone]);
 
 	return (
 		<>
 			<ScreenBorder />
 			<div className="bg-background w-full h-full min-h-screen -z-10 overflow-hidden">
-				{animDone ? (
+				{mazeAnimDone ? (
 					<>
 						<Nav
 							showMenu={showMenu}
 							setShowMenu={() => setShowMenu(!showMenu)}
+							navAnimDone={navAnimDone}
+							setNavAnimDone={() => setNavAnimDone(true)}
 						/>
 						<Menu
 							showMenu={showMenu}
@@ -28,11 +31,11 @@ export default function Home() {
 						/>
 						<Socials showMenu={showMenu} />
 						<div className="grid grid-cols-8 gap-5 mx-auto max-w-5xl">
-							<Hero />
+							<Hero showMenu={showMenu} />
 						</div>
 					</>
 				) : (
-					<MazeLoader setAnimDone={() => setAnimDone(true)} />
+					<MazeLoader setMazeAnimDone={() => setMazeAnimDone(true)} />
 				)}
 			</div>
 		</>

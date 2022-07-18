@@ -1,7 +1,10 @@
 import Logo from "./Logo";
 import MenuLine from "./MenuLine";
-import { motion } from "framer-motion";
+import { animationControls, motion } from "framer-motion";
 import ChatBubbles from "./ChatBubbles";
+import { useEffect, useState } from "react";
+import Menu from "../Menu";
+import Socials from "../Socials";
 
 const textVariants = {
 	hidden: {
@@ -21,11 +24,26 @@ const textVariants = {
 	},
 };
 
-function Nav({ showMenu, setShowMenu }) {
+function Nav({ showMenu, setShowMenu, navAnimDone, setNavAnimDone }) {
+	const navControls = animationControls();
+
+	useEffect(() => {
+		if (!navAnimDone) {
+			navControls.start("opening");
+			setNavAnimDone(true);
+			return;
+		}
+		if (showMenu) {
+			navControls.start("toMenu");
+			return;
+		}
+		navControls.start("toPage");
+	}, [showMenu]);
+
 	return (
 		<div
-			className={`fixed top-8 left-16 right-16 flex h-8 justify-between z-40 text-${
-				showMenu ? "white" : "primary"
+			className={`fixed top-8 left-16 right-16 flex h-8 justify-between z-40 select-none ${
+				showMenu ? "text-white" : "text-primary"
 			}`}>
 			<div className="flex justify-start space-x-4 items-center">
 				<Logo showMenu={showMenu} />

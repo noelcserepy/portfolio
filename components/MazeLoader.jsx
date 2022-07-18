@@ -176,7 +176,7 @@ const radialVariants = {
 	},
 };
 
-function MazeLoader({ setAnimDone }) {
+function MazeLoader({ setMazeAnimDone }) {
 	const mainControls = useAnimationControls();
 	const lineControls = useAnimationControls();
 	const ballControls = useAnimationControls();
@@ -203,7 +203,7 @@ function MazeLoader({ setAnimDone }) {
 			ballControls.start("shrink");
 			await mainControls.start("rotating");
 			await mainControls.start("end");
-			setAnimDone();
+			setMazeAnimDone();
 		};
 		sequence();
 	}, []);

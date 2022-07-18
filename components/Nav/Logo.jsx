@@ -25,7 +25,9 @@ function Logo({ showMenu }) {
 			variants={play}
 			initial="hidden"
 			animate="visible"
-			className={`h-8 w-8 stroke-${showMenu ? "white" : "primary"}`}
+			className={`h-8 w-8 transition-all duration-300 ${
+				showMenu ? "stroke-white" : "stroke-primary"
+			}`}
 			viewBox="0 0 38 38"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg">
@@ -60,11 +62,6 @@ function Logo({ showMenu }) {
 				height="35"
 				strokeWidth="3"
 			/>
-			<defs>
-				<clipPath id="clip0_44_290">
-					<rect width="38" height="38" fill="white" />
-				</clipPath>
-			</defs>
 		</motion.svg>
 	);
 }

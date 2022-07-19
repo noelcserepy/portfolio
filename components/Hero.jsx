@@ -112,7 +112,7 @@ function Hero({ showMenu }) {
 	}, []);
 
 	return (
-		<div className="text-primary h-screen col-start-0 col-span-8 whitespace-nowrap">
+		<div className="text-primary h-screen w-full whitespace-nowrap">
 			{/* Content Wrapper */}
 			<div className="flex flex-col w-min relative top-1/2 -translate-y-1/2">
 				<div className="flex items-end">

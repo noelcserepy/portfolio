@@ -1,24 +1,19 @@
 import Logo from "./Logo";
-import MenuLine from "./MenuLine";
 import { animationControls, motion } from "framer-motion";
 import ChatBubbles from "./ChatBubbles";
-import { useEffect, useState } from "react";
-import Menu from "../Menu";
-import Socials from "../Socials";
+import { useEffect } from "react";
 
-const textVariants = {
+const navVariants = {
 	hidden: {
 		opacity: 0,
-		pathLength: 0,
-		x: -10,
+		y: -10,
 	},
 	visible: {
 		opacity: 1,
-		pathLength: 1,
-		x: 0,
+		y: 0,
 		transition: {
-			delay: 2.5,
-			duration: 0.4,
+			delay: 3,
+			duration: 1,
 			ease: "easeInOut",
 		},
 	},
@@ -41,29 +36,29 @@ function Nav({ showMenu, setShowMenu, navAnimDone, setNavAnimDone }) {
 	}, [showMenu]);
 
 	return (
-		<div
+		<motion.nav
+			variants={navVariants}
+			initial="hidden"
+			animate="visible"
 			className={`fixed top-8 left-16 right-16 flex h-8 justify-between z-40 select-none ${
 				showMenu ? "text-white" : "text-primary"
 			}`}>
 			<div className="flex justify-start space-x-4 items-center">
 				<Logo showMenu={showMenu} />
-				<MenuLine showMenu={showMenu} />
+				<div
+					className={`w-0 h-2/3 border-l-[1px] ${
+						showMenu ? "border-white" : "border-primary"
+					}`}
+				/>
 				<div className="flex justify-center items-center w-16 h-full relative right-3">
-					<motion.a
+					<a
 						className="font-text font-bold text-xl hover:transition-all hover:tracking-widest origin-center duration-500 cursor-pointer"
-						variants={textVariants}
-						initial="hidden"
-						animate="visible"
 						onClick={setShowMenu}>
 						Menu
-					</motion.a>
+					</a>
 				</div>
 			</div>
-			<motion.div
-				className="group flex justify-end items-center cursor-pointer"
-				variants={textVariants}
-				initial="hidden"
-				animate="visible">
+			<div className="group flex justify-end items-center cursor-pointer">
 				<ChatBubbles showMenu={showMenu} />
 
 				<div className="flex justify-center items-center w-24 h-full">
@@ -71,8 +66,8 @@ function Nav({ showMenu, setShowMenu, navAnimDone, setNavAnimDone }) {
 						Let's Talk
 					</a>
 				</div>
-			</motion.div>
-		</div>
+			</div>
+		</motion.nav>
 	);
 }
 

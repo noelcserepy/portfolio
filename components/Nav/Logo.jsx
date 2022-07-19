@@ -23,7 +23,7 @@ function Logo({ showMenu }) {
 	return (
 		<motion.svg
 			variants={play}
-			initial="hidden"
+			initial="visible"
 			animate="visible"
 			className={`h-8 w-8 transition-all duration-300 ${
 				showMenu ? "stroke-white" : "stroke-primary"

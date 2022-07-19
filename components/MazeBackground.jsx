@@ -65,7 +65,7 @@ function MazeBackground({ showMenu }) {
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg">
 			<motion.g strokeWidth="2" strokeLinecap="square">
-				<motion.circle
+				{/* <motion.circle
 					// CENTER CIRCLE
 					className={"z-40"}
 					variants={ballVariants}
@@ -76,7 +76,7 @@ function MazeBackground({ showMenu }) {
 					r={0}
 					cx={582}
 					cy={582}
-				/>
+				/> */}
 				<motion.path
 					variants={concentricVariants}
 					animate={concentricControls}

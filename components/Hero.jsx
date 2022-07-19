@@ -1,7 +1,8 @@
-import { motion } from "framer-motion";
+import { motion, useAnimationControls } from "framer-motion";
+import { useEffect } from "react";
 import MazeBackground from "./MazeBackground";
 
-const sentenceVariants = {
+const titleVariants = {
 	hidden: {
 		opacity: 1,
 	},
@@ -9,37 +10,38 @@ const sentenceVariants = {
 	visible: {
 		opacity: 1,
 		transition: {
-			delay: 0,
-			staggerChildren: 0.05,
-			ease: "easeInOut",
-		},
-	},
-};
-const subtitleVariants = {
-	hidden: {
-		opacity: 1,
-	},
-
-	visible: {
-		opacity: 1,
-		transition: {
-			delayChildren: 1,
-			staggerChildren: 0.04,
+			staggerChildren: 0.02,
+			ease: "easeOut",
 		},
 	},
 };
 
-const letterVariants = {
+const titleLetters = {
 	hidden: {
 		opacity: 0,
-		x: -50,
+	},
+
+	visible: {
+		opacity: 1,
+		transition: {
+			duration: 0.3,
+		},
+	},
+};
+
+const subtitleVariants = {
+	hidden: {
+		opacity: 0,
+		x: -40,
 	},
 
 	visible: {
 		opacity: 1,
 		x: 0,
 		transition: {
-			ease: "easeIn",
+			delay: 0,
+			duration: 0.6,
+			ease: [0.94, 0.12, 1, 0.58],
 		},
 	},
 };
@@ -47,14 +49,15 @@ const letterVariants = {
 const dotVariants = {
 	hidden: {
 		opacity: 0,
-		y: -20,
+		fontSize: "1rem",
 	},
 	visible: {
 		opacity: 1,
-		y: 0,
+		fontSize: "6rem",
 		transition: {
-			delay: 2.2,
-			duration: 0.5,
+			delay: 0.2,
+			duration: 0.6,
+			ease: [1, 0, 1, 0.15],
 		},
 	},
 };
@@ -66,22 +69,23 @@ const mazeVariants = {
 	visible: {
 		opacity: 1,
 		transition: {
-			delay: 3,
-			duration: 2,
+			delay: 0,
+			duration: 3,
+			ease: [0, 0.27, 0.19, 0.65],
 		},
 	},
 };
 
 const lineVariants = {
 	hidden: {
-		pathLength: 0,
+		scaleX: 0,
 	},
 	visible: {
-		pathLength: 1,
+		scaleX: 1,
 		transition: {
-			delay: 0,
-			duration: 2,
-			ease: "easeInOut",
+			delay: 0.05,
+			duration: 0.4,
+			ease: [0.08, 0.84, 0.54, 0.97],
 		},
 	},
 };
@@ -90,20 +94,37 @@ function Hero({ showMenu }) {
 	const titleText = "Heyo, I'm Noël Cserépy";
 	const subtitleText = "I build stuff for the web.";
 
+	const lineControls = useAnimationControls();
+	const titleControls = useAnimationControls();
+	const subtitleControls = useAnimationControls();
+	const dotControls = useAnimationControls();
+	const mazeControls = useAnimationControls();
+
+	useEffect(() => {
+		const enter = async () => {
+			titleControls.start("visible");
+			await subtitleControls.start("visible");
+			await lineControls.start("visible");
+			await dotControls.start("visible");
+			await mazeControls.start("visible");
+		};
+		enter();
+	}, []);
+
 	return (
-		// Page Wrapper
 		<div className="text-primary h-screen col-start-0 col-span-8 whitespace-nowrap">
 			{/* Content Wrapper */}
 			<div className="flex flex-col w-min relative top-1/2 -translate-y-1/2">
 				<div className="flex items-end">
+					{/* Page title */}
 					<motion.h1
-						className="font-title text-8xl relative top-1/3 "
-						variants={sentenceVariants}
+						className="font-title text-8xl"
+						variants={titleVariants}
 						initial="hidden"
-						animate="visible">
+						animate={titleControls}>
 						{titleText.split("").map((letter, i) => {
 							return (
-								<motion.span key={letter + i} variants={letterVariants}>
+								<motion.span key={letter + i} variants={titleLetters}>
 									{letter}
 								</motion.span>
 							);
@@ -112,48 +133,41 @@ function Hero({ showMenu }) {
 							className="text-orange "
 							variants={dotVariants}
 							initial="hidden"
-							animate="visible">
+							animate={dotControls}>
 							.
 						</motion.span>
 					</motion.h1>
+
+					{/* Maze Backgrund */}
 					<motion.div
-						className="relative w-4 h-4 -z-10 -top-5 -left-5 pointer-events-none stroke-lowContrastBlue"
+						className="relative w-0 h-0 -z-10 -top-6 -left-3 pointer-events-none stroke-lowContrastBlue"
 						variants={mazeVariants}
 						initial="hidden"
-						animate="visible">
+						animate={mazeControls}>
 						<MazeBackground showMenu={showMenu} />
 					</motion.div>
 				</div>
 
-				<div className="flex justify-between items-center whitespace-nowrap">
-					<motion.h2
-						className="font-header text-2xl w-max h-min"
+				{/* Subtitle */}
+				<div className="flex justify-between items-center space-x-2 whitespace-nowrap">
+					<motion.div
+						style={{ originY: 0.5 }}
 						variants={subtitleVariants}
 						initial="hidden"
-						animate="visible">
-						{subtitleText.split("").map((letter, i) => {
-							return (
-								<motion.span key={letter + i} variants={letterVariants}>
-									{letter}
-								</motion.span>
-							);
-						})}
-					</motion.h2>
-					<motion.svg
-						className="flex-grow w-full ml-1 mr-4"
-						viewBox="0 0 200 10">
-						<motion.line
-							variants={lineVariants}
-							initial="hidden"
-							animate="visible"
-							x1="200"
-							y1="5"
-							x2="0"
-							y2="5"
-							stroke="#0D1823"
-							strokeWidth={1}
-						/>
-					</motion.svg>
+						animate={subtitleControls}>
+						<h2 className="font-header text-2xl w-max h-min">{subtitleText}</h2>
+					</motion.div>
+
+					{/* Line */}
+					<motion.div
+						className={`w-full h-0 border-t-[2px] ${
+							showMenu ? "border-white" : "border-primary"
+						}`}
+						variants={lineVariants}
+						initial="hidden"
+						animate={lineControls}
+						style={{ originX: 0 }}
+					/>
 				</div>
 			</div>
 		</div>

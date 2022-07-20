@@ -12,7 +12,7 @@ const navVariants = {
 		opacity: 1,
 		y: 0,
 		transition: {
-			delay: 3,
+			delay: 2,
 			duration: 1,
 			ease: "easeInOut",
 		},
@@ -53,7 +53,7 @@ function Nav({ showMenu, setShowMenu, navAnimDone, setNavAnimDone }) {
 				<div className="flex justify-center items-center w-16 h-full relative right-3">
 					<a
 						className="font-text font-bold text-xl hover:transition-all hover:tracking-widest origin-center duration-500 cursor-pointer"
-						onClick={setShowMenu}>
+						onClick={() => setShowMenu(!showMenu)}>
 						Menu
 					</a>
 				</div>

@@ -90,10 +90,7 @@ const lineVariants = {
 	},
 };
 
-function Hero({ showMenu }) {
-	const titleText = "Heyo, I'm Noël Cserépy";
-	const subtitleText = "I build stuff for the web.";
-
+function Hero({ showMenu, title, subtitle }) {
 	const lineControls = useAnimationControls();
 	const titleControls = useAnimationControls();
 	const subtitleControls = useAnimationControls();
@@ -122,7 +119,7 @@ function Hero({ showMenu }) {
 						variants={titleVariants}
 						initial="hidden"
 						animate={titleControls}>
-						{titleText.split("").map((letter, i) => {
+						{title.split("").map((letter, i) => {
 							return (
 								<motion.span key={letter + i} variants={titleLetters}>
 									{letter}
@@ -155,7 +152,7 @@ function Hero({ showMenu }) {
 						variants={subtitleVariants}
 						initial="hidden"
 						animate={subtitleControls}>
-						<h2 className="font-header text-2xl w-max h-min">{subtitleText}</h2>
+						<h2 className="font-header text-2xl w-max h-min">{subtitle}</h2>
 					</motion.div>
 
 					{/* Line */}

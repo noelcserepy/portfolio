@@ -1,0 +1,52 @@
+{
+	"projects": [
+		{
+			"name": "ShufflePlus",
+			"description": "Implemented secure OAuth access token flow with automatic refresh. Designed clean, readable, responsive layout. Added custom sorting algorithms.",
+			"tools": ["JavaScript", "React", "NextJS", "Spotify API", "NextAuth"],
+			"image": "/img/ShufflePlus_Mockup.png",
+			"github": "www.github.com",
+			"link": "www.google.com"
+		},
+		{
+			"name": "Packer",
+			"description": "Implemented secure OAuth access token flow with automatic refresh. Designed clean, readable, responsive layout. Added custom sorting algorithms.",
+			"tools": ["JavaScript", "React", "NextJS", "Spotify API", "NextAuth"],
+			"image": "/img/Packer_Mockup.png",
+			"github": "www.github.com",
+			"link": "www.google.com"
+		},
+		{
+			"name": "Memr",
+			"description": "Implemented secure OAuth access token flow with automatic refresh. Designed clean, readable, responsive layout. Added custom sorting algorithms.",
+			"tools": ["JavaScript", "React", "NextJS", "Spotify API", "NextAuth"],
+			"image": "/img/ShufflePlus_Mockup.png",
+			"github": "www.github.com",
+			"link": "www.google.com"
+		},
+		{
+			"name": "Spotifile",
+			"description": "Implemented secure OAuth access token flow with automatic refresh. Designed clean, readable, responsive layout. Added custom sorting algorithms.",
+			"tools": ["JavaScript", "React", "NextJS", "Spotify API", "NextAuth"],
+			"image": "/img/ShufflePlus_Mockup.png",
+			"github": "www.github.com",
+			"link": "www.google.com"
+		},
+		{
+			"name": "Lazy-Torrent",
+			"description": "Implemented secure OAuth access token flow with automatic refresh. Designed clean, readable, responsive layout. Added custom sorting algorithms.",
+			"tools": ["JavaScript", "React", "NextJS", "Spotify API", "NextAuth"],
+			"image": "/img/ShufflePlus_Mockup.png",
+			"github": "www.github.com",
+			"link": "www.google.com"
+		},
+		{
+			"name": "My_Ls",
+			"description": "Implemented secure OAuth access token flow with automatic refresh. Designed clean, readable, responsive layout. Added custom sorting algorithms.",
+			"tools": ["JavaScript", "React", "NextJS", "Spotify API", "NextAuth"],
+			"image": "/img/ShufflePlus_Mockup.png",
+			"github": "www.github.com",
+			"link": "www.google.com"
+		}
+	]
+}

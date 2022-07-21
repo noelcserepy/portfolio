@@ -2,18 +2,19 @@ import { motion, useAnimationControls } from "framer-motion";
 import { useEffect } from "react";
 
 const primary = "#0D1823";
-const secondary = "#556883";
 const orange = "#BF4D00";
+const durationMultiplier = 0.5;
+const delayMultiplier = 0.5;
 
 const mainVariants = {
 	hidden: {
-		rotate: -160,
+		rotate: 0,
 	},
 
 	back: {
-		rotate: -180,
+		rotate: -30,
 		transition: {
-			duration: 4,
+			duration: 4 * durationMultiplier,
 			ease: [0.54, 0.87, 0.59, 0.98],
 		},
 	},
@@ -21,7 +22,7 @@ const mainVariants = {
 	forward: {
 		rotate: 0,
 		transition: {
-			duration: 0.2,
+			duration: 0.2 * durationMultiplier,
 			ease: [0.87, -0.01, 0.91, 0.61],
 		},
 	},
@@ -30,8 +31,8 @@ const mainVariants = {
 		rotate: -2000,
 		scale: 1.5,
 		transition: {
-			delay: 0.6,
-			duration: 4,
+			delay: 0.6 * delayMultiplier,
+			duration: 4 * durationMultiplier,
 			ease: [1, 0, 0.0, 1],
 		},
 	},
@@ -39,8 +40,8 @@ const mainVariants = {
 	end: {
 		scale: 0,
 		transition: {
-			delay: 0.5,
-			duration: 0.5,
+			delay: 0.5 * delayMultiplier,
+			duration: 0.5 * durationMultiplier,
 			ease: [0.87, -0.01, 0.91, 0.61],
 		},
 	},
@@ -55,7 +56,7 @@ const lineVariants = {
 		pathLength: 0,
 		opacity: 1,
 		transition: {
-			delay: 0.5,
+			delay: 0.5 * delayMultiplier,
 		},
 	},
 
@@ -63,8 +64,8 @@ const lineVariants = {
 		pathLength: 1,
 		pathOffset: 0,
 		transition: {
-			delay: 0.2,
-			duration: 1.5,
+			delay: 0.2 * delayMultiplier,
+			duration: 1.5 * durationMultiplier,
 			ease: [0.66, 0.16, 0.61, 0.61],
 		},
 	},
@@ -72,7 +73,7 @@ const lineVariants = {
 	retracted: {
 		pathOffset: 1,
 		transition: {
-			duration: 1.5,
+			duration: 1.5 * durationMultiplier,
 		},
 	},
 };
@@ -88,15 +89,15 @@ const ballVariants = {
 	grown: {
 		r: 35,
 		transition: {
-			duration: 1.5,
+			duration: 1.5 * durationMultiplier,
 		},
 	},
 
 	shrink: {
 		r: 1,
 		transition: {
-			delay: 0.6,
-			duration: 4,
+			delay: 0.6 * delayMultiplier,
+			duration: 4 * durationMultiplier,
 			ease: [1, 0, 0.0, 1],
 		},
 	},
@@ -104,8 +105,8 @@ const ballVariants = {
 	out: {
 		r: 0,
 		transition: {
-			delay: 1,
-			duration: 1.5,
+			delay: 1 * delayMultiplier,
+			duration: 1.5 * durationMultiplier,
 			ease: "easeInOut",
 		},
 	},
@@ -121,8 +122,8 @@ const concentricVariants = {
 		opacity: 1,
 		pathLength: 0,
 		transition: {
-			delay: 0.5,
-			duration: 3.5,
+			delay: 0.5 * delayMultiplier,
+			duration: 3.5 * durationMultiplier,
 		},
 	},
 
@@ -130,8 +131,15 @@ const concentricVariants = {
 		pathLength: 1,
 		strokeWidth: 5,
 		transition: {
-			duration: 0.06,
-			ease: [0.99, 0.62, 1, 0.75],
+			pathLength: {
+				type: "inertia",
+				velocity: 15,
+				max: 1,
+				bounceDamping: 100,
+			},
+			strokeWidth: {
+				type: "spring",
+			},
 		},
 	},
 
@@ -139,8 +147,8 @@ const concentricVariants = {
 		pathLength: 0,
 		strokeWidth: 1,
 		transition: {
-			delay: 2,
-			duration: 1.5,
+			delay: 2 * delayMultiplier,
+			duration: 1.5 * durationMultiplier,
 			ease: "easeIn",
 		},
 	},
@@ -160,8 +168,8 @@ const radialVariants = {
 	grown: {
 		pathLength: 1,
 		transition: {
-			delay: 0.9,
-			duration: 0.06,
+			delay: 0.9 * delayMultiplier,
+			duration: 0.06 * durationMultiplier,
 			ease: "easeIn",
 		},
 	},
@@ -169,8 +177,8 @@ const radialVariants = {
 	out: {
 		pathLength: 0,
 		transition: {
-			delay: 2.5,
-			duration: 1.5,
+			delay: 2.5 * delayMultiplier,
+			duration: 1.5 * durationMultiplier,
 			ease: "easeIn",
 		},
 	},

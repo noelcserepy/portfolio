@@ -23,33 +23,6 @@ const navVariants = {
 };
 
 function Nav({ showMenu, setShowMenu, navAnimDone, setNavAnimDone }) {
-	// const navControls = animationControls();
-
-	// useEffect(() => {
-	// const openingSequence = async () => {
-	// 	navControls.start({
-	// 		opacity: 1,
-	// 		y: 0,
-	// 		transition: {
-	// 			delay: 2,
-	// 			duration: 1,
-	// 			ease: "easeInOut",
-	// 		},
-	// 	});
-	// 	setNavAnimDone();
-	// 	console.log(navAnimDone);
-	// };
-	// if (!navAnimDone) {
-	// 	console.log("ran");
-	// 	openingSequence();
-	// }
-	// if (showMenu) {
-	// 	navControls.start("toMenu");
-	// 	return;
-	// }
-	// navControls.start("toPage");
-	// }, []);
-
 	return (
 		<motion.div
 			variants={navVariants}

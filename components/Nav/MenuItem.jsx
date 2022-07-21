@@ -19,7 +19,6 @@ const MenuItem = ({ children }) => {
 			className="font-title text-8xl text-white origin-center cursor-pointer list-none select-none"
 			style={{ letterSpacing: "0em" }}
 			variants={itemVariants}
-			onHoverEnd={() => console.log("ended")}
 			whileHover={{
 				letterSpacing: "0.1em",
 				transition: {

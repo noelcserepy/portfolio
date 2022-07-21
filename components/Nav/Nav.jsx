@@ -1,14 +1,14 @@
 import Logo from "./Logo";
-import { animationControls, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import ChatBubbles from "./ChatBubbles";
-import { useEffect } from "react";
 
 const navVariants = {
 	hidden: {
 		opacity: 0,
 		y: -10,
 	},
-	visible: {
+
+	opening: {
 		opacity: 1,
 		y: 0,
 		transition: {
@@ -17,29 +17,44 @@ const navVariants = {
 			ease: "easeInOut",
 		},
 	},
+	toMenu: {
+		y: -20,
+	},
 };
 
 function Nav({ showMenu, setShowMenu, navAnimDone, setNavAnimDone }) {
-	const navControls = animationControls();
+	// const navControls = animationControls();
 
-	useEffect(() => {
-		if (!navAnimDone) {
-			navControls.start("opening");
-			setNavAnimDone(true);
-			return;
-		}
-		if (showMenu) {
-			navControls.start("toMenu");
-			return;
-		}
-		navControls.start("toPage");
-	}, [showMenu]);
+	// useEffect(() => {
+	// const openingSequence = async () => {
+	// 	navControls.start({
+	// 		opacity: 1,
+	// 		y: 0,
+	// 		transition: {
+	// 			delay: 2,
+	// 			duration: 1,
+	// 			ease: "easeInOut",
+	// 		},
+	// 	});
+	// 	setNavAnimDone();
+	// 	console.log(navAnimDone);
+	// };
+	// if (!navAnimDone) {
+	// 	console.log("ran");
+	// 	openingSequence();
+	// }
+	// if (showMenu) {
+	// 	navControls.start("toMenu");
+	// 	return;
+	// }
+	// navControls.start("toPage");
+	// }, []);
 
 	return (
-		<motion.nav
+		<motion.div
 			variants={navVariants}
 			initial="hidden"
-			animate="visible"
+			animate="opening"
 			className={`fixed top-8 left-16 right-16 flex h-8 justify-between z-40 select-none ${
 				showMenu ? "text-white" : "text-primary"
 			}`}>
@@ -67,7 +82,7 @@ function Nav({ showMenu, setShowMenu, navAnimDone, setNavAnimDone }) {
 					</a>
 				</div>
 			</div>
-		</motion.nav>
+		</motion.div>
 	);
 }
 

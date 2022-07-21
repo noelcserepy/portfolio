@@ -1,8 +1,7 @@
-import { motion, useAnimationControls, useInView } from "framer-motion";
-import Paragraph from "./Paragraph";
-import Subheader from "./Subheader";
+import { motion } from "framer-motion";
+import Paragraph from "../Paragraph";
+import Subheader from "../Subheader";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
 
 const data = require("/data.json");
 
@@ -94,40 +93,18 @@ function FeaturedProject({ project, imageRight }) {
 		p => p.name.toString() === project.toString()
 	);
 
-	const ref = useRef(null);
-	const isInView = useInView(ref, { once: "true" });
-	const mainControls = useAnimationControls();
-	const imageControls = useAnimationControls();
-	const subHeaderControls = useAnimationControls();
-	const lineControls = useAnimationControls();
-	const toolsControls = useAnimationControls();
-	const descriptionControls = useAnimationControls();
-
-	useEffect(() => {
-		if (isInView) {
-			mainControls.start("visible");
-			imageControls.start("visible");
-			subHeaderControls.start("visible");
-			lineControls.start("visible");
-			toolsControls.start("visible");
-			descriptionControls.start("visible");
-		}
-	}, [isInView]);
-
 	return (
 		<motion.section
-			ref={ref}
+			className="flex w-full items-center justify-between"
 			variants={mainVariants}
-			animate={mainControls}
 			initial="hidden"
-			className="flex w-full items-center justify-between">
+			whileInView="visible"
+			viewport={{ once: true, amount: "all" }}>
 			<motion.div
 				className={`w-[60%] origin-[0%_50%] ${
 					imageRight ? "order-last translate-x-[9%]" : "-translate-x-[9%]"
 				}`}
-				variants={imageVariants}
-				initial="hidden"
-				animate={imageControls}>
+				variants={imageVariants}>
 				<Image
 					src={current.image}
 					layout="responsive"
@@ -137,18 +114,12 @@ function FeaturedProject({ project, imageRight }) {
 			</motion.div>
 
 			<div className="flex flex-col w-[40%]">
-				<motion.div
-					variants={subHeaderVariants}
-					animate={subHeaderControls}
-					initial="hidden">
+				<motion.div variants={subHeaderVariants}>
 					<Subheader>{current.name}</Subheader>
 				</motion.div>
 
 				<div className="flex space-x-4 ">
-					<motion.div
-						variants={toolsVariants}
-						initial="hidden"
-						animate={toolsControls}>
+					<motion.div variants={toolsVariants}>
 						<ul className="text-primary font-header text-base">
 							{current.tools.map((t, i) => (
 								<li key={t + i}>{t}</li>
@@ -156,17 +127,11 @@ function FeaturedProject({ project, imageRight }) {
 						</ul>
 					</motion.div>
 					<motion.div
+						className="w-0 border-l-2 border-primary "
 						style={{ originY: 0 }}
 						variants={lineVariants}
-						initial="hidden"
-						animate={lineControls}
-						className="w-0 border-l-2 border-primary "
 					/>
-					<motion.div
-						className="flex flex-col"
-						variants={descriptionVariants}
-						initial="hidden"
-						animate={descriptionControls}>
+					<motion.div className="flex flex-col" variants={descriptionVariants}>
 						<Paragraph>{current.description}</Paragraph>
 						<div className="flex">
 							{current.github !== "" && (

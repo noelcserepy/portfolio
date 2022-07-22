@@ -34,7 +34,7 @@ function MyApp({ Component, pageProps }) {
 					<Socials key="socials" showMenu={showMenu} />
 					<div
 						key="content"
-						className="flex flex-col space-y-32 mx-auto max-w-5xl">
+						className="flex flex-col space-y-40 mx-auto max-w-5xl">
 						<Component {...pageProps} />
 					</div>
 				</AnimatePresence>

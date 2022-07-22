@@ -48,5 +48,32 @@
 			"github": "www.github.com",
 			"link": "www.google.com"
 		}
+	],
+	"posts": [
+		{
+			"title": "5 Mistakes I Made, So You Won't Have To",
+			"date": "20.7.2022",
+			"description": "I decided to re-work one of my very first projects I ever coded; ShufflePlus. It's a web app that re-orders tracks in your Spotify playlist based on the sound of the tracks, to make your playlist feel more like a mix and less like a random collection of songs that you used to like."
+		},
+		{
+			"title": "VSCode Shorcuts I Wish I Knew when I started",
+			"date": "20.7.2022",
+			"description": "I decided to re-work one of my very first projects I ever coded; ShufflePlus. It's a web app that re-orders tracks in your Spotify playlist based on the sound of the tracks, to make your playlist feel more like a mix and less like a random collection of songs that you used to like."
+		},
+		{
+			"title": "How to build jaw-dropping loading animations with framer motion",
+			"date": "20.7.2022",
+			"description": "I decided to re-work one of my very first projects I ever coded; ShufflePlus. It's a web app that re-orders tracks in your Spotify playlist based on the sound of the tracks, to make your playlist feel more like a mix and less like a random collection of songs that you used to like."
+		},
+		{
+			"title": "A Collection of useful animations",
+			"date": "20.7.2022",
+			"description": "I decided to re-work one of my very first projects I ever coded; ShufflePlus. It's a web app that re-orders tracks in your Spotify playlist based on the sound of the tracks, to make your playlist feel more like a mix and less like a random collection of songs that you used to like."
+		},
+		{
+			"title": "Lessons from starting a business with friends",
+			"date": "20.7.2022",
+			"description": "I decided to re-work one of my very first projects I ever coded; ShufflePlus. It's a web app that re-orders tracks in your Spotify playlist based on the sound of the tracks, to make your playlist feel more like a mix and less like a random collection of songs that you used to like."
+		}
 	]
 }

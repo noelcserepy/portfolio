@@ -1,5 +1,7 @@
 import { motion, useAnimationControls } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Paragraph from "./Paragraph";
+import Skip from "./Skip";
 
 const primary = "#0D1823";
 const orange = "#BF4D00";
@@ -185,6 +187,7 @@ const radialVariants = {
 };
 
 function MazeLoader({ setMazeAnimDone }) {
+	const [abort, setAbort] = useState(false);
 	const mainControls = useAnimationControls();
 	const lineControls = useAnimationControls();
 	const ballControls = useAnimationControls();
@@ -213,11 +216,38 @@ function MazeLoader({ setMazeAnimDone }) {
 			await mainControls.start("end");
 			setMazeAnimDone();
 		};
+
+		const abortSequence = async () => {
+			mainControls.stop();
+			lineControls.stop();
+			ballControls.stop();
+			concentricControls.stop();
+			radialControls.stop();
+
+			mainControls.start({
+				scale: 0,
+				rotate: -30,
+				transition: {
+					duration: 0.3,
+					ease: "easeIn",
+				},
+				transitionEnd: {
+					display: "none",
+				},
+			});
+			setTimeout(() => {
+				setMazeAnimDone();
+			}, 300);
+		};
+
+		if (abort) abortSequence();
+
 		sequence();
-	}, []);
+	}, [abort]);
 
 	return (
 		<div className="fixed top-0 left-0 h-full w-full overflow-clip">
+			<Skip setAbort={() => setAbort(true)} />
 			<div className="h-2/3 absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
 				<motion.div
 					className="h-full w-full"

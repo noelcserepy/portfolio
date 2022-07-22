@@ -30,7 +30,7 @@ export default function Home({ showMenu }) {
 			/>
 
 			<motion.section
-				className="w-5/12 mt-20"
+				className="w-5/12"
 				variants={blockVariants}
 				whileInView="visible"
 				initial="hidden"

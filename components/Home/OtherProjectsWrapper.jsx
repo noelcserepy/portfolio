@@ -22,7 +22,7 @@ const lineVariants = {
 	visible: {
 		scaleY: 1,
 		transition: {
-			duration: 2,
+			duration: 1.3,
 			ease: "easeInOut",
 		},
 	},

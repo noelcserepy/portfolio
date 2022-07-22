@@ -38,7 +38,7 @@ const maze = {
 	},
 };
 
-function Menu({ showMenu, setShowMenu }) {
+function Menu({ showMenu }) {
 	return (
 		<motion.div
 			layout

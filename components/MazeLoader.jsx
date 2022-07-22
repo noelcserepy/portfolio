@@ -5,8 +5,8 @@ import Skip from "./Skip";
 
 const primary = "#0D1823";
 const orange = "#BF4D00";
-const durationMultiplier = 0.5;
-const delayMultiplier = 0.5;
+const durationMultiplier = 1;
+const delayMultiplier = 1;
 
 const mainVariants = {
 	hidden: {

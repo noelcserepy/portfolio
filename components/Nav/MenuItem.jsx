@@ -5,11 +5,19 @@ const itemVariants = {
 	closed: {
 		x: 50,
 		opacity: 0,
+		transition: {
+			duration: 0.2,
+			ease: "easeOut",
+		},
 	},
 
 	open: {
 		x: 0,
 		opacity: 1,
+		transition: {
+			duration: 0.2,
+			ease: "easeOut",
+		},
 	},
 };
 

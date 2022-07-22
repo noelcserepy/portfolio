@@ -1,6 +1,7 @@
 import Logo from "./Logo";
 import { motion } from "framer-motion";
 import ChatBubbles from "./ChatBubbles";
+import MenuToggle from "./MenuToggle";
 
 const navVariants = {
 	hidden: {
@@ -28,7 +29,7 @@ function Nav({ showMenu, setShowMenu, navAnimDone, setNavAnimDone }) {
 			variants={navVariants}
 			initial="hidden"
 			animate="opening"
-			className={`fixed top-8 left-16 right-16 flex h-8 justify-between z-40 select-none ${
+			className={`fixed top-8 left-16 right-16 flex h-8 justify-between z-40 space-x-4 select-none ${
 				showMenu ? "text-white" : "text-primary"
 			}`}>
 			<div className="flex justify-start space-x-4 items-center">
@@ -38,21 +39,34 @@ function Nav({ showMenu, setShowMenu, navAnimDone, setNavAnimDone }) {
 						showMenu ? "border-white" : "border-primary"
 					}`}
 				/>
-				<div className="flex justify-center items-center w-16 h-full relative right-3">
-					<a
-						className="font-text font-bold text-xl hover:transition-all hover:tracking-widest origin-center duration-500 cursor-pointer"
-						onClick={() => setShowMenu(!showMenu)}>
-						Menu
-					</a>
+				<div className="flex items-center w-16 h-full">
+					<MenuToggle showMenu={showMenu} setShowMenu={setShowMenu} />
 				</div>
 			</div>
-			<div className="group flex justify-end items-center cursor-pointer">
+			<div className="group flex justify-end items-center cursor-pointer space-x-4">
 				<ChatBubbles showMenu={showMenu} />
 
-				<div className="flex justify-center items-center w-24 h-full">
-					<a className="font-text font-bold text-xl whitespace-nowrap ml-4 group-hover:transition-all group-hover:tracking-wider origin-center duration-500">
+				<div className="flex justify-start items-center w-24 h-full">
+					<motion.a
+						className="font-text font-bold text-xl whitespace-nowrap"
+						whileHover={{
+							letterSpacing: "0.05em",
+							transition: {
+								type: "spring",
+								duration: 0.3,
+								bounce: 0.5,
+							},
+						}}
+						whileTap={{
+							letterSpacing: "0.04em",
+							transition: {
+								type: "spring",
+								duration: 0.3,
+								bounce: 0.5,
+							},
+						}}>
 						Let's Talk
-					</a>
+					</motion.a>
 				</div>
 			</div>
 		</motion.div>

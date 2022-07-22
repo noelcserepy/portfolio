@@ -99,7 +99,7 @@ function FeaturedProject({ project, imageRight }) {
 			variants={mainVariants}
 			initial="hidden"
 			whileInView="visible"
-			viewport={{ once: true, amount: "all" }}>
+			viewport={{ once: true, amount: 0.8 }}>
 			<motion.div
 				className={`w-[60%] origin-[0%_50%] ${
 					imageRight ? "order-last translate-x-[9%]" : "-translate-x-[9%]"

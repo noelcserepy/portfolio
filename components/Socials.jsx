@@ -1,11 +1,22 @@
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 const socialsVariants = {
 	hidden: {
 		opacity: 1,
 	},
-	visible: {
+	open: {
 		opacity: 1,
+		fill: "#FFFFFF",
+		transition: {
+			delayChildren: 2,
+			staggerChildren: 0.3,
+			ease: "easeInOut",
+		},
+	},
+	closed: {
+		opacity: 1,
+		fill: "#0D1823",
 		transition: {
 			delayChildren: 2,
 			staggerChildren: 0.3,
@@ -18,12 +29,11 @@ const iconVariants = {
 	hidden: {
 		opacity: 0,
 	},
-	visible: {
+	open: {
 		opacity: 1,
-		transition: {
-			duration: 1,
-			type: "spring",
-		},
+	},
+	closed: {
+		opacity: 1,
 	},
 };
 
@@ -31,41 +41,44 @@ const lineVariants = {
 	hidden: {
 		scaleY: 0,
 	},
-	visible: {
+	open: {
 		scaleY: 1,
-		transition: {
-			duration: 1,
-			type: "spring",
-		},
+	},
+	closed: {
+		scaleY: 1,
 	},
 };
 
 function Socials({ showMenu }) {
 	const iconSize = 30;
+
 	return (
 		<motion.div
+			className="fixed flex flex-col-reverse justify-end items-center bottom-4 left-16 w-min h-1/6 z-40 space-y-3 space-y-reverse"
 			variants={socialsVariants}
 			initial="hidden"
-			animate="visible"
-			className={`fixed flex flex-col-reverse justify-end items-center bottom-4 left-16 w-min h-1/6 z-40  space-y-3 space-y-reverse ${
-				showMenu ? "fill-white" : "fill-primary"
-			}`}>
+			animate={showMenu ? "open" : "closed"}>
 			<motion.div
-				style={{ originY: 1 }}
-				variants={lineVariants}
 				className={`w-0 h-full mx-auto border-l-[1px] transition-all duration-300 ${
 					showMenu ? "border-white" : "border-primary"
 				}`}
+				variants={lineVariants}
 			/>
 
 			<motion.svg
+				className="cursor-pointer fill-inherit"
 				variants={iconVariants}
-				className="hover:scale-125 transition-all duration-300 cursor-pointer fill-inherit"
 				width={iconSize}
 				height={iconSize}
 				viewBox="0 0 15 15"
 				fill="none"
-				xmlns="http://www.w3.org/2000/svg">
+				xmlns="http://www.w3.org/2000/svg"
+				whileHover={{
+					scale: 1.1,
+					transition: {
+						duration: 0.2,
+					},
+				}}>
 				<path
 					fillRule="evenodd"
 					clipRule="evenodd"
@@ -75,12 +88,18 @@ function Socials({ showMenu }) {
 
 			<motion.svg
 				variants={iconVariants}
-				className="hover:scale-125 transition-all duration-300 cursor-pointer fill-inherit"
+				className="cursor-pointer fill-inherit"
 				width={iconSize}
 				height={iconSize}
 				viewBox="0 0 15 15"
 				fill="none"
-				xmlns="http://www.w3.org/2000/svg">
+				xmlns="http://www.w3.org/2000/svg"
+				whileHover={{
+					scale: 1.1,
+					transition: {
+						duration: 0.2,
+					},
+				}}>
 				<path
 					fillRule="evenodd"
 					clipRule="evenodd"
@@ -90,12 +109,18 @@ function Socials({ showMenu }) {
 
 			<motion.svg
 				variants={iconVariants}
-				className="hover:scale-125 transition-all duration-300 cursor-pointer fill-inherit"
+				className="cursor-pointer fill-inherit"
 				width={iconSize}
 				height={(iconSize / 15) * 12}
 				viewBox="0 0 15 12"
 				fill="none"
-				xmlns="http://www.w3.org/2000/svg">
+				xmlns="http://www.w3.org/2000/svg"
+				whileHover={{
+					scale: 1.1,
+					transition: {
+						duration: 0.2,
+					},
+				}}>
 				<path d="M14.25 0.750055C14.1861 0.743471 14.1217 0.743471 14.0578 0.750055H0.932764C0.848644 0.751351 0.765081 0.763964 0.684326 0.787555L7.45776 7.53287L14.25 0.750055Z" />
 				<path d="M14.9438 1.40137L8.11875 8.19824C7.9431 8.37285 7.70549 8.47086 7.45781 8.47086C7.21014 8.47086 6.97253 8.37285 6.79688 8.19824L0.0328125 1.45293C0.0120185 1.52936 0.000993134 1.60811 0 1.6873V11.0623C0 11.3109 0.0987721 11.5494 0.274587 11.7252C0.450403 11.901 0.68886 11.9998 0.9375 11.9998H14.0625C14.3111 11.9998 14.5496 11.901 14.7254 11.7252C14.9012 11.5494 15 11.3109 15 11.0623V1.6873C14.9963 1.58964 14.9773 1.49317 14.9438 1.40137ZM1.57969 11.0623H0.928125V10.392L4.33594 7.0123L4.99687 7.67324L1.57969 11.0623ZM14.0531 11.0623H13.3969L9.97969 7.67324L10.6406 7.0123L14.0484 10.392L14.0531 11.0623Z" />
 			</motion.svg>

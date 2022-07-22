@@ -30,7 +30,7 @@ export default function About({ showMenu }) {
 				subtitle="Past, present and future"
 			/>
 
-			<motion.section className="flex w-full justify-between space-x-4">
+			<motion.section className="flex w-full justify-between items-center space-x-4">
 				<motion.div
 					className="flex flex-col w-1/2 space-y-4"
 					variants={blockVariants}
@@ -60,13 +60,13 @@ export default function About({ showMenu }) {
 					</Paragraph>
 				</motion.div>
 				<motion.div className="flex justify-center items-center w-5/12">
-					<Image src={images.noelFace} layout="responsive" />
+					<Image src={images.noelFace} layout="intrinsic" />
 				</motion.div>
 			</motion.section>
 
-			<motion.section className="flex w-full justify-between space-x-4">
+			<motion.section className="flex w-full justify-between items-center space-x-4">
 				<motion.div className="flex justify-center items-center w-5/12">
-					<Image src={images.zunderDude} layout="responsive" />
+					<Image src={images.zunderDude} layout="intrinsic" />
 				</motion.div>
 				<motion.div
 					className="flex flex-col w-1/2 space-y-4"

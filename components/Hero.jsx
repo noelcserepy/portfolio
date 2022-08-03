@@ -1,6 +1,7 @@
 import { motion, useAnimationControls } from "framer-motion";
 import { useEffect } from "react";
 import MazeBackground from "./MazeBackground";
+import ScrollIndicator from "./ScrollIndicator";
 
 const titleVariants = {
 	hidden: {
@@ -109,7 +110,8 @@ function Hero({ showMenu, title, subtitle }) {
 	}, []);
 
 	return (
-		<div className="text-primary h-screen w-full whitespace-nowrap">
+		<div className="text-primary h-screen w-full whitespace-nowrap relative">
+			<ScrollIndicator />
 			{/* Content Wrapper */}
 			<div className="flex flex-col w-min relative top-1/2 -translate-y-1/2">
 				<div className="flex items-end">

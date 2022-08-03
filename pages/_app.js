@@ -26,13 +26,18 @@ function MyApp({ Component, pageProps }) {
 			{mazeAnimDone ? (
 				<>
 					<Nav
+						key="nav"
 						showMenu={showMenu}
 						setShowMenu={() => setShowMenu(!showMenu)}
 						navAnimDone={navAnimDone}
 						setNavAnimDone={() => setNavAnimDone(true)}
 					/>
-					<Menu showMenu={showMenu} />
-					<Socials showMenu={showMenu} />
+					<Menu
+						key="menu"
+						showMenu={showMenu}
+						setShowMenu={() => setShowMenu(!showMenu)}
+					/>
+					<Socials key="socials" showMenu={showMenu} />
 					<motion.div className="flex flex-col space-y-72 mx-auto max-w-5xl pb-32">
 						<AnimatePresence
 							exitBeforeEnter

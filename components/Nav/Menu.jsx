@@ -18,6 +18,14 @@ const overlay = {
 			ease: "easeOut",
 		},
 	},
+	exit: {
+		scaleX: 0,
+		transition: {
+			delay: 0.2,
+			duration: 0.2,
+			ease: "easeOut",
+		},
+	},
 };
 
 const maze = {
@@ -27,7 +35,6 @@ const maze = {
 			duration: 0.1,
 		},
 	},
-
 	open: {
 		opacity: 1,
 		transition: {
@@ -36,9 +43,15 @@ const maze = {
 			ease: "easeIn",
 		},
 	},
+	exit: {
+		opacity: 0,
+		transition: {
+			duration: 0.1,
+		},
+	},
 };
 
-function Menu({ showMenu }) {
+function Menu({ showMenu, setShowMenu }) {
 	return (
 		<motion.div
 			layout
@@ -47,8 +60,9 @@ function Menu({ showMenu }) {
 			style={{ originX: 0 }}
 			variants={overlay}
 			initial="closed"
-			animate={showMenu ? "open" : "closed"}>
-			<MenuLinks />
+			animate={showMenu ? "open" : "closed"}
+			exit="exit">
+			<MenuLinks setShowMenu={setShowMenu} />
 			<motion.div
 				className="fixed right-1/4 top-1/2 stroke-primary"
 				variants={maze}>

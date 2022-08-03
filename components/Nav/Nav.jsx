@@ -2,6 +2,7 @@ import Logo from "./Logo";
 import { motion } from "framer-motion";
 import ChatBubbles from "./ChatBubbles";
 import MenuToggle from "./MenuToggle";
+import Link from "next/link";
 
 const navVariants = {
 	hidden: {
@@ -33,7 +34,11 @@ function Nav({ showMenu, setShowMenu, navAnimDone, setNavAnimDone }) {
 				showMenu ? "text-white" : "text-primary"
 			}`}>
 			<div className="flex justify-start space-x-4 items-center">
-				<Logo showMenu={showMenu} />
+				<Link href="/">
+					<a>
+						<Logo showMenu={showMenu} />
+					</a>
+				</Link>
 				<div
 					className={`w-0 h-2/3 border-l-[1px] ${
 						showMenu ? "border-white" : "border-primary"

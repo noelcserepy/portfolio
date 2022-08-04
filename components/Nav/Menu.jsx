@@ -60,8 +60,8 @@ function Menu({ showMenu, setShowMenu }) {
 			style={{ originX: 0 }}
 			variants={overlay}
 			initial="closed"
-			animate={showMenu ? "open" : "closed"}
-			exit="exit">
+			exit="exit"
+			animate={showMenu ? "open" : "closed"}>
 			<MenuLinks setShowMenu={setShowMenu} />
 			<motion.div
 				className="fixed right-1/4 top-1/2 stroke-primary"

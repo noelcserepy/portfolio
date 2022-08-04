@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import Paragraph from "../components/Paragraph";
 import FeaturedProject from "../components/Home/FeaturedProject";
 import OtherProjectsWrapper from "../components/Home/OtherProjectsWrapper";
+import Nav from "../components/Nav/Nav";
+import ContentWrapper from "../components/Common/ContentWrapper";
 
 const blockVariants = {
 	hidden: {
@@ -20,34 +22,37 @@ const blockVariants = {
 	},
 };
 
-export default function Home({ showMenu }) {
+export default function Home({ showMenu, setShowMenu }) {
 	return (
 		<>
-			<Hero
-				showMenu={showMenu}
-				title="Heyo, I'm Noël Cserépy"
-				subtitle="I build stuff for the web."
-			/>
+			<Nav showMenu={showMenu} setShowMenu={setShowMenu} />
+			<ContentWrapper>
+				<Hero
+					showMenu={showMenu}
+					title="Heyo, I'm Noël Cserépy"
+					subtitle="I build stuff for the web."
+				/>
 
-			<motion.section
-				className="w-5/12"
-				variants={blockVariants}
-				whileInView="visible"
-				initial="hidden"
-				viewport={{ once: true }}>
-				<Subheader>Work</Subheader>
-				<Paragraph>
-					I am constantly looking to improve. From Spotify web apps to 3D
-					rendering optimization, from Discord bots to robotic eyes, I build
-					ever more challenging things to get better at my craft. Here are some
-					of the things I made.
-				</Paragraph>
-			</motion.section>
+				<motion.section
+					className="w-5/12"
+					variants={blockVariants}
+					whileInView="visible"
+					initial="hidden"
+					viewport={{ once: true }}>
+					<Subheader>Work</Subheader>
+					<Paragraph>
+						I am constantly looking to improve. From Spotify web apps to 3D
+						rendering optimization, from Discord bots to robotic eyes, I build
+						ever more challenging things to get better at my craft. Here are
+						some of the things I made.
+					</Paragraph>
+				</motion.section>
 
-			<FeaturedProject project="ShufflePlus" imageRight={false} />
-			<FeaturedProject project="Packer" imageRight={true} />
+				<FeaturedProject project="ShufflePlus" imageRight={false} />
+				<FeaturedProject project="Packer" imageRight={true} />
 
-			<OtherProjectsWrapper />
+				<OtherProjectsWrapper />
+			</ContentWrapper>
 		</>
 	);
 }

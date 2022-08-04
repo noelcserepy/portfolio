@@ -6,16 +6,11 @@ const listVariants = {
 		y: 100,
 	},
 	visible: {
-		y: [0, 0, 0],
-		height: ["105px", "110px", "105px"],
+		y: 0,
 		transition: {
-			staggerChildren: 0.15,
+			delay: 4,
+			staggerChildren: 0.02,
 			staggerDirection: -1,
-			duration: 1,
-			repeat: Infinity,
-			repeatDelay: 2,
-			ease: ["easeInOut", "easeIn"],
-			times: [0, 0.85, 1],
 		},
 	},
 };
@@ -24,12 +19,13 @@ const itemVariants = {
 		opacity: 1,
 	},
 	visible: {
-		justifySelf: ["start", "end"],
+		y: [0, 2, 0],
 		transition: {
-			duration: 1,
+			duration: 0.5,
 			repeat: Infinity,
 			repeatDelay: 2,
-			ease: "easeIn",
+			ease: "easeInOut",
+			times: [0, 0.5, 1],
 		},
 	},
 };
@@ -48,14 +44,14 @@ function ScrollIndicator() {
 	return (
 		<motion.div
 			className="flex flex-col -space-y-2 items-center absolute bottom-4 left-0 font-header text-md text-primary z-10"
-			style={{ opacity: scrollOp, height: "105px", justifySelf: "start" }}
+			style={{ opacity: scrollOp, height: "105px" }}
 			variants={listVariants}
-			layoutScroll
+			layout
 			initial="hidden"
 			animate="visible">
 			{text.split("").map((l, i) => (
 				<motion.div
-					className="h-min"
+					className="h-min justify-self-end"
 					key={l + i}
 					variants={itemVariants}
 					layout>

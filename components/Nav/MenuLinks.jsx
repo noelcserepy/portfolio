@@ -9,6 +9,13 @@ const linkVariants = {
 			staggerChildren: 0.07,
 		},
 	},
+	exit: {
+		opacity: 1,
+		transition: {
+			staggerDirection: -1,
+			staggerChildren: 0.07,
+		},
+	},
 	open: {
 		opacity: 1,
 		transition: {

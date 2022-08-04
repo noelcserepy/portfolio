@@ -12,9 +12,17 @@ const itemVariants = {
 			ease: [0.69, 0.3, 0.59, 0.58],
 		},
 	},
+	exit: {
+		x: -300,
+		opacity: 0,
+		transition: {
+			duration: 0.2,
+			ease: [0.69, 0.3, 0.59, 0.58],
+		},
+	},
 
 	open: {
-		x: 0,
+		x: [50, 0],
 		opacity: 1,
 		transition: {
 			duration: 0.2,
@@ -23,24 +31,7 @@ const itemVariants = {
 	},
 };
 
-const lineVariants = {
-	closed: {
-		scaleY: 0,
-		transition: {
-			delay: 1,
-			duration: 0.3,
-		},
-	},
-	open: {
-		scaleY: 1,
-		transition: {
-			delay: 1,
-			duration: 0.1,
-		},
-	},
-};
-
-const MenuItem = ({ setShowMenu, href, text }) => {
+const MenuItem = ({ href, text }) => {
 	const router = useRouter();
 
 	return (
@@ -64,14 +55,14 @@ const MenuItem = ({ setShowMenu, href, text }) => {
 					bounce: 0.5,
 				},
 			}}>
-			<motion.div
-				className={`w-0 h-full ${
-					router.pathname === href ? "border-l-[2px]" : ""
-				} absolute -left-4`}
-				variants={lineVariants}
-				// animate={router.pathname === href ? "visible" : "hidden"}
-				style={{ originY: 0 }}
-			/>
+			{router.pathname === href && (
+				<motion.div
+					className={`w-0 h-full border-l-[2px] absolute -left-4`}
+					style={{ originY: 0 }}
+					layoutId="menuLine"
+					transition={{ delay: 1 }}
+				/>
+			)}
 			<Link href={href} scroll={false}>
 				<a>{text}</a>
 			</Link>

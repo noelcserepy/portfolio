@@ -35,21 +35,21 @@ const mainVariants = {
 	},
 
 	boing: {
-		scale: 1.01,
-		rotate: -600,
+		scale: 1.3,
+		rotate: -900,
 		transition: {
 			delay: 0,
-			rotate: { ease: "circOut", duration: 2 },
-			default: { type: "spring", duration: 2, bounce: 5 },
+			rotate: { ease: "circOut", duration: 4 },
+			scale: { ease: "easeIn", duration: 4 },
 		},
 	},
 
 	end: {
 		scale: 0,
 		transition: {
-			delay: 0.7,
-			duration: 0.5,
-			ease: [0.87, -0.01, 0.91, 0.61],
+			delay: 0.2,
+			duration: 0.4,
+			ease: "circIn",
 		},
 	},
 };
@@ -98,7 +98,7 @@ const ballVariants = {
 		},
 	},
 	swell: {
-		r: 580,
+		r: 2,
 		transition: {
 			duration: 2,
 			ease: [0.67, 0.01, 1, 0.26],
@@ -147,7 +147,7 @@ const concentricVariants = {
 	},
 
 	fade: {
-		opacity: 0,
+		opacity: 1,
 		pathLength: 0,
 		strokeLinecap: "round",
 		transition: {
@@ -183,7 +183,7 @@ const radialVariants = {
 	},
 
 	fade: {
-		opacity: 0,
+		opacity: 1,
 		pathLength: 0,
 		strokeLinecap: "round",
 		transition: {

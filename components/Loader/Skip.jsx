@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import Paragraph from "./Paragraph";
+import Paragraph from "../Paragraph";
 
 const skipVariants = {
 	hidden: {

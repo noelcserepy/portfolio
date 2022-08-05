@@ -1,4 +1,4 @@
-import Hero from "../components/Hero";
+import Hero from "../components/Common/Hero";
 import { motion } from "framer-motion";
 import BlogItem from "../components/BlogItem";
 import ContentWrapper from "../components/Common/ContentWrapper";

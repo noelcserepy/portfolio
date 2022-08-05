@@ -35,12 +35,6 @@ function ScrollIndicator() {
 	const scrollOp = useTransform(scrollY, [0, 600], [1, 0]);
 	const text = "scroll";
 
-	useEffect(() => {
-		return scrollY.onChange(latest => {
-			console.log("Page scroll: ", latest);
-		});
-	}, []);
-
 	return (
 		<motion.div
 			className="flex flex-col -space-y-2 items-center absolute bottom-4 left-0 font-header text-md text-primary z-10"

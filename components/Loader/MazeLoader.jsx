@@ -1,6 +1,10 @@
-import { motion, useAnimationControls } from "framer-motion";
+import {
+	motion,
+	useAnimationControls,
+	useMotionValue,
+	useVelocity,
+} from "framer-motion";
 import { useEffect, useState } from "react";
-import Paragraph from "./Paragraph";
 import Skip from "./Skip";
 
 const primary = "#0D1823";
@@ -16,7 +20,7 @@ const mainVariants = {
 	back: {
 		rotate: -30,
 		transition: {
-			duration: 4 * durationMultiplier,
+			duration: 4,
 			ease: [0.54, 0.87, 0.59, 0.98],
 		},
 	},
@@ -24,26 +28,27 @@ const mainVariants = {
 	forward: {
 		rotate: 0,
 		transition: {
-			duration: 0.2 * durationMultiplier,
-			ease: [0.87, -0.01, 0.91, 0.61],
+			duration: 0.3,
+			type: "spring",
+			bounce: 0.2,
 		},
 	},
 
-	rotating: {
-		rotate: -2000,
-		scale: 1.5,
+	boing: {
+		scale: 1.01,
+		rotate: -600,
 		transition: {
-			delay: 0.6 * delayMultiplier,
-			duration: 4 * durationMultiplier,
-			ease: [1, 0, 0.0, 1],
+			delay: 0,
+			rotate: { ease: "circOut", duration: 2 },
+			default: { type: "spring", duration: 2, bounce: 5 },
 		},
 	},
 
 	end: {
 		scale: 0,
 		transition: {
-			delay: 0.5 * delayMultiplier,
-			duration: 0.5 * durationMultiplier,
+			delay: 0.7,
+			duration: 0.5,
 			ease: [0.87, -0.01, 0.91, 0.61],
 		},
 	},
@@ -52,22 +57,17 @@ const mainVariants = {
 const lineVariants = {
 	hidden: {
 		opacity: 0,
-	},
-
-	visible: {
 		pathLength: 0,
-		opacity: 1,
-		transition: {
-			delay: 0.5 * delayMultiplier,
-		},
 	},
 
 	extended: {
 		pathLength: 1,
 		pathOffset: 0,
+		opacity: 1,
 		transition: {
-			delay: 0.2 * delayMultiplier,
-			duration: 1.5 * durationMultiplier,
+			opacity: { duration: 0 },
+			delay: 1,
+			duration: 1.5,
 			ease: [0.66, 0.16, 0.61, 0.61],
 		},
 	},
@@ -75,7 +75,10 @@ const lineVariants = {
 	retracted: {
 		pathOffset: 1,
 		transition: {
-			duration: 1.5 * durationMultiplier,
+			duration: 1.5,
+			transitionEnd: {
+				opacity: 0,
+			},
 		},
 	},
 };
@@ -91,24 +94,22 @@ const ballVariants = {
 	grown: {
 		r: 35,
 		transition: {
-			duration: 1.5 * durationMultiplier,
+			duration: 1.5,
 		},
 	},
-
-	shrink: {
-		r: 1,
+	swell: {
+		r: 580,
 		transition: {
-			delay: 0.6 * delayMultiplier,
-			duration: 4 * durationMultiplier,
-			ease: [1, 0, 0.0, 1],
+			duration: 2,
+			ease: [0.67, 0.01, 1, 0.26],
 		},
 	},
 
 	out: {
 		r: 0,
 		transition: {
-			delay: 1 * delayMultiplier,
-			duration: 1.5 * durationMultiplier,
+			delay: 1,
+			duration: 1.5,
 			ease: "easeInOut",
 		},
 	},
@@ -117,41 +118,45 @@ const ballVariants = {
 const concentricVariants = {
 	hidden: {
 		opacity: 0,
-		pathLength: 0,
+		pathLength: 1,
+		pathOffset: 0.999,
+		strokeLinecap: "round",
 	},
 
 	visible: {
 		opacity: 1,
-		pathLength: 0,
+		pathLength: 1,
+		pathOffset: 0.999,
+
+		strokeLinecap: "round",
 		transition: {
-			delay: 0.5 * delayMultiplier,
-			duration: 3.5 * durationMultiplier,
+			delay: 0.5,
+			duration: 3.5,
 		},
 	},
 
 	grown: {
+		pathOffset: 0,
 		pathLength: 1,
-		strokeWidth: 5,
+		strokeLinecap: "square",
 		transition: {
-			pathLength: {
-				type: "inertia",
-				velocity: 15,
-				max: 1,
-				bounceDamping: 100,
-			},
-			strokeWidth: {
-				type: "spring",
-			},
+			delay: 0,
+			duration: 0.15,
+			ease: "easeOut",
 		},
 	},
 
-	out: {
+	fade: {
+		opacity: 0,
 		pathLength: 0,
-		strokeWidth: 1,
+		strokeLinecap: "round",
 		transition: {
-			delay: 2 * delayMultiplier,
-			duration: 1.5 * durationMultiplier,
-			ease: "easeIn",
+			opacity: { delay: 2, duration: 2, ease: "easeOut" },
+			default: {
+				delay: 0.2,
+				duration: 1.78,
+				ease: [1, 0.25, 0.96, 0.79],
+			},
 		},
 	},
 };
@@ -160,28 +165,34 @@ const radialVariants = {
 	hidden: {
 		opacity: 0,
 		pathLength: 0,
+		strokeLinecap: "round",
 	},
-
-	visible: {
-		opacity: 1,
-		pathLength: 0,
-	},
-
 	grown: {
 		pathLength: 1,
+		strokeLinecap: "square",
+		opacity: 1,
+
 		transition: {
-			delay: 0.9 * delayMultiplier,
-			duration: 0.06 * durationMultiplier,
-			ease: "easeIn",
+			delay: 1,
+			default: {
+				duration: 0.06,
+				ease: "easeIn",
+			},
+			opacity: { duration: 0 },
 		},
 	},
 
-	out: {
+	fade: {
+		opacity: 0,
 		pathLength: 0,
+		strokeLinecap: "round",
 		transition: {
-			delay: 2.5 * delayMultiplier,
-			duration: 1.5 * durationMultiplier,
-			ease: "easeIn",
+			opacity: { delay: 2, duration: 2, ease: "easeOut" },
+			default: {
+				delay: 0.2,
+				duration: 1.8,
+				ease: [1, 0.25, 0.96, 0.79],
+			},
 		},
 	},
 };
@@ -194,26 +205,40 @@ function MazeLoader({ setMazeAnimDone }) {
 	const concentricControls = useAnimationControls();
 	const radialControls = useAnimationControls();
 
+	const rot = useMotionValue(0);
+	const rotVel = useVelocity(rot);
+	let maxRotVel = 0;
+
+	const onUpdate = latest => {
+		rot.set(latest.rotate);
+
+		if (rotVel.get() > maxRotVel) {
+			maxRotVel = rotVel.get();
+		}
+	};
+
 	useEffect(() => {
 		const sequence = async () => {
 			mainControls.start("back");
 			await concentricControls.start("visible");
-			await mainControls.start("forward");
-			concentricControls.start("grown");
-			radialControls.set("visible");
+			mainControls.start("forward");
+			await concentricControls.start("grown");
 			await radialControls.start("grown");
 
-			await lineControls.start("visible");
 			await lineControls.start("extended");
 			ballControls.set("visible");
-			radialControls.start("out");
-			concentricControls.start("out");
 			ballControls.start("grown");
 			await lineControls.start("retracted");
-			lineControls.set("hidden");
-			ballControls.start("shrink");
-			await mainControls.start("rotating");
+
+			// await mainControls.start({ x: 0, transition: { duration: 0.2 } });
+			concentricControls.start("fade");
+			radialControls.start("fade");
+			await ballControls.start("swell");
+			await mainControls.start("boing");
+
 			await mainControls.start("end");
+			await mainControls.start({ x: 0, transition: { duration: 1 } });
+
 			setMazeAnimDone();
 		};
 
@@ -253,22 +278,23 @@ function MazeLoader({ setMazeAnimDone }) {
 					className="h-full w-full"
 					variants={mainVariants}
 					animate={mainControls}
-					initial="hidden">
+					initial="hidden"
+					onUpdate={onUpdate}>
 					<motion.svg
 						className="h-full w-full"
 						viewBox="0 0 1161 1161"
 						fill="none"
 						xmlns="http://www.w3.org/2000/svg">
 						<motion.circle
-							// CENTER CIRCLE
+							// ORANGE CIRCLE
 							variants={ballVariants}
 							animate={ballControls}
 							initial="hidden"
 							fill={orange}
 							stroke="none"
 							r={35}
-							cx={582}
-							cy={582}
+							cx={580.5}
+							cy={580.5}
 						/>
 						<motion.path
 							// MAIN MAZE LINE

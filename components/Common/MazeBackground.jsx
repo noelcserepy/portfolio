@@ -1,4 +1,4 @@
-import { motion, useAnimationControls } from "framer-motion";
+import { motion, useAnimationControls, useMotionValue } from "framer-motion";
 import { useEffect } from "react";
 
 const primary = "#0D1823";

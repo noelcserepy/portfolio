@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import MazeBackground from "../MazeBackground";
+import MazeBackground from "../Common/MazeBackground";
 import MenuLinks from "./MenuLinks";
 
 const overlay = {

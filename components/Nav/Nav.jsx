@@ -1,6 +1,6 @@
-import Socials from "../Socials";
 import Header from "./Header";
 import Menu from "./Menu";
+import Socials from "./Socials";
 
 export default function Nav({
 	showMenu,

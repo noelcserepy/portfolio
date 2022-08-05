@@ -23,6 +23,12 @@ const socialsVariants = {
 			ease: "easeInOut",
 		},
 	},
+	exit: {
+		transition: {
+			staggerChildren: 0.02,
+			ease: "easeIn",
+		},
+	},
 };
 
 const iconVariants = {
@@ -35,6 +41,13 @@ const iconVariants = {
 	closed: {
 		opacity: 1,
 	},
+	exit: {
+		opacity: 0,
+		transition: {
+			duration: 0.02,
+			delay: 0.14,
+		},
+	},
 };
 
 const lineVariants = {
@@ -43,9 +56,21 @@ const lineVariants = {
 	},
 	open: {
 		scaleY: 1,
+		transition: {
+			type: "spring",
+			duration: 0.3,
+			bounce: 0.5,
+		},
 	},
 	closed: {
 		scaleY: 1,
+	},
+	exit: {
+		scaleY: 0,
+		transition: {
+			duration: 0.14,
+			ease: "easeIn",
+		},
 	},
 };
 
@@ -57,8 +82,10 @@ function Socials({ showMenu }) {
 			className="fixed flex flex-col-reverse justify-end items-center bottom-4 left-16 w-min h-1/6 z-40 space-y-3 space-y-reverse"
 			variants={socialsVariants}
 			initial="hidden"
+			exit="exit"
 			animate={showMenu ? "open" : "closed"}>
 			<motion.div
+				style={{ originY: 1 }}
 				className={`w-0 h-full mx-auto border-l-[1px] transition-all duration-300 ${
 					showMenu ? "border-white" : "border-primary"
 				}`}

@@ -29,7 +29,7 @@ export default function Home({ showMenu, setShowMenu }) {
 			<ContentWrapper>
 				<Hero
 					showMenu={showMenu}
-					title="Heyo, I'm Noël Cserépy"
+					title={"Heyo, \nI'm Noël \nCserépy"}
 					subtitle="I build stuff for the web."
 				/>
 

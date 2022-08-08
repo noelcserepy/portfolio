@@ -37,7 +37,7 @@ function ScrollIndicator() {
 
 	return (
 		<motion.div
-			className="flex flex-col -space-y-2 items-center absolute bottom-4 left-0 font-header text-md text-primary z-10"
+			className="flex flex-col -space-y-2 items-center absolute bottom-4 left-1/2 font-header text-md text-primary z-10"
 			style={{ opacity: scrollOp, height: "105px" }}
 			variants={listVariants}
 			layout

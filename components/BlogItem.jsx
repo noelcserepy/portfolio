@@ -37,11 +37,11 @@ function BlogItem({ post }) {
 			whileInView="visible"
 			initial="hidden"
 			viewport={{ once: true }}>
-			<p className="text-orange font-header text-base col-span-1 text-end pr-4">
+			<p className="text-orange font-header text-base col-span-2 md:col-span-1 text-end pr-4">
 				{post.date}
 			</p>
 
-			<motion.div className="col-start-2 col-end-9 flex items-center">
+			<motion.div className="col-start-3 md:col-start-2 col-end-9 flex items-center">
 				<motion.div
 					className="w-full h-0 border-t-2 border-primary"
 					style={{ originX: 0 }}
@@ -49,7 +49,7 @@ function BlogItem({ post }) {
 				/>
 			</motion.div>
 			<motion.div
-				className="col-start-2 col-end-9 row-start-2 pl-4 mt-1"
+				className="col-start-1 md:col-start-2 col-end-9 row-start-2 pl-4 mt-1"
 				variants={blockVariants}
 				whileInView="visible"
 				initial="hidden"

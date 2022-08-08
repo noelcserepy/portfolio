@@ -30,13 +30,13 @@ export default function About({ showMenu, setShowMenu }) {
 			<ContentWrapper>
 				<Hero
 					showMenu={showMenu}
-					title="A little bit about me"
+					title={"A little \nbit \nabout me"}
 					subtitle="Past, present and future"
 				/>
 
-				<motion.section className="flex w-full justify-between items-center space-x-4">
+				<motion.section className="flex flex-col-reverse md:flex-row w-full justify-between items-center md:space-x-4">
 					<motion.div
-						className="flex flex-col w-1/2 space-y-4"
+						className="flex flex-col w-full md:w-1/2 space-y-4"
 						variants={blockVariants}
 						whileInView="visible"
 						initial="hidden"
@@ -63,17 +63,17 @@ export default function About({ showMenu, setShowMenu }) {
 							Okay, and mazes just look really cool... Don’t judge.
 						</Paragraph>
 					</motion.div>
-					<motion.div className="flex justify-center items-center w-5/12">
+					<motion.div className="flex justify-center items-center w-full md:w-5/12">
 						<Image src={images.noelFace} layout="intrinsic" />
 					</motion.div>
 				</motion.section>
 
-				<motion.section className="flex w-full justify-between items-center space-x-4">
-					<motion.div className="flex justify-center items-center w-5/12">
+				<motion.section className="flex flex-col md:flex-row w-full justify-between items-center space-x-4">
+					<motion.div className="flex justify-center items-center w-full md:w-5/12">
 						<Image src={images.zunderDude} layout="intrinsic" />
 					</motion.div>
 					<motion.div
-						className="flex flex-col w-1/2 space-y-4"
+						className="flex flex-col w-full md:w-1/2 space-y-4"
 						variants={blockVariants}
 						whileInView="visible"
 						initial="hidden"
@@ -102,9 +102,9 @@ export default function About({ showMenu, setShowMenu }) {
 					</motion.div>
 				</motion.section>
 
-				<motion.section className="flex w-full justify-between space-x-4">
+				<motion.section className="flex flex-col md:flex-row w-full justify-between space-y-4 md:space-y-0 md:space-x-4">
 					<motion.div
-						className="flex flex-col w-1/2 space-y-4"
+						className="flex flex-col md:w-1/2 space-y-4"
 						variants={blockVariants}
 						whileInView="visible"
 						initial="hidden"
@@ -124,7 +124,7 @@ export default function About({ showMenu, setShowMenu }) {
 						</motion.div>
 					</motion.div>
 					<motion.div
-						className="flex flex-col w-1/2 space-y-4"
+						className="flex flex-col md:w-1/2 space-y-4"
 						variants={blockVariants}
 						whileInView="visible"
 						initial="hidden"

@@ -115,20 +115,24 @@ function Hero({ showMenu, title, subtitle }) {
 	return (
 		<div className="text-primary h-screen w-full whitespace-nowrap relative">
 			<ScrollIndicator />
-			<div className="flex flex-col w-min relative top-1/2 -translate-y-1/2 mx-auto">
-				<div className="flex items-end w-full whitespace-pre-line md:whitespace-nowrap">
+			<div className="flex flex-col w-min relative top-1/2 -translate-y-1/2 mx-auto lg:mx-0">
+				<div className="flex items-end w-full whitespace-pre">
 					{/* Page title */}
 					<motion.h1
-						className="font-title text-7xl sm:text-8xl md:text-7xl lg:text-8xl w-full"
+						className="font-title text-7xl sm:text-8xl w-full"
 						variants={titleVariants}
 						initial="hidden"
 						animate={titleControls}>
 						{title.split("").map((letter, i) => {
-							return (
-								<motion.span key={letter + i} variants={titleLetters}>
-									{letter}
-								</motion.span>
-							);
+							if (letter === "\n") {
+								return <br key={letter + i} className="lg:hidden" />;
+							} else {
+								return (
+									<motion.span key={letter + i} variants={titleLetters}>
+										{letter}
+									</motion.span>
+								);
+							}
 						})}
 						<motion.span
 							className="text-orange font-title text-8xl"
@@ -141,7 +145,7 @@ function Hero({ showMenu, title, subtitle }) {
 
 					{/* Maze Backgrund */}
 					<motion.div
-						className="relative w-0 h-0 -z-10 -top-6 -left-3 pointer-events-none stroke-lowContrastBlue"
+						className="relative w-0 h-0 -z-10  -left-2 -top-4 sm:-top-6 sm:-left-3 pointer-events-none stroke-lowContrastBlue"
 						variants={mazeVariants}
 						initial="hidden"
 						animate={mazeControls}>
@@ -150,7 +154,10 @@ function Hero({ showMenu, title, subtitle }) {
 				</div>
 
 				{/* Subtitle */}
-				<div className="flex justify-between items-center space-x-2">
+				<div
+					className={`flex justify-between items-center ${
+						subtitle && "space-x-2"
+					}`}>
 					<motion.div
 						style={{ originY: 0.5 }}
 						variants={subtitleVariants}

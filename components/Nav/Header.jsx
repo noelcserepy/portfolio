@@ -39,7 +39,7 @@ function Header({ showMenu, setShowMenu }) {
 			initial="hidden"
 			animate="opening"
 			exit="exit"
-			className={`fixed top-8 left-16 right-16 flex h-8 justify-between z-40 space-x-4 select-none ${
+			className={`fixed top-8 left-8 right-8 sm:left-16 sm:right-16 flex h-8 justify-between z-40 space-x-4 select-none ${
 				showMenu ? "text-white" : "text-primary"
 			}`}>
 			<div className="flex justify-start space-x-4 items-center">

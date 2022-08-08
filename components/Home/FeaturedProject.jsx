@@ -95,14 +95,16 @@ function FeaturedProject({ project, imageRight }) {
 
 	return (
 		<motion.section
-			className="flex w-full items-center justify-between"
+			className={`flex flex-col space-y-4 lg:flex-row w-full items-center justify-between`}
 			variants={mainVariants}
 			initial="hidden"
 			whileInView="visible"
 			viewport={{ once: true, amount: 0.8 }}>
 			<motion.div
-				className={`w-[60%] origin-[0%_50%] ${
-					imageRight ? "order-last translate-x-[9%]" : "-translate-x-[9%]"
+				className={`w-[90%] lg:w-[60%] origin-[0%_50%] ${
+					imageRight
+						? "lg:order-last lg:translate-x-[9%]"
+						: "lg:-translate-x-[9%]"
 				}`}
 				variants={imageVariants}>
 				<Image
@@ -113,7 +115,7 @@ function FeaturedProject({ project, imageRight }) {
 				/>
 			</motion.div>
 
-			<div className="flex flex-col w-[40%]">
+			<div className="flex flex-col w-full lg:w-[40%]">
 				<motion.div variants={subHeaderVariants}>
 					<Subheader>{current.name}</Subheader>
 				</motion.div>

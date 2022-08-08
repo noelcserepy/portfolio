@@ -48,12 +48,14 @@ function OtherProject({ project }) {
 
 	return (
 		<motion.li
-			className="flex justify-between items-center"
+			className="flex flex-col-reverse items-start pl-4 lg:pl-0 lg:flex-row lg:justify-between lg:items-center"
 			variants={liVariants}>
-			<motion.div className="text-right w-[48%]" variants={descriptionVariants}>
+			<motion.div
+				className="mt-4 lg:mt-0 lg:text-right lg:w-[48%]"
+				variants={descriptionVariants}>
 				<Paragraph>{current.description}</Paragraph>
 			</motion.div>
-			<motion.div className="flex flex-col w-[48%]" variants={infoVariants}>
+			<motion.div className="flex flex-col lg:w-[48%]" variants={infoVariants}>
 				<Subheader>{current.name}</Subheader>
 				<p className="text-primary font-header text-base">
 					{current.tools.map((t, i) => (

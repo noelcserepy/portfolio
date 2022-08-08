@@ -50,15 +50,18 @@ const subtitleVariants = {
 const dotVariants = {
 	hidden: {
 		opacity: 0,
-		fontSize: "1rem",
+		fontSize: "0em",
 	},
 	visible: {
 		opacity: 1,
-		fontSize: "6rem",
+		fontSize: "1em",
 		transition: {
 			delay: 0.2,
 			duration: 0.6,
 			ease: [1, 0, 1, 0.15],
+			opacity: {
+				duration: 0,
+			},
 		},
 	},
 };
@@ -112,11 +115,11 @@ function Hero({ showMenu, title, subtitle }) {
 	return (
 		<div className="text-primary h-screen w-full whitespace-nowrap relative">
 			<ScrollIndicator />
-			<div className="flex flex-col w-min relative top-1/2 -translate-y-1/2">
-				<div className="flex items-end">
+			<div className="flex flex-col w-min relative top-1/2 -translate-y-1/2 mx-auto">
+				<div className="flex items-end w-full whitespace-pre-line md:whitespace-nowrap">
 					{/* Page title */}
 					<motion.h1
-						className="font-title text-8xl"
+						className="font-title text-7xl sm:text-8xl md:text-7xl lg:text-8xl w-full"
 						variants={titleVariants}
 						initial="hidden"
 						animate={titleControls}>
@@ -128,7 +131,7 @@ function Hero({ showMenu, title, subtitle }) {
 							);
 						})}
 						<motion.span
-							className="text-orange "
+							className="text-orange font-title text-8xl"
 							variants={dotVariants}
 							initial="hidden"
 							animate={dotControls}>
@@ -147,13 +150,15 @@ function Hero({ showMenu, title, subtitle }) {
 				</div>
 
 				{/* Subtitle */}
-				<div className="flex justify-between items-center space-x-2 whitespace-nowrap">
+				<div className="flex justify-between items-center space-x-2">
 					<motion.div
 						style={{ originY: 0.5 }}
 						variants={subtitleVariants}
 						initial="hidden"
 						animate={subtitleControls}>
-						<h2 className="font-header text-2xl w-max h-min">{subtitle}</h2>
+						<h2 className="font-header text-lg sm:text-2xl md:text-2xl w-max h-min">
+							{subtitle}
+						</h2>
 					</motion.div>
 
 					{/* Line */}

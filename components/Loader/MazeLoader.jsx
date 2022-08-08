@@ -271,9 +271,9 @@ function MazeLoader({ setMazeAnimDone }) {
 	}, [abort]);
 
 	return (
-		<div className="fixed top-0 left-0 h-full w-full overflow-clip">
+		<div className="fixed top-0 left-0 w-full h-full overflow-clip">
 			<Skip setAbort={() => setAbort(true)} />
-			<div className="h-2/3 absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
+			<div className="w-[85%] lg:h-2/3 absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
 				<motion.div
 					className="h-full w-full"
 					variants={mainVariants}

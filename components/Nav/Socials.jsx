@@ -79,7 +79,9 @@ function Socials({ showMenu }) {
 
 	return (
 		<motion.div
-			className="fixed flex flex-col-reverse justify-end items-center bottom-4 left-16 w-min h-1/6 z-40 space-y-3 space-y-reverse"
+			className={`fixed ${
+				showMenu ? "flex" : "hidden"
+			} lg:flex flex-col-reverse justify-end items-center bottom-4 left-16 w-min h-1/6 z-40 space-y-3 space-y-reverse`}
 			variants={socialsVariants}
 			initial="hidden"
 			exit="exit"

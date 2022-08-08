@@ -34,7 +34,7 @@ export default function Home({ showMenu, setShowMenu }) {
 				/>
 
 				<motion.section
-					className="w-5/12"
+					className="w-full lg:w-5/12"
 					variants={blockVariants}
 					whileInView="visible"
 					initial="hidden"

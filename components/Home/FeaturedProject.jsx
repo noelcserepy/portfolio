@@ -99,7 +99,7 @@ function FeaturedProject({ project, imageRight }) {
 			variants={mainVariants}
 			initial="hidden"
 			whileInView="visible"
-			viewport={{ once: true, amount: 0.8 }}>
+			viewport={{ once: true, amount: 0.4 }}>
 			<motion.div
 				className={`w-[90%] lg:w-[60%] origin-[0%_50%] ${
 					imageRight
@@ -131,7 +131,7 @@ function FeaturedProject({ project, imageRight }) {
 					</motion.div>
 					<motion.div
 						className="w-0 border-l-2 border-primary "
-						style={{ originY: 0 }}
+						style={{ originY: "0%" }}
 						variants={lineVariants}
 					/>
 					<motion.div className="flex flex-col" variants={descriptionVariants}>

@@ -159,7 +159,7 @@ function Hero({ showMenu, title, subtitle }) {
 						subtitle && "space-x-2"
 					}`}>
 					<motion.div
-						style={{ originY: 0.5 }}
+						style={{ originY: "50%" }}
 						variants={subtitleVariants}
 						initial="hidden"
 						animate={subtitleControls}>
@@ -176,7 +176,7 @@ function Hero({ showMenu, title, subtitle }) {
 						variants={lineVariants}
 						initial="hidden"
 						animate={lineControls}
-						style={{ originX: 0 }}
+						style={{ originX: "0%" }}
 					/>
 				</div>
 			</div>

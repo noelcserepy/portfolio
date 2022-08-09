@@ -58,7 +58,7 @@ const MenuItem = ({ href, text }) => {
 			{router.pathname === href && (
 				<motion.div
 					className={`w-0 h-full border-l-[2px] absolute -left-4`}
-					style={{ originY: 0 }}
+					style={{ originY: "0%" }}
 					layoutId="menuLine"
 					transition={{ delay: 1 }}
 				/>

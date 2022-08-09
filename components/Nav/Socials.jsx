@@ -87,7 +87,7 @@ function Socials({ showMenu }) {
 			exit="exit"
 			animate={showMenu ? "open" : "closed"}>
 			<motion.div
-				style={{ originY: 1 }}
+				style={{ originY: "100%" }}
 				className={`w-0 h-full mx-auto border-l-[1px] transition-all duration-300 ${
 					showMenu ? "border-white" : "border-primary"
 				}`}

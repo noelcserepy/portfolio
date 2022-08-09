@@ -4,6 +4,7 @@ import Layout from "../components/Layout";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/router";
 import MazeLoader from "../components/Loader/MazeLoader";
+import MazeLoader2 from "../components/Loader/MazeLoader2";
 
 function App({ Component, pageProps }) {
 	const [showMenu, setShowMenu] = useState(false);
@@ -30,7 +31,7 @@ function App({ Component, pageProps }) {
 					/>
 				</AnimatePresence>
 			) : (
-				<MazeLoader setMazeAnimDone={() => setMazeAnimDone(true)} />
+				<MazeLoader2 setMazeAnimDone={() => setMazeAnimDone(true)} />
 			)}
 		</Layout>
 	);

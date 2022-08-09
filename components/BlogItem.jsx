@@ -44,7 +44,7 @@ function BlogItem({ post }) {
 			<motion.div className="col-start-3 md:col-start-2 col-end-9 flex items-center">
 				<motion.div
 					className="w-full h-0 border-t-2 border-primary"
-					style={{ originX: 0 }}
+					style={{ originX: "0%" }}
 					variants={lineVariants}
 				/>
 			</motion.div>

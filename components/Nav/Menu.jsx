@@ -57,7 +57,7 @@ function Menu({ showMenu, setShowMenu }) {
 			layout
 			key="overlay"
 			className="bg-orange h-screen w-screen fixed top-0 left-0 overflow-hidden z-30"
-			style={{ originX: 0 }}
+			style={{ originX: "0%" }}
 			variants={overlay}
 			initial="closed"
 			exit="exit"

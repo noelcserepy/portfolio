@@ -79,7 +79,7 @@ function Header({ showMenu, setShowMenu }) {
 								bounce: 0.5,
 							},
 						}}>
-						Let's Talk
+						{"Let's Talk"}
 					</motion.a>
 				</div>
 			</div>

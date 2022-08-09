@@ -112,6 +112,7 @@ function FeaturedProject({ project, imageRight }) {
 					layout="responsive"
 					width={594.26}
 					height={350}
+					alt={`A mockup showing the app ${current.name}`}
 				/>
 			</motion.div>
 

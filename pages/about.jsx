@@ -64,13 +64,21 @@ export default function About({ showMenu, setShowMenu }) {
 						</Paragraph>
 					</motion.div>
 					<motion.div className="flex justify-center items-center w-full md:w-5/12">
-						<Image src={images.noelFace} layout="intrinsic" />
+						<Image
+							src={images.noelFace}
+							layout="intrinsic"
+							alt="A photograph of Noël."
+						/>
 					</motion.div>
 				</motion.section>
 
 				<motion.section className="flex flex-col md:flex-row w-full justify-between items-center space-x-4">
 					<motion.div className="flex justify-center items-center w-full md:w-5/12">
-						<Image src={images.zunderDude} layout="intrinsic" />
+						<Image
+							src={images.zunderDude}
+							layout="intrinsic"
+							alt="A man in denim clothes opening a pack of Zunder Toothpicks"
+						/>
 					</motion.div>
 					<motion.div
 						className="flex flex-col w-full md:w-1/2 space-y-4"
@@ -117,10 +125,18 @@ export default function About({ showMenu, setShowMenu }) {
 							to decompress and be attentive and explore my surroundings.
 						</Paragraph>
 						<motion.div>
-							<Image src={images.photo1} layout="responsive" />
+							<Image
+								src={images.photo1}
+								layout="responsive"
+								alt="A cliffside in the swiss alps"
+							/>
 						</motion.div>
 						<motion.div>
-							<Image src={images.photo2} layout="responsive" />
+							<Image
+								src={images.photo2}
+								layout="responsive"
+								alt="A blue and white building facade"
+							/>
 						</motion.div>
 					</motion.div>
 					<motion.div
@@ -130,15 +146,27 @@ export default function About({ showMenu, setShowMenu }) {
 						initial="hidden"
 						viewport={{ once: true }}>
 						<motion.div>
-							<Image src={images.photo3} layout="responsive" />
+							<Image
+								src={images.photo3}
+								layout="responsive"
+								alt="A green building facade with windows down the middle"
+							/>
 						</motion.div>
 						<motion.div>
-							<Image src={images.photo4} layout="responsive" />
+							<Image
+								src={images.photo4}
+								layout="responsive"
+								alt="A single woman with a jellow jacket waiting for a train"
+							/>
 						</motion.div>
 						<motion.div>
-							<Image src={images.photo5} layout="responsive" />
+							<Image
+								src={images.photo5}
+								layout="responsive"
+								alt="A roof with many oddly shaped windows captured from the inside"
+							/>
 						</motion.div>
-						<motion.div className="flex justify-center items-center">
+						<motion.div className="flex items-center">
 							<Button>Find me on Instagram</Button>
 						</motion.div>
 					</motion.div>

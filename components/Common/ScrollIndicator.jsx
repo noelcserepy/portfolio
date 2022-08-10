@@ -31,29 +31,66 @@ function ScrollIndicator() {
 	const maxAnimHeight = -12;
 	const bottomGap = -4;
 	const lean = 0.9;
+	const descendTime = 1;
 
-	const getTurningPoint = i => {
-		return (
-			bottomGap +
-			Math.pow((textCount - i) / textCount, lean) * (maxAnimHeight - bottomGap)
+	const turningPoints = text
+		.split("")
+		.map(
+			(_, i) =>
+				bottomGap +
+				Math.pow((textCount - i) / textCount, lean) *
+					(maxAnimHeight - bottomGap)
 		);
-	};
 
 	const y = useMotionValue(0);
 
-	const turningPoints = text.split("").map((x, i) => getTurningPoint(i));
-
-	const yTransforms = text
-		.split("")
-		.map((val, i) =>
-			useTransform(
-				y,
-				[0, turningPoints[i], turningPoints[i] - 2, maxAnimHeight],
-				[0, turningPoints[i], 0, 0]
-			)
-		);
-
-	console.log(yTransforms);
+	const yTransforms = [
+		useTransform(
+			y,
+			[0, turningPoints[0], turningPoints[0] - descendTime, maxAnimHeight],
+			[0, turningPoints[0], 0, 0]
+		),
+		useTransform(
+			y,
+			[0, turningPoints[1], turningPoints[1] - descendTime, maxAnimHeight],
+			[0, turningPoints[1], 0, 0]
+		),
+		useTransform(
+			y,
+			[0, turningPoints[2], turningPoints[2] - descendTime, maxAnimHeight],
+			[0, turningPoints[2], 0, 0]
+		),
+		useTransform(
+			y,
+			[0, turningPoints[3], turningPoints[3] - descendTime, maxAnimHeight],
+			[0, turningPoints[3], 0, 0]
+		),
+		useTransform(
+			y,
+			[0, turningPoints[4], turningPoints[4] - descendTime, maxAnimHeight],
+			[0, turningPoints[4], 0, 0]
+		),
+		useTransform(
+			y,
+			[0, turningPoints[5], turningPoints[5] - descendTime, maxAnimHeight],
+			[0, turningPoints[5], 0, 0]
+		),
+		useTransform(
+			y,
+			[0, turningPoints[6], turningPoints[6] - descendTime, maxAnimHeight],
+			[0, turningPoints[6], 0, 0]
+		),
+		useTransform(
+			y,
+			[0, turningPoints[7], turningPoints[7] - descendTime, maxAnimHeight],
+			[0, turningPoints[7], 0, 0]
+		),
+		useTransform(
+			y,
+			[0, turningPoints[8], turningPoints[8] - descendTime, maxAnimHeight],
+			[0, turningPoints[8], 0, 0]
+		),
+	];
 
 	useEffect(() => {
 		animate(y, maxAnimHeight, {

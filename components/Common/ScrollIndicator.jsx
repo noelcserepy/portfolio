@@ -43,7 +43,7 @@ function ScrollIndicator() {
 
 	const turningPoints = text.split("").map((x, i) => getTurningPoint(i));
 
-	const ys = text
+	const yTransforms = text
 		.split("")
 		.map((val, i) =>
 			useTransform(
@@ -52,6 +52,8 @@ function ScrollIndicator() {
 				[0, turningPoints[i], 0, 0]
 			)
 		);
+
+	console.log(yTransforms);
 
 	useEffect(() => {
 		animate(y, maxAnimHeight, {
@@ -75,7 +77,7 @@ function ScrollIndicator() {
 					className="h-[15px] justify-self-end"
 					key={l + i}
 					style={{
-						y: ys[i],
+						y: yTransforms[i],
 					}}
 					layout>
 					{l}

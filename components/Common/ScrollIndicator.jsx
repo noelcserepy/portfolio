@@ -38,9 +38,20 @@ function ScrollIndicator() {
 			Math.pow((textCount - i) / textCount, lean) * (maxAnimHeight - bottomGap)
 		);
 	};
-	const turningPoints = text.split("").map((x, i) => getTurningPoint(i));
 
 	const y = useMotionValue(0);
+
+	const turningPoints = text.split("").map((x, i) => getTurningPoint(i));
+
+	const ys = text
+		.split("")
+		.map((val, i) =>
+			useTransform(
+				y,
+				[0, turningPoints[i], turningPoints[i] - 2, maxAnimHeight],
+				[0, turningPoints[i], 0, 0]
+			)
+		);
 
 	useEffect(() => {
 		animate(y, maxAnimHeight, {
@@ -64,11 +75,7 @@ function ScrollIndicator() {
 					className="h-[15px] justify-self-end"
 					key={l + i}
 					style={{
-						y: useTransform(
-							y,
-							[0, turningPoints[i], turningPoints[i] - 2, maxAnimHeight],
-							[0, turningPoints[i], 0, 0]
-						),
+						y: ys[i],
 					}}
 					layout>
 					{l}

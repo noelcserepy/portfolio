@@ -67,7 +67,9 @@ const lineVariants = {
 		transition: {
 			duration: 1.5,
 			transitionEnd: {
-				opacity: 0,
+				display: "none",
+				strokeLinecap: "round",
+				stroke: "#0D1823",
 			},
 		},
 	},

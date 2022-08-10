@@ -1,53 +1,75 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import {
+	animate,
+	motion,
+	useMotionValue,
+	useScroll,
+	useTransform,
+} from "framer-motion";
 import { useEffect } from "react";
 
-const listVariants = {
+const containerVariants = {
 	hidden: {
-		y: 100,
+		y: 200,
 	},
 	visible: {
 		y: 0,
 		transition: {
 			delay: 4,
-			staggerChildren: 0.02,
-			staggerDirection: -1,
-		},
-	},
-};
-const itemVariants = {
-	hidden: {
-		opacity: 1,
-	},
-	visible: {
-		y: [0, 2, 0],
-		transition: {
-			duration: 0.5,
-			repeat: Infinity,
-			repeatDelay: 2,
-			ease: "easeInOut",
-			times: [0, 0.5, 1],
+			duration: 0.7,
+			when: "beforeChildren",
+			type: "spring",
 		},
 	},
 };
 
 function ScrollIndicator() {
 	const { scrollY } = useScroll();
-	const scrollOp = useTransform(scrollY, [0, 600], [1, 0]);
-	const text = "scroll";
+	const scrollOp = useTransform(scrollY, [0, 400], [0.9, 0]);
+	const text = " |Vscroll";
+	const textCount = text.length;
+
+	const maxAnimHeight = -12;
+	const bottomGap = -4;
+	const lean = 0.9;
+
+	const getTurningPoint = i => {
+		return (
+			bottomGap +
+			Math.pow((textCount - i) / textCount, lean) * (maxAnimHeight - bottomGap)
+		);
+	};
+	const turningPoints = text.split("").map((x, i) => getTurningPoint(i));
+
+	const y = useMotionValue(0);
+
+	useEffect(() => {
+		animate(y, maxAnimHeight, {
+			duration: 0.5,
+			repeat: Infinity,
+			repeatDelay: 3,
+			ease: "linear",
+		});
+	}, []);
 
 	return (
 		<motion.div
-			className="flex flex-col -space-y-2 items-center absolute bottom-4 left-1/2 font-header text-md text-primary z-10"
-			style={{ opacity: scrollOp, height: "105px" }}
-			variants={listVariants}
+			className="flex flex-col justify-end items-center fixed bottom-5 left-1/2 font-header text-md text-primary z-10 pointer-events-none"
+			style={{ opacity: scrollOp }}
+			variants={containerVariants}
 			layout
 			initial="hidden"
 			animate="visible">
 			{text.split("").map((l, i) => (
 				<motion.div
-					className="h-min justify-self-end"
+					className="h-[15px] justify-self-end"
 					key={l + i}
-					variants={itemVariants}
+					style={{
+						y: useTransform(
+							y,
+							[0, turningPoints[i], turningPoints[i] - 2, maxAnimHeight],
+							[0, turningPoints[i], 0, 0]
+						),
+					}}
 					layout>
 					{l}
 				</motion.div>

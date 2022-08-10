@@ -22,6 +22,12 @@ const blockVariants = {
 	},
 };
 
+export async function getStaticProps(context) {
+	return {
+		props: {},
+	};
+}
+
 export default function Home({ showMenu, setShowMenu }) {
 	return (
 		<>

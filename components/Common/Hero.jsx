@@ -115,7 +115,7 @@ function Hero({ showMenu, title, subtitle }) {
 	return (
 		<div className="text-primary h-screen w-full whitespace-nowrap relative">
 			<ScrollIndicator />
-			<div className="flex flex-col w-min relative top-1/2 -translate-y-1/2 mx-auto lg:mx-0">
+			<div className="flex flex-col w-min relative top-1/2 -translate-y-3/4 md:-translate-y-1/2 mx-auto lg:mx-0">
 				<div className="flex items-end w-full whitespace-pre">
 					{/* Page title */}
 					<motion.h1

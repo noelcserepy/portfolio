@@ -8,7 +8,7 @@ import MazeLoader2 from "../components/Loader/MazeLoader2";
 
 function App({ Component, pageProps }) {
 	const [showMenu, setShowMenu] = useState(false);
-	const [mazeAnimDone, setMazeAnimDone] = useState(true);
+	const [mazeAnimDone, setMazeAnimDone] = useState(false);
 
 	const router = useRouter();
 	const url = `https://noelcs.com${router.route}`;

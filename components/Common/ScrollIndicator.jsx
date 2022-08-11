@@ -25,7 +25,7 @@ const containerVariants = {
 function ScrollIndicator() {
 	const { scrollY } = useScroll();
 	const scrollOp = useTransform(scrollY, [0, 400], [0.9, 0]);
-	const text = " |Vscroll";
+	const text = " ::scroll:";
 	const textCount = text.length;
 
 	const maxAnimHeight = -12;
@@ -90,20 +90,30 @@ function ScrollIndicator() {
 			[0, turningPoints[8], turningPoints[8] - descendTime, maxAnimHeight],
 			[0, turningPoints[8], 0, 0]
 		),
+		useTransform(
+			y,
+			[0, turningPoints[9], turningPoints[9] - descendTime, maxAnimHeight],
+			[0, turningPoints[9], 0, 0]
+		),
+		// useTransform(
+		// 	y,
+		// 	[0, turningPoints[10], turningPoints[10] - descendTime, maxAnimHeight],
+		// 	[0, turningPoints[10], 0, 0]
+		// ),
 	];
 
 	useEffect(() => {
 		animate(y, maxAnimHeight, {
 			duration: 0.5,
 			repeat: Infinity,
-			repeatDelay: 3,
+			repeatDelay: 2,
 			ease: "linear",
 		});
 	}, []);
 
 	return (
 		<motion.div
-			className="flex flex-col justify-end items-center fixed bottom-5 left-1/2 font-header text-md text-primary z-10 pointer-events-none"
+			className="flex flex-col justify-end items-center fixed bottom-5 right-8 z-10 pointer-events-none"
 			style={{ opacity: scrollOp }}
 			variants={containerVariants}
 			layout
@@ -111,7 +121,7 @@ function ScrollIndicator() {
 			animate="visible">
 			{text.split("").map((l, i) => (
 				<motion.div
-					className="h-[15px] justify-self-end"
+					className="h-[15px] justify-self-end font-header text-sm md:text-base text-primary"
 					key={l + i}
 					style={{
 						y: yTransforms[i],

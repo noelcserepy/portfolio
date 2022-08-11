@@ -43,8 +43,9 @@ function OtherProjectsWrapper() {
 
 			<motion.ul className="flex flex-col space-y-16" variants={listVariants}>
 				<OtherProject project="Memr" />
-				<OtherProject project="Spotifile" />
+				<OtherProject project="Eye" />
 				<OtherProject project="Lazy-Torrent" />
+				<OtherProject project="Spotifile" />
 				<OtherProject project="My_Ls" />
 			</motion.ul>
 		</motion.section>

@@ -28,7 +28,7 @@ const mainVariants = {
 		scale: 1.3,
 		rotate: -400,
 		transition: {
-			delay: 0,
+			delay: 2,
 			rotate: { ease: "circOut", duration: 4.2 },
 			scale: { ease: "easeIn", duration: 4 },
 		},
@@ -89,11 +89,11 @@ const ballVariants = {
 			duration: 1.5,
 		},
 	},
-	swell: {
+	shrink: {
 		r: 2,
 		transition: {
-			duration: 2,
-			ease: [0.67, 0.01, 1, 0.26],
+			duration: 7,
+			ease: "easeInOut",
 		},
 	},
 
@@ -131,7 +131,7 @@ const concentricVariants = {
 		transition: {
 			delay: 0,
 			duration: 0.3,
-			ease: "easeIn",
+			ease: "circIn",
 		},
 	},
 
@@ -145,7 +145,6 @@ const concentricVariants = {
 				delay: 0.2,
 				duration: 1.78,
 				ease: [0, 0.98, 0.18, 0.83],
-				// ease: [1, 0.25, 0.96, 0.79],
 			},
 		},
 	},
@@ -165,7 +164,7 @@ const radialVariants = {
 		transition: {
 			delay: 1,
 			pathLength: {
-				duration: 0.2,
+				duration: 0.4,
 				ease: "circIn",
 			},
 			opacity: { duration: 0 },
@@ -210,7 +209,7 @@ function MazeLoader2({ setMazeAnimDone }) {
 
 			concentricControls.start("fade");
 			radialControls.start("fade");
-			await ballControls.start("swell");
+			ballControls.start("shrink");
 			await mainControls.start("boing");
 
 			await mainControls.start("end");

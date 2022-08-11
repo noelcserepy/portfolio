@@ -69,7 +69,7 @@ function OtherProject({ project }) {
 				<div className="flex mt-2">
 					{current.github !== "" && (
 						<motion.div className="w-fill h-min">
-							<a href={current.github} target="_blank">
+							<a href={current.github} target="_blank" rel="noreferrer">
 								<motion.svg
 									className="cursor-pointer fill-inherit"
 									width={15}

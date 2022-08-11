@@ -95,7 +95,10 @@ function Socials({ showMenu }) {
 			/>
 
 			<motion.div className="w-fill h-min">
-				<a href="https://github.com/noelcserepy" target="_blank">
+				<a
+					href="https://github.com/noelcserepy"
+					target="_blank"
+					rel="noreferrer">
 					<motion.svg
 						className="cursor-pointer fill-inherit"
 						variants={iconVariants}
@@ -122,7 +125,8 @@ function Socials({ showMenu }) {
 			<motion.div className="w-fill h-min">
 				<a
 					href="https://www.linkedin.com/in/no%C3%ABl-cser%C3%A9py-73319a177/"
-					target="_blank">
+					target="_blank"
+					rel="noreferrer">
 					<motion.svg
 						className="cursor-pointer fill-inherit"
 						variants={iconVariants}
@@ -149,7 +153,8 @@ function Socials({ showMenu }) {
 			<motion.div className="w-fill h-min">
 				<a
 					href="https://www.linkedin.com/in/no%C3%ABl-cser%C3%A9py-73319a177/"
-					target="_blank">
+					target="_blank"
+					rel="noreferrer">
 					<motion.svg
 						variants={iconVariants}
 						className="cursor-pointer fill-inherit"

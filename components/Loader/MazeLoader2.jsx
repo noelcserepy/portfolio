@@ -66,11 +66,10 @@ const lineVariants = {
 		pathOffset: 1,
 		transition: {
 			duration: 1.5,
-			transitionEnd: {
-				display: "none",
-				strokeLinecap: "round",
-				stroke: "#0D1823",
-			},
+		},
+		transitionEnd: {
+			display: "none",
+			opacity: 0,
 		},
 	},
 };

@@ -59,11 +59,9 @@ function OtherProject({ project }) {
 				<Subheader>{current.name}</Subheader>
 				<p className="text-primary font-header text-base">
 					{current.tools.map((t, i) => (
-						<>
-							<span key={t + i}>{`${t}${
-								i + 1 < current.tools.length ? "," : ""
-							} `}</span>
-						</>
+						<span key={current.name + t + i}>
+							{`${t}${i + 1 < current.tools.length ? "," : ""} `}
+						</span>
 					))}
 				</p>
 				<div className="flex mt-2">

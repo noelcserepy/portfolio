@@ -6,7 +6,7 @@ import Nav from "../components/Nav/Nav";
 const data = require("/data.json");
 const posts = data.posts;
 
-export default function Blog({ showMenu, setShowMenu }) {
+export default function Blog({ showMenu, setShowMenu, url }) {
 	return (
 		<>
 			<Nav showMenu={showMenu} setShowMenu={setShowMenu} />

@@ -1,12 +1,20 @@
+import { motion } from "framer-motion";
+import SEO from "./Common/SEO";
+import MazeLoader from "./Loader/MazeLoader";
 import ScreenBorder from "./ScreenBorder";
 
-function Layout({ children }) {
+function Layout({ url, mazeAnimDone, setMazeAnimDone, children }) {
 	return (
 		<>
+			<SEO url={url} />
 			<ScreenBorder />
-			<div className="bg-background w-full h-full min-h-screen -z-10 overflow-hidden">
-				{children}
-			</div>
+			<motion.div className="bg-background w-full h-full min-h-screen -z-10 overflow-hidden">
+				{mazeAnimDone ? (
+					children
+				) : (
+					<MazeLoader setMazeAnimDone={setMazeAnimDone} />
+				)}
+			</motion.div>
 		</>
 	);
 }

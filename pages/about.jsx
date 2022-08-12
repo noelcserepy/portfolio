@@ -23,7 +23,7 @@ const blockVariants = {
 	},
 };
 
-export default function About({ showMenu, setShowMenu }) {
+export default function About({ showMenu, setShowMenu, url }) {
 	return (
 		<>
 			<Nav showMenu={showMenu} setShowMenu={setShowMenu} />

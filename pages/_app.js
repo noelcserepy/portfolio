@@ -1,38 +1,34 @@
 import "../styles/globals.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Layout from "../components/Layout";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
-import MazeLoader from "../components/Loader/MazeLoader";
-import MazeLoader2 from "../components/Loader/MazeLoader2";
 
 function App({ Component, pageProps }) {
 	const [showMenu, setShowMenu] = useState(false);
 	const [mazeAnimDone, setMazeAnimDone] = useState(false);
 
 	const router = useRouter();
-	const url = `https://noelcs.com${router.route}`;
+	const url = `https://noelcserepy.com${router.route}`;
 
-	useEffect(() => {
+	const handleOnExitComplete = () => {
+		window.scrollTo(0, 0);
 		setShowMenu(false);
-	}, [mazeAnimDone, router.pathname]);
+	};
 
 	return (
-		<Layout>
-			{mazeAnimDone ? (
-				<AnimatePresence
-					exitBeforeEnter
-					onExitComplete={() => window.scrollTo(0, 0)}>
-					<Component
-						{...pageProps}
-						key={url}
-						showMenu={showMenu}
-						setShowMenu={() => setShowMenu(!showMenu)}
-					/>
-				</AnimatePresence>
-			) : (
-				<MazeLoader2 setMazeAnimDone={() => setMazeAnimDone(true)} />
-			)}
+		<Layout
+			url={url}
+			mazeAnimDone={mazeAnimDone}
+			setMazeAnimDone={() => setMazeAnimDone(true)}>
+			<AnimatePresence exitBeforeEnter onExitComplete={handleOnExitComplete}>
+				<Component
+					{...pageProps}
+					key={url}
+					showMenu={showMenu}
+					setShowMenu={() => setShowMenu(!showMenu)}
+				/>
+			</AnimatePresence>
 		</Layout>
 	);
 }

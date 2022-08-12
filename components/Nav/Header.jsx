@@ -18,7 +18,7 @@ const navVariants = {
 		},
 	},
 
-	opening: {
+	visible: {
 		opacity: 1,
 		y: 0,
 		transition: {
@@ -37,7 +37,7 @@ function Header({ showMenu, setShowMenu }) {
 		<motion.div
 			variants={navVariants}
 			initial="hidden"
-			animate="opening"
+			animate="visible"
 			exit="exit"
 			className={`fixed top-8 left-8 right-8 sm:left-16 sm:right-16 flex h-8 justify-between z-40 space-x-4 select-none ${
 				showMenu ? "text-white" : "text-primary"

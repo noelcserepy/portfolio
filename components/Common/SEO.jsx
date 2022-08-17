@@ -81,6 +81,7 @@ const SEO = props => {
 					}),
 				}}
 			/>
+			<link rel="shortcut icon" type="img/svg" href="/img/Logo.svg" />
 		</Head>
 	);
 };

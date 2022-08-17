@@ -29,7 +29,7 @@ const mainVariants = {
 		rotate: -400,
 		transition: {
 			delay: 2,
-			rotate: { ease: "circOut", duration: 4.2 },
+			rotate: { ease: "circOut", duration: 5.2 },
 			scale: { ease: "easeIn", duration: 4 },
 		},
 	},
@@ -89,10 +89,25 @@ const ballVariants = {
 		},
 	},
 	shrink: {
+		r: 27,
+		transition: {
+			duration: 1.98,
+			ease: "circIn",
+		},
+	},
+	blop: {
+		r: 40,
+		transition: {
+			duration: 2,
+			type: "spring",
+			bounce: 0.8,
+		},
+	},
+	shrinkAgain: {
 		r: 2,
 		transition: {
-			duration: 7,
-			ease: "easeInOut",
+			duration: 3.02,
+			ease: "easeIn",
 		},
 	},
 
@@ -208,8 +223,10 @@ function MazeLoader({ setMazeAnimDone }) {
 
 			concentricControls.start("fade");
 			radialControls.start("fade");
-			ballControls.start("shrink");
-			await mainControls.start("boing");
+			mainControls.start("boing");
+			await ballControls.start("shrink");
+			await ballControls.start("blop");
+			await ballControls.start("shrinkAgain");
 
 			await mainControls.start("end");
 			await mainControls.start({ x: 0, transition: { duration: 1 } });

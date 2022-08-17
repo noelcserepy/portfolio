@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import ChatBubbles from "./ChatBubbles";
 import MenuToggle from "./MenuToggle";
 import Link from "next/link";
+import Contact from "./Contact";
 
 const navVariants = {
 	hidden: {
@@ -35,14 +36,14 @@ const navVariants = {
 function Header({ showMenu, setShowMenu }) {
 	return (
 		<motion.div
+			className={`fixed top-8 left-8 right-8 sm:left-16 sm:right-16 flex h-8 justify-between z-40 space-x-2 sm:space-x-4 select-none font-text font-bold text-lg sm:text-xl ${
+				showMenu ? "text-white" : "text-primary"
+			}`}
 			variants={navVariants}
 			initial="hidden"
 			animate="visible"
-			exit="exit"
-			className={`fixed top-8 left-8 right-8 sm:left-16 sm:right-16 flex h-8 justify-between z-40 space-x-4 select-none ${
-				showMenu ? "text-white" : "text-primary"
-			}`}>
-			<div className="flex justify-start space-x-4 items-center">
+			exit="exit">
+			<div className="flex justify-start space-x-2 sm:space-x-4 items-center">
 				<Link href="/">
 					<a>
 						<Logo showMenu={showMenu} />
@@ -57,32 +58,7 @@ function Header({ showMenu, setShowMenu }) {
 					<MenuToggle showMenu={showMenu} setShowMenu={setShowMenu} />
 				</div>
 			</div>
-			<div className="group flex justify-end items-center cursor-pointer space-x-4">
-				<ChatBubbles showMenu={showMenu} />
-
-				<div className="flex justify-start items-center w-24 h-full">
-					<motion.a
-						className="font-text font-bold text-xl whitespace-nowrap"
-						whileHover={{
-							letterSpacing: "0.05em",
-							transition: {
-								type: "spring",
-								duration: 0.3,
-								bounce: 0.5,
-							},
-						}}
-						whileTap={{
-							letterSpacing: "0.04em",
-							transition: {
-								type: "spring",
-								duration: 0.3,
-								bounce: 0.5,
-							},
-						}}>
-						{"Let's Talk"}
-					</motion.a>
-				</div>
-			</div>
+			<Contact showMenu={showMenu} />
 		</motion.div>
 	);
 }

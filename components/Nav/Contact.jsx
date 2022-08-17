@@ -26,7 +26,7 @@ function Contact({ showMenu }) {
 				target="_blank"
 				rel="noreferrer">
 				<div className="flex justify-end items-center w-14 sm:w-24 h-full">
-					<motion.div className="whitespace-nowrap">Let's Talk</motion.div>
+					<motion.div className="whitespace-nowrap">{`Let\'s Talk`}</motion.div>
 				</div>
 				<ChatBubbles showMenu={showMenu} />
 			</a>

@@ -95,11 +95,6 @@ function ScrollIndicator() {
 			[0, turningPoints[9], turningPoints[9] - descendTime, maxAnimHeight],
 			[0, turningPoints[9], 0, 0]
 		),
-		// useTransform(
-		// 	y,
-		// 	[0, turningPoints[10], turningPoints[10] - descendTime, maxAnimHeight],
-		// 	[0, turningPoints[10], 0, 0]
-		// ),
 	];
 
 	useEffect(() => {
@@ -113,7 +108,7 @@ function ScrollIndicator() {
 
 	return (
 		<motion.div
-			className="flex flex-col justify-end items-center fixed bottom-5 right-8 z-10 pointer-events-none"
+			className="flex flex-col justify-end items-center absolute left-0 bottom-6 inset-0 z-10 pointer-events-none w-min"
 			style={{ opacity: scrollOp }}
 			variants={containerVariants}
 			layout
@@ -121,7 +116,7 @@ function ScrollIndicator() {
 			animate="visible">
 			{text.split("").map((l, i) => (
 				<motion.div
-					className="h-[15px] justify-self-end font-header text-sm md:text-base text-primary"
+					className="h-[16px] justify-self-end font-header font-semibold text-sm md:text-lg text-primary"
 					key={l + i}
 					style={{
 						y: yTransforms[i],

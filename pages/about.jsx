@@ -65,9 +65,10 @@ export default function About({ showMenu, setShowMenu, url }) {
 					</motion.div>
 					<motion.div className="flex justify-center items-center w-full md:w-5/12">
 						<Image
+							placeholder="blur"
 							src={images.noelFace}
-							layout="intrinsic"
-							alt="A photograph of Noël."
+							layout="responsive"
+							alt="A cliffside in the swiss alps"
 						/>
 					</motion.div>
 				</motion.section>
@@ -75,6 +76,7 @@ export default function About({ showMenu, setShowMenu, url }) {
 				<motion.section className="flex flex-col md:flex-row w-full justify-between items-center space-x-4">
 					<motion.div className="flex justify-center items-center w-full md:w-5/12">
 						<Image
+							placeholder="blur"
 							src={images.zunderDude}
 							layout="intrinsic"
 							alt="A man in denim clothes opening a pack of Zunder Toothpicks"
@@ -126,6 +128,7 @@ export default function About({ showMenu, setShowMenu, url }) {
 						</Paragraph>
 						<motion.div>
 							<Image
+								placeholder="blur"
 								src={images.photo1}
 								layout="responsive"
 								alt="A cliffside in the swiss alps"
@@ -133,6 +136,7 @@ export default function About({ showMenu, setShowMenu, url }) {
 						</motion.div>
 						<motion.div>
 							<Image
+								placeholder="blur"
 								src={images.photo2}
 								layout="responsive"
 								alt="A blue and white building facade"
@@ -147,6 +151,7 @@ export default function About({ showMenu, setShowMenu, url }) {
 						viewport={{ once: true }}>
 						<motion.div>
 							<Image
+								placeholder="blur"
 								src={images.photo3}
 								layout="responsive"
 								alt="A green building facade with windows down the middle"
@@ -154,6 +159,7 @@ export default function About({ showMenu, setShowMenu, url }) {
 						</motion.div>
 						<motion.div>
 							<Image
+								placeholder="blur"
 								src={images.photo4}
 								layout="responsive"
 								alt="A single woman with a jellow jacket waiting for a train"
@@ -161,6 +167,7 @@ export default function About({ showMenu, setShowMenu, url }) {
 						</motion.div>
 						<motion.div>
 							<Image
+								placeholder="blur"
 								src={images.photo5}
 								layout="responsive"
 								alt="A roof with many oddly shaped windows captured from the inside"

@@ -22,7 +22,7 @@ function Contact({ showMenu }) {
 			}}>
 			<a
 				className="flex justify-end items-center space-x-2 sm:space-x-4 cursor-pointer"
-				href="mailto:hello@noelcserepy.com?subject=Hi Noël, let's work together"
+				href={`mailto:hello@noelcserepy.com?subject=Hi Noël, let\'s work together`}
 				target="_blank"
 				rel="noreferrer">
 				<div className="flex justify-end items-center w-14 sm:w-24 h-full">

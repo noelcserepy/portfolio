@@ -152,7 +152,7 @@ function Socials({ showMenu }) {
 
 			<motion.div className="w-fill h-min">
 				<a
-					href="https://www.linkedin.com/in/no%C3%ABl-cser%C3%A9py-73319a177/"
+					href={`mailto:hello@noelcserepy.com?subject=Hi Noël, let\'s work together`}
 					target="_blank"
 					rel="noreferrer">
 					<motion.svg

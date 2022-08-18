@@ -6,6 +6,7 @@ import {
 	useTransform,
 } from "framer-motion";
 import { useEffect } from "react";
+import ScrollLetter from "./ScrollLetter";
 
 const containerVariants = {
 	hidden: {
@@ -44,59 +45,6 @@ function ScrollIndicator() {
 
 	const y = useMotionValue(0);
 
-	const yTransforms = [
-		useTransform(
-			y,
-			[0, turningPoints[0], turningPoints[0] - descendTime, maxAnimHeight],
-			[0, turningPoints[0], 0, 0]
-		),
-		useTransform(
-			y,
-			[0, turningPoints[1], turningPoints[1] - descendTime, maxAnimHeight],
-			[0, turningPoints[1], 0, 0]
-		),
-		useTransform(
-			y,
-			[0, turningPoints[2], turningPoints[2] - descendTime, maxAnimHeight],
-			[0, turningPoints[2], 0, 0]
-		),
-		useTransform(
-			y,
-			[0, turningPoints[3], turningPoints[3] - descendTime, maxAnimHeight],
-			[0, turningPoints[3], 0, 0]
-		),
-		useTransform(
-			y,
-			[0, turningPoints[4], turningPoints[4] - descendTime, maxAnimHeight],
-			[0, turningPoints[4], 0, 0]
-		),
-		useTransform(
-			y,
-			[0, turningPoints[5], turningPoints[5] - descendTime, maxAnimHeight],
-			[0, turningPoints[5], 0, 0]
-		),
-		useTransform(
-			y,
-			[0, turningPoints[6], turningPoints[6] - descendTime, maxAnimHeight],
-			[0, turningPoints[6], 0, 0]
-		),
-		useTransform(
-			y,
-			[0, turningPoints[7], turningPoints[7] - descendTime, maxAnimHeight],
-			[0, turningPoints[7], 0, 0]
-		),
-		useTransform(
-			y,
-			[0, turningPoints[8], turningPoints[8] - descendTime, maxAnimHeight],
-			[0, turningPoints[8], 0, 0]
-		),
-		useTransform(
-			y,
-			[0, turningPoints[9], turningPoints[9] - descendTime, maxAnimHeight],
-			[0, turningPoints[9], 0, 0]
-		),
-	];
-
 	useEffect(() => {
 		animate(y, maxAnimHeight, {
 			duration: 0.5,
@@ -108,22 +56,21 @@ function ScrollIndicator() {
 
 	return (
 		<motion.div
-			className="flex flex-col justify-end items-center absolute left-0 bottom-6 inset-0 z-10 pointer-events-none w-min"
+			className="flex flex-col justify-end items-center fixed left-8 bottom-16 sm:absolute sm:left-0 sm:bottom-6 z-10 pointer-events-none w-min"
 			style={{ opacity: scrollOp }}
 			variants={containerVariants}
 			layout
 			initial="hidden"
 			animate="visible">
 			{text.split("").map((l, i) => (
-				<motion.div
-					className="h-[16px] justify-self-end font-header font-semibold text-sm md:text-lg text-primary"
+				<ScrollLetter
 					key={l + i}
-					style={{
-						y: yTransforms[i],
-					}}
-					layout>
-					{l}
-				</motion.div>
+					y={y}
+					letter={l}
+					turningPoint={turningPoints[i]}
+					descendTime={descendTime}
+					maxAnimHeight={maxAnimHeight}
+				/>
 			))}
 		</motion.div>
 	);

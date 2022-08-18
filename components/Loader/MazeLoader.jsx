@@ -37,7 +37,7 @@ const mainVariants = {
 	end: {
 		scale: 0,
 		transition: {
-			delay: 0.2,
+			delay: 0,
 			duration: 0.4,
 			ease: "circIn",
 		},
@@ -106,8 +106,8 @@ const ballVariants = {
 	shrinkAgain: {
 		r: 2,
 		transition: {
-			duration: 3.02,
-			ease: "easeIn",
+			duration: 2.0,
+			ease: "circIn",
 		},
 	},
 

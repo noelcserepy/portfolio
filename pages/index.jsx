@@ -39,12 +39,12 @@ export default function Home({ showMenu, setShowMenu }) {
 					whileInView="visible"
 					initial="hidden"
 					viewport={{ once: true }}>
-					<Subheader>Work</Subheader>
+					<Subheader>{`Work`}</Subheader>
 					<Paragraph>
-						I am constantly looking to improve. From Spotify web apps to 3D
+						{`I am constantly looking to improve. From Spotify web apps to 3D
 						rendering optimization, from Discord bots to robotic eyes, I build
 						ever more challenging things to get better at my craft. Here are
-						some of the things I made.
+						some of the things I made.`}
 					</Paragraph>
 				</motion.section>
 

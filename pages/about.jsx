@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import Subheader from "../components/Subheader";
 import Paragraph from "../components/Paragraph";
 import Image from "next/image";
-import Button from "../components/Common/Button";
 import * as images from "../components/aboutImages";
 import Nav from "../components/Nav/Nav";
 import ContentWrapper from "../components/Common/ContentWrapper";
@@ -41,34 +40,34 @@ export default function About({ showMenu, setShowMenu, url }) {
 						whileInView="visible"
 						initial="hidden"
 						viewport={{ once: true }}>
-						<Subheader stopper="?">Why all the mazes</Subheader>
+						<Subheader stopper="?">{`Why all the mazes`}</Subheader>
 						<Paragraph>
-							At the risk of sounding corny, the answer is that I didn’t take
-							the straightest path in life.
+							{`At the risk of sounding corny, the answer is that I didn\’t take
+							the straightest path in life.`}
 						</Paragraph>
 						<Paragraph>
-							I grew up in Switzerland, went to school in England. I studied
+							{`I grew up in Switzerland, went to school in England. I studied
 							economics, biochemistry and then graduated in hospitality
 							management. I worked in a hotel in Bangkok, did online marketing
 							in Zürich and founded a company that sells flavoured toothpicks to
-							customers across the globe.
+							customers across the globe.`}
 						</Paragraph>
 						<Paragraph>
-							Only after dabbling with Python back in 2018 did I know what I
+							{`Only after dabbling with Python back in 2018 did I know what I
 							want to do. I want to join a team to build world-class software
 							products. Since then, I have been building projects and learning
-							concepts to make that happen.
+							concepts to make that happen.`}
 						</Paragraph>
 						<Paragraph>
-							Okay, and mazes just look really cool... Don’t judge.
+							{`Okay, and mazes just look really cool... Don\’t judge.`}
 						</Paragraph>
 					</motion.div>
 					<motion.div className="flex justify-center items-center w-full md:w-5/12">
 						<Image
 							placeholder="blur"
 							src={images.noelFace}
-							layout="responsive"
-							alt="A cliffside in the swiss alps"
+							layout="intrinsic"
+							alt="A photograph of Noel"
 						/>
 					</motion.div>
 				</motion.section>
@@ -88,26 +87,26 @@ export default function About({ showMenu, setShowMenu, url }) {
 						whileInView="visible"
 						initial="hidden"
 						viewport={{ once: true }}>
-						<Subheader stopper="!">Toothpicks? Yes, toothpicks</Subheader>
+						<Subheader stopper="!">{`Toothpicks? Yes, toothpicks`}</Subheader>
 						<Paragraph>
-							During my time at university, I wanted to build something real.
+							{`During my time at university, I wanted to build something real.
 							Luckily, I shared that desire with two of my childhood friends,
 							Alex an Daniel. Flavoured toothpicks were quite popular during my
-							friends’ military service and we thought we could make them
-							better.
+							friends\’ military service and we thought we could make them
+							better.`}
 						</Paragraph>
 						<Paragraph>
-							In 2016 we started production by hand in a literal cellar,
+							{`In 2016 we started production by hand in a literal cellar,
 							flooding our local mailboxes with envelopes. We now produce our
 							toothpicks in collaboration with ABA Amriswil, a social enterprise
 							offering jobs and housing to people with disabilities. The
 							toothpicks are sent to one of our warehouses and then shipped
-							across the world to their final destination.
+							across the world to their final destination.`}
 						</Paragraph>
 						<Paragraph>
-							I led the marketing efforts until 2020, when I decided to leave
+							{`I led the marketing efforts until 2020, when I decided to leave
 							the company to start programming. Now I am a board member and
-							investor, helping out on occasion.
+							investor, helping out on occasion.`}
 						</Paragraph>
 					</motion.div>
 				</motion.section>
@@ -119,12 +118,12 @@ export default function About({ showMenu, setShowMenu, url }) {
 						whileInView="visible"
 						initial="hidden"
 						viewport={{ once: true }}>
-						<Subheader>Photography</Subheader>
+						<Subheader>{`Photography`}</Subheader>
 						<Paragraph>
-							I like beautiful things. But I also want to create beautiful
+							{`I like beautiful things. But I also want to create beautiful
 							things. Web design scratches that itch and photography helps me
 							improve on things like composition and colours. It also helps me
-							to decompress and be attentive and explore my surroundings.
+							to decompress and be attentive and explore my surroundings.`}
 						</Paragraph>
 						<motion.div>
 							<Image
@@ -173,8 +172,14 @@ export default function About({ showMenu, setShowMenu, url }) {
 								alt="A roof with many oddly shaped windows captured from the inside"
 							/>
 						</motion.div>
-						<motion.div className="flex items-center">
-							<Button>Find me on Instagram</Button>
+						<motion.div className="flex items-center justify-center h-full">
+							<a
+								className="font-text font-bold text-lg sm:text-xl text-primary"
+								href="https://www.instagram.com/noelcserepy/"
+								target="_blank"
+								rel="noreferrer">
+								{`@noelcserepy on Instagram`}
+							</a>
 						</motion.div>
 					</motion.div>
 				</motion.section>

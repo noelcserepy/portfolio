@@ -10,11 +10,11 @@ import ContentWrapper from "../components/Common/ContentWrapper";
 const blockVariants = {
 	hidden: {
 		opacity: 0,
-		x: -40,
+		y: 50,
 	},
 	visible: {
 		opacity: 1,
-		x: 0,
+		y: 0,
 		transition: {
 			duration: 0.5,
 			ease: "easeOut",
@@ -172,14 +172,30 @@ export default function About({ showMenu, setShowMenu, url }) {
 								alt="A roof with many oddly shaped windows captured from the inside"
 							/>
 						</motion.div>
-						<motion.div className="flex items-center justify-center h-full">
-							<a
-								className="font-text font-bold text-lg sm:text-xl text-primary"
+						<motion.div className="flex items-center justify-center h-full w-full border-2 border-orange">
+							<motion.a
+								className="font-text font-bold text-lg sm:text-xl text-primary text-center md:whitespace-pre-line lg:whitespace-normal"
 								href="https://www.instagram.com/noelcserepy/"
 								target="_blank"
-								rel="noreferrer">
-								{`@noelcserepy on Instagram`}
-							</a>
+								rel="noreferrer"
+								whileHover={{
+									letterSpacing: "0.05em",
+									transition: {
+										type: "spring",
+										duration: 0.3,
+										bounce: 0.5,
+									},
+								}}
+								whileTap={{
+									letterSpacing: "0.04em",
+									transition: {
+										type: "spring",
+										duration: 0.3,
+										bounce: 0.5,
+									},
+								}}>
+								{`@noelcserepy \non \nInstagram`}
+							</motion.a>
 						</motion.div>
 					</motion.div>
 				</motion.section>

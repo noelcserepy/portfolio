@@ -1,14 +1,15 @@
 import { motion } from "framer-motion";
 import Paragraph from "../Paragraph";
 import Subheader from "../Subheader";
+import { useMediaQuery } from "../../hooks/useMediaQuery.jsx";
 
 const data = require("/data.json");
 
 const descriptionVariants = {
-	hidden: {
+	hidden: isLg => ({
 		opacity: 0,
-		x: 40,
-	},
+		x: isLg ? 40 : -40,
+	}),
 	visible: {
 		opacity: 1,
 		x: 0,
@@ -41,7 +42,8 @@ const liVariants = {
 	},
 };
 
-function OtherProject({ project }) {
+export default function OtherProject({ project }) {
+	const isLg = useMediaQuery("lg");
 	const current = data.projects.find(
 		p => p.name.toString() === project.toString()
 	);
@@ -52,7 +54,8 @@ function OtherProject({ project }) {
 			variants={liVariants}>
 			<motion.div
 				className="mt-4 lg:mt-0 lg:text-right lg:w-[48%]"
-				variants={descriptionVariants}>
+				variants={descriptionVariants}
+				custom={isLg}>
 				<Paragraph>{current.description}</Paragraph>
 			</motion.div>
 			<motion.div className="flex flex-col lg:w-[48%]" variants={infoVariants}>
@@ -95,5 +98,3 @@ function OtherProject({ project }) {
 		</motion.li>
 	);
 }
-
-export default OtherProject;

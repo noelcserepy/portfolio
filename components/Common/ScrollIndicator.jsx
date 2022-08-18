@@ -49,7 +49,7 @@ function ScrollIndicator() {
 		animate(y, maxAnimHeight, {
 			duration: 0.5,
 			repeat: Infinity,
-			repeatDelay: 2,
+			repeatDelay: 1.5,
 			ease: "linear",
 		});
 	}, []);

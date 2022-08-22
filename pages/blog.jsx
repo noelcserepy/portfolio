@@ -1,5 +1,5 @@
 import Hero from "../components/Common/Hero";
-import BlogItem from "../components/BlogItem";
+import BlogItem from "../components/Blog/BlogItem";
 import ContentWrapper from "../components/Common/ContentWrapper";
 import Nav from "../components/Nav/Nav";
 

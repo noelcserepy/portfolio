@@ -1,9 +1,9 @@
 import Hero from "../components/Common/Hero";
 import { motion } from "framer-motion";
-import Subheader from "../components/Subheader";
-import Paragraph from "../components/Paragraph";
+import Subheader from "../components/Common/Subheader";
+import Paragraph from "../components/Common/Paragraph";
 import Image from "next/image";
-import * as images from "../components/aboutImages";
+import * as images from "../components/About/aboutImages";
 import Nav from "../components/Nav/Nav";
 import ContentWrapper from "../components/Common/ContentWrapper";
 

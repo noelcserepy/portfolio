@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import Paragraph from "../Paragraph";
-import Subheader from "../Subheader";
+import Paragraph from "../Common/Paragraph";
+import Subheader from "../Common/Subheader";
 import { useMediaQuery } from "../../hooks/useMediaQuery.jsx";
 
 const data = require("/data.json");

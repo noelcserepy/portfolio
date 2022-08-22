@@ -1,6 +1,6 @@
 import "../styles/globals.css";
 import { useState } from "react";
-import Layout from "../components/Layout";
+import Layout from "../components/Layout/Layout";
 import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 

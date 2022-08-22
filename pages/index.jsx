@@ -1,7 +1,7 @@
 import Hero from "../components/Common/Hero";
-import Subheader from "../components/Subheader";
+import Subheader from "../components/Common/Subheader";
 import { motion } from "framer-motion";
-import Paragraph from "../components/Paragraph";
+import Paragraph from "../components/Common/Paragraph";
 import FeaturedProject from "../components/Home/FeaturedProject";
 import OtherProjectsWrapper from "../components/Home/OtherProjectsWrapper";
 import Nav from "../components/Nav/Nav";

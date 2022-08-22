@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import SEO from "./Common/SEO";
-import MazeLoader from "./Loader/MazeLoader";
+import SEO from "../Common/SEO";
+import MazeLoader from "../Loader/MazeLoader";
 import ScreenBorder from "./ScreenBorder";
 
 function Layout({ url, mazeAnimDone, setMazeAnimDone, children }) {

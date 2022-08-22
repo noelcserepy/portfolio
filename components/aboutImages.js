@@ -1,9 +1,17 @@
-import photo1 from "../public/img/Photo_1.jpg";
-import photo2 from "../public/img/Photo_2.jpg";
-import photo3 from "../public/img/Photo_3.jpg";
-import photo4 from "../public/img/Photo_4.jpg";
-import photo5 from "../public/img/Photo_5.jpg";
-import zunderDude from "../public/img/Zunder_Dude.jpg";
-import noelFace from "../public/img/Noel_Face.jpg";
+import cliffside from "../public/img/cliffside.jpg";
+import split_facade from "../public/img/split_facade.jpg";
+import windows from "../public/img/windows.jpg";
+import train_station from "../public/img/train_station.jpg";
+import glass_ceiling from "../public/img/glass_ceiling.jpg";
+import zunder_toothpicks from "../public/img/zunder_toothpicks.jpg";
+import noel_portrait from "../public/img/noel_portrait.jpg";
 
-export { photo1, photo2, photo3, photo4, photo5, zunderDude, noelFace };
+export {
+	cliffside,
+	split_facade,
+	windows,
+	train_station,
+	glass_ceiling,
+	zunder_toothpicks,
+	noel_portrait,
+};

@@ -43,9 +43,9 @@ export default function Home({ showMenu, setShowMenu }) {
 					<Paragraph>
 						{`I am constantly looking to improve. From Spotify web apps to 3D
 						rendering optimization, from Discord bots to robotic eyes, I build
-						ever more challenging things to get better at my craft. Here are
-						some of the things I made.`}
+						ever more challenging things to get better at my craft.`}
 					</Paragraph>
+					<Paragraph>{`Here are some of the things I made.`}</Paragraph>
 				</motion.section>
 
 				<FeaturedProject project="ShufflePlus" imageRight={false} />

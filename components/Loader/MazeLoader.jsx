@@ -35,11 +35,15 @@ const mainVariants = {
 	},
 
 	end: {
+		x: 0,
 		scale: 0,
 		transition: {
 			delay: 0,
 			duration: 0.4,
 			ease: "circIn",
+			x: {
+				duration: 0.6,
+			},
 		},
 	},
 };
@@ -96,7 +100,7 @@ const ballVariants = {
 		},
 	},
 	blop: {
-		r: 40,
+		r: 300,
 		transition: {
 			duration: 2,
 			type: "spring",
@@ -145,7 +149,7 @@ const concentricVariants = {
 		strokeLinecap: "square",
 		transition: {
 			delay: 0,
-			duration: 0.3,
+			duration: 1.5,
 			ease: "circIn",
 		},
 	},
@@ -201,19 +205,66 @@ const radialVariants = {
 	},
 };
 
+const outerLineVariants = {
+	hidden: {
+		opacity: 0,
+		pathLength: 0,
+		strokeLinecap: "round",
+	},
+
+	visible: {
+		opacity: 1,
+		pathLength: 0,
+
+		strokeLinecap: "round",
+		transition: {
+			delay: 0,
+			duration: 3,
+			ease: "easeOut",
+		},
+	},
+
+	grown: {
+		pathLength: 1,
+		strokeLinecap: "square",
+		transition: {
+			delay: 0,
+			duration: 0.5,
+			ease: "circIn",
+		},
+	},
+
+	fade: {
+		opacity: 1,
+		pathLength: 0,
+		strokeLinecap: "round",
+		transition: {
+			opacity: { delay: 2, duration: 2, ease: "easeOut" },
+			default: {
+				delay: 0.2,
+				duration: 1.78,
+				ease: [0, 0.98, 0.18, 0.83],
+			},
+		},
+	},
+};
+
 function MazeLoader({ setMazeAnimDone }) {
 	const [abort, setAbort] = useState(false);
 	const mainControls = useAnimationControls();
 	const lineControls = useAnimationControls();
 	const ballControls = useAnimationControls();
+	const outerLineControls = useAnimationControls();
 	const concentricControls = useAnimationControls();
 	const radialControls = useAnimationControls();
 
 	useEffect(() => {
 		const sequence = async () => {
 			mainControls.start("back");
+			outerLineControls.start("visible");
 			await concentricControls.start("visible");
 			mainControls.start("forward");
+			outerLineControls.start("grown");
 			await concentricControls.start("grown");
 			await radialControls.start("grown");
 
@@ -222,6 +273,7 @@ function MazeLoader({ setMazeAnimDone }) {
 			ballControls.start("grown");
 			await lineControls.start("retracted");
 
+			outerLineControls.start("fade");
 			concentricControls.start("fade");
 			radialControls.start("fade");
 			mainControls.start("boing");
@@ -230,7 +282,6 @@ function MazeLoader({ setMazeAnimDone }) {
 			await ballControls.start("shrinkAgain");
 
 			await mainControls.start("end");
-			await mainControls.start({ x: 0, transition: { duration: 1 } });
 
 			setMazeAnimDone();
 		};
@@ -357,7 +408,7 @@ function MazeLoader({ setMazeAnimDone }) {
 					/>
 					<motion.path
 						strokeDasharray="0 1"
-						variants={concentricVariants}
+						variants={outerLineVariants}
 						animate={concentricControls}
 						initial="hidden"
 						d="M610.286 5.0278c151.782 7.4565 294.51 74.427 397.254 186.3972 102.74 111.97 157.22 259.918 151.62 411.779-5.59 151.862-70.8 295.401-181.503 399.506-110.701 104.11-257.97 160.4-409.888 156.67-151.919-3.73-296.248-67.18-401.707-176.59C60.603 873.375 2.5107 726.809 4.3756 574.856 6.2404 422.903 67.912 277.806 176.025 171.012 284.137 64.2185 429.98 4.332 581.944 4.332"

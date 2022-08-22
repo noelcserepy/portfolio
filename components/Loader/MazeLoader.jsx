@@ -10,7 +10,7 @@ const mainVariants = {
 	back: {
 		rotate: -30,
 		transition: {
-			duration: 4,
+			duration: 3,
 			ease: [0.54, 0.87, 0.59, 0.98],
 		},
 	},
@@ -134,8 +134,9 @@ const concentricVariants = {
 
 		strokeLinecap: "round",
 		transition: {
-			delay: 0.5,
-			duration: 3.5,
+			delay: 0,
+			duration: 3,
+			ease: "easeOut",
 		},
 	},
 

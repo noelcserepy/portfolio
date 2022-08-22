@@ -52,6 +52,13 @@ const maze = {
 };
 
 function Menu({ showMenu, setShowMenu }) {
+	document.body.style.overflow = "unset";
+	if (showMenu) {
+		if (typeof window != "undefined" && window.document) {
+			document.body.style.overflow = "hidden";
+		}
+	}
+
 	return (
 		<motion.div
 			layout

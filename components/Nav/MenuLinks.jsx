@@ -32,7 +32,12 @@ function MenuLinks({ setShowMenu }) {
 			variants={linkVariants}>
 			<MenuItem setShowMenu={setShowMenu} href="/" text="Work" />
 			<MenuItem setShowMenu={setShowMenu} href="/about" text="About" />
-			<MenuItem setShowMenu={setShowMenu} href="/blog" text="Blog" />
+			<MenuItem
+				setShowMenu={setShowMenu}
+				href="https://blog.noelcserepy.com/"
+				text="Blog"
+				blog={true}
+			/>
 		</motion.ul>
 	);
 }

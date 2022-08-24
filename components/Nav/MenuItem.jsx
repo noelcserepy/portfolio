@@ -31,7 +31,7 @@ const itemVariants = {
 	},
 };
 
-const MenuItem = ({ href, text }) => {
+const MenuItem = ({ href, text, blog = false }) => {
 	const router = useRouter();
 
 	return (
@@ -63,9 +63,14 @@ const MenuItem = ({ href, text }) => {
 					transition={{ delay: 1 }}
 				/>
 			)}
-			<Link href={href} scroll={false}>
-				<a>{text}</a>
-			</Link>
+
+			{blog ? (
+				<a href={href}>{text}</a>
+			) : (
+				<Link href={href} scroll={false}>
+					<a>{text}</a>
+				</Link>
+			)}
 		</motion.li>
 	);
 };

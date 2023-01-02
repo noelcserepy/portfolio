@@ -35,14 +35,12 @@ const mainVariants = {
 	},
 
 	end: {
-		x: 0,
 		scale: 0,
 		transition: {
-			delay: 0,
-			duration: 0.4,
-			ease: "circIn",
-			x: {
-				duration: 0.6,
+			duration: 0.6,
+			scale: {
+				duration: 0.4,
+				ease: "circIn",
 			},
 		},
 	},
@@ -292,27 +290,26 @@ function MazeLoader({ setMazeAnimDone }) {
 			ballControls.stop();
 			concentricControls.stop();
 			radialControls.stop();
+			outerLineControls.stop();
 
-			mainControls.start({
-				scale: 0,
-				rotate: -30,
-				transition: {
-					duration: 0.3,
-					ease: "easeIn",
-				},
-				transitionEnd: {
-					display: "none",
-				},
-			});
-			setTimeout(() => {
-				setMazeAnimDone();
-			}, 300);
+			await mainControls.start("end");
+
+			setMazeAnimDone();
 		};
 
 		if (abort) abortSequence();
 
 		sequence();
-	}, [abort]);
+	}, [
+		abort,
+		setMazeAnimDone,
+		mainControls,
+		lineControls,
+		ballControls,
+		concentricControls,
+		radialControls,
+		outerLineControls,
+	]);
 
 	return (
 		<div className="fixed top-0 left-0 w-full h-full overflow-clip">

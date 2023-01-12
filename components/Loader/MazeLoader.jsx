@@ -7,28 +7,11 @@ const mainVariants = {
 		rotate: 0,
 	},
 
-	back: {
-		rotate: -30,
-		transition: {
-			duration: 3,
-			ease: [0.54, 0.87, 0.59, 0.98],
-		},
-	},
-
-	forward: {
-		rotate: 0,
-		transition: {
-			duration: 0.3,
-			type: "spring",
-			bounce: 0.2,
-		},
-	},
-
 	boing: {
 		scale: 1.3,
 		rotate: -400,
 		transition: {
-			delay: 2,
+			delay: 0,
 			rotate: { ease: "circOut", duration: 5.2 },
 			scale: { ease: "easeIn", duration: 4 },
 		},
@@ -37,11 +20,9 @@ const mainVariants = {
 	end: {
 		scale: 0,
 		transition: {
-			duration: 0.6,
-			scale: {
-				duration: 0.4,
-				ease: "circIn",
-			},
+			delay: 1,
+			duration: 0.4,
+			ease: "circIn",
 		},
 	},
 };
@@ -90,35 +71,14 @@ const ballVariants = {
 			duration: 1.5,
 		},
 	},
-	shrink: {
-		r: 27,
-		transition: {
-			duration: 1.98,
-			ease: "circIn",
-		},
-	},
 	blop: {
-		r: 300,
+		r: 40,
 		transition: {
-			duration: 2,
+			delay: 0.1,
 			type: "spring",
-			bounce: 0.8,
-		},
-	},
-	shrinkAgain: {
-		r: 2,
-		transition: {
-			duration: 2.0,
-			ease: "circIn",
-		},
-	},
-
-	out: {
-		r: 0,
-		transition: {
-			delay: 1,
-			duration: 1.5,
-			ease: "easeInOut",
+			stiffness: 250,
+			damping: 1,
+			mass: 0.3,
 		},
 	},
 };
@@ -137,7 +97,7 @@ const concentricVariants = {
 		strokeLinecap: "round",
 		transition: {
 			delay: 0,
-			duration: 3,
+			duration: 0.5,
 			ease: "easeOut",
 		},
 	},
@@ -147,22 +107,8 @@ const concentricVariants = {
 		strokeLinecap: "square",
 		transition: {
 			delay: 0,
-			duration: 1.5,
+			duration: 0.5,
 			ease: "circIn",
-		},
-	},
-
-	fade: {
-		opacity: 1,
-		pathLength: 0,
-		strokeLinecap: "round",
-		transition: {
-			opacity: { delay: 2, duration: 2, ease: "easeOut" },
-			default: {
-				delay: 0.2,
-				duration: 1.78,
-				ease: [0, 0.98, 0.18, 0.83],
-			},
 		},
 	},
 };
@@ -187,20 +133,6 @@ const radialVariants = {
 			opacity: { duration: 0 },
 		},
 	},
-
-	fade: {
-		opacity: 1,
-		pathLength: 0,
-		strokeLinecap: "round",
-		transition: {
-			opacity: { delay: 2, duration: 2, ease: "easeOut" },
-			default: {
-				delay: 0.2,
-				duration: 1.8,
-				ease: [1, 0.25, 0.96, 0.79],
-			},
-		},
-	},
 };
 
 const outerLineVariants = {
@@ -217,7 +149,7 @@ const outerLineVariants = {
 		strokeLinecap: "round",
 		transition: {
 			delay: 0,
-			duration: 3,
+			duration: 0.5,
 			ease: "easeOut",
 		},
 	},
@@ -231,23 +163,10 @@ const outerLineVariants = {
 			ease: "circIn",
 		},
 	},
-
-	fade: {
-		opacity: 1,
-		pathLength: 0,
-		strokeLinecap: "round",
-		transition: {
-			opacity: { delay: 2, duration: 2, ease: "easeOut" },
-			default: {
-				delay: 0.2,
-				duration: 1.78,
-				ease: [0, 0.98, 0.18, 0.83],
-			},
-		},
-	},
 };
 
 function MazeLoader({ setMazeAnimDone }) {
+	const [percentage, setPercentage] = useState(0);
 	const [abort, setAbort] = useState(false);
 	const mainControls = useAnimationControls();
 	const lineControls = useAnimationControls();
@@ -255,13 +174,24 @@ function MazeLoader({ setMazeAnimDone }) {
 	const outerLineControls = useAnimationControls();
 	const concentricControls = useAnimationControls();
 	const radialControls = useAnimationControls();
+	const textControls = useAnimationControls();
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setPercentage(prev => {
+				if (prev >= 100) {
+					clearInterval(interval);
+					return prev;
+				}
+				return prev + 1;
+			});
+		}, 125);
+	}, []);
 
 	useEffect(() => {
 		const sequence = async () => {
-			mainControls.start("back");
 			outerLineControls.start("visible");
 			await concentricControls.start("visible");
-			mainControls.start("forward");
 			outerLineControls.start("grown");
 			await concentricControls.start("grown");
 			await radialControls.start("grown");
@@ -270,15 +200,19 @@ function MazeLoader({ setMazeAnimDone }) {
 			ballControls.set("visible");
 			ballControls.start("grown");
 			await lineControls.start("retracted");
+			ballControls.start("blop");
 
-			outerLineControls.start("fade");
-			concentricControls.start("fade");
-			radialControls.start("fade");
-			mainControls.start("boing");
-			await ballControls.start("shrink");
-			await ballControls.start("blop");
-			await ballControls.start("shrinkAgain");
-
+			textControls.start({
+				opacity: 0,
+				transition: {
+					delay: 0,
+					duration: 0.6,
+					ease: "circIn",
+				},
+				transitionEnd: {
+					display: "none",
+				},
+			});
 			await mainControls.start("end");
 
 			setMazeAnimDone();
@@ -313,8 +247,12 @@ function MazeLoader({ setMazeAnimDone }) {
 
 	return (
 		<div className="fixed top-0 left-0 w-full h-full overflow-clip">
-			<Skip setAbort={() => setAbort(true)} />
 			<div className="w-[90%] h-[90%] top-1/2 left-1/2 absolute -translate-x-1/2 -translate-y-1/2">
+				<motion.div
+					animate={textControls}
+					className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-title text-lg text-orange mix-blend-difference text-center">
+					{`${percentage}%`}
+				</motion.div>
 				<motion.svg
 					variants={mainVariants}
 					animate={mainControls}

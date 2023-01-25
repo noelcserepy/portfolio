@@ -1,8 +1,6 @@
-import { Children } from "react";
-
 function Subheader({ stopper = ".", children }) {
 	return (
-		<h3 className="font-title text-4xl text-primary mb-4">
+		<h3 className="text-s text-7xl">
 			{children}
 			<span className="text-orange">{stopper}</span>
 		</h3>

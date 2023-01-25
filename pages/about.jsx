@@ -6,6 +6,13 @@ import Image from "next/image";
 import * as images from "../components/About/aboutImages";
 import Nav from "../components/Nav/Nav";
 import ContentWrapper from "../components/Common/ContentWrapper";
+import grow from "../public/img/grow.gif";
+import handshake from "../public/img/handshake.gif";
+import directness from "../public/img/directness.gif";
+import Belief from "../components/About/belief";
+import { useContext } from "react";
+import ThemeContext from "../components/Common/themeContext";
+import DelightAnim, { Scene } from "../components/About/delightAnim";
 
 const blockVariants = {
 	hidden: {
@@ -23,6 +30,8 @@ const blockVariants = {
 };
 
 export default function About({ showMenu, setShowMenu, url }) {
+	const { theme, setTheme } = useContext(ThemeContext);
+
 	return (
 		<>
 			<Nav showMenu={showMenu} setShowMenu={setShowMenu} />
@@ -33,183 +42,130 @@ export default function About({ showMenu, setShowMenu, url }) {
 					subtitle="Past, present and future"
 				/>
 
-				<motion.section className="flex flex-col-reverse w-full md:flex-row ">
-					<motion.div
-						variants={blockVariants}
-						whileInView="visible"
-						initial="hidden"
-						viewport={{ once: true }}>
-						<motion.div
-							className="w-4/12 float-right min-w-[140px]"
+				<section className="narrow flex flex-col items-center justify-between gap-8 md:flex-row">
+					<div className="w-1/2">
+						<h3 className="text-s text-7xl">
+							So this is me
+							<span className="text-orange">.</span>
+						</h3>
+						<p className="text-p">
+							I am a freelance web developer that enjoys
+							developing one-of-a-kind and engaging web
+							experiences. I bring a unique perspective to my work
+							because of my history in software development,
+							hospitality and marketing.
+						</p>
+						<p className="text-p">
+							After launching my own business, I chose to pursue
+							my love for programming, and I now assist customers
+							in bringing their ideas to life on the web. Using
+							Next.js and TypeScript, I strive to create
+							captivating and memorable digital experiences that
+							stand out and bring joy.
+						</p>
+					</div>
+					<div className="relative h-[300px] w-[300px] overflow-hidden rounded-xl">
+						<Image
+							src={images.noel_portrait}
+							alt="A photograph of Noel"
+							fill
 							style={{
-								clipPath: "circle(50%)",
-								shapeOutside: "circle(50%)",
-							}}>
-							<Image
-								lazyBoundary="2000px"
-								placeholder="blur"
-								src={images.noel_portrait}
-								layout="responsive"
-								alt="A photograph of Noel"
+								objectFit: "cover",
+								objectPosition: "center",
+							}}
+						/>
+					</div>
+				</section>
+
+				<motion.div
+					className="wide"
+					onViewportEnter={() => setTheme("dark")}
+					onViewportLeave={() => setTheme("light")}>
+					<motion.section className="flex h-screen w-full flex-col items-center gap-12">
+						<motion.h3 className="text-s text-7xl">
+							What I believe
+							<span className="text-orange">.</span>
+						</motion.h3>
+						<div className="flex h-screen items-center justify-center">
+							<Belief
+								img={grow}
+								title={"Growth"}
+								text={`Every day I seek to become a better person. With self
+									reflection and intentional action, I push myself to become a
+									man I am happy to be.`}
 							/>
-						</motion.div>
-						<Subheader stopper="?">{`Why all the mazes`}</Subheader>
-						<Paragraph>
-							{`At the risk of sounding trite, the answer is that I didn\’t take the straightest path in life.`}
-						</Paragraph>
-						<Paragraph>
-							{`I grew up in Switzerland and went to school in England.`}
-						</Paragraph>
-						<Paragraph>
-							{`I studied economics, then biochemistry and then graduated in hospitality management.`}
-						</Paragraph>
-						<Paragraph>
-							{`I worked as a hôtelier in Bangkok and the swiss alps. I optimized keywords as an online marketer in Zürich. I founded a company selling flavoured toothpicks.`}
-						</Paragraph>
-						<Paragraph>
-							{`Yet, since I started dabbling with Python in 2018, I could not stop thinking about programming. It took me a while to figure out, but I knew what I wanted to do. `}
-							<strong>{`I want to make fantastic software with fantastic people. `}</strong>
-							{`So I built projects, learned concepts and here we are.`}
-						</Paragraph>
-						<Paragraph>{`Okay, and mazes look cool.`}</Paragraph>
-					</motion.div>
+							<Belief
+								img={handshake}
+								title={"Win-Win"}
+								text={`Not every interaction is worth pursuing. But in every interaction it is worth pursuing the best outcome for all parties.`}
+							/>
+							<Belief
+								img={directness}
+								title={"Directness"}
+								text={`Say the important things. I seek to make my expectations and those of others clear, so we can move forward together.`}
+							/>
+						</div>
+					</motion.section>
+
+					<motion.section className="flex h-screen w-full flex-col justify-end">
+						<DelightAnim />
+						<div className="flex items-end gap-8">
+							<motion.h3 className="text-s text-7xl">
+								Delight
+								<span className="text-orange">.</span>
+							</motion.h3>
+							<p className="text-p">
+								{`Just as a restaurant is more than simply food, a website is more than merely a collection of pages and code; it is an experience. A website should be meticulously created to deliver a smooth and delightful experience for the user.`}
+							</p>
+							<p className="text-p">
+								{`It can be tough to assess the value of our purchases and navigate the clutter in a sea of products. Every product, especially in the digital space, should have a clear purpose and be created with the user in mind. My goal as a developer is to use technology to make our lives more efficient and enjoyable.`}
+							</p>
+						</div>
+					</motion.section>
+				</motion.div>
+
+				<motion.section className="wide flex h-screen w-full flex-col items-center gap-12">
+					<motion.h3 className="text-s text-7xl">
+						What I can do for you
+						<span className="text-orange">.</span>
+					</motion.h3>
+					<div className="flex h-screen items-center justify-center">
+						<Belief
+							img={grow}
+							title={"Growth"}
+							text={`Every day I seek to become a better person. With self
+									reflection and intentional action, I push myself to become a
+									man I am happy to be.`}
+						/>
+						<Belief
+							img={handshake}
+							title={"Win-Win"}
+							text={`Not every interaction is worth pursuing. But in every interaction it is worth pursuing the best outcome for all parties.`}
+						/>
+						<Belief
+							img={directness}
+							title={"Directness"}
+							text={`Say the important things. I seek to make my expectations and those of others clear, so we can move forward together.`}
+						/>
+					</div>
 				</motion.section>
 
-				<motion.section className="flex flex-col-reverse w-full md:flex-row ">
-					<motion.div
-						variants={blockVariants}
-						whileInView="visible"
-						initial="hidden"
-						viewport={{ once: true }}>
-						<motion.div
-							className="w-4/12 float-right min-w-[140px]"
+				<motion.section className="narrow flex h-screen w-full flex-col items-center gap-12">
+					<motion.h3 className="text-s text-7xl">
+						Why all the mazes
+						<span className="text-orange">?</span>
+					</motion.h3>
+					<div className="relative h-[300px] w-[300px] overflow-hidden rounded-xl">
+						<Image
+							src={images.noel_portrait}
+							alt="A photograph of Noel"
+							fill
 							style={{
-								clipPath: "circle(closest-side)",
-								shapeOutside: "circle(closest-side)",
-							}}>
-							<Image
-								lazyBoundary="2000px"
-								placeholder="blur"
-								src={images.zunder_toothpicks}
-								layout="responsive"
-								alt="A man in denim clothes opening a pack of Zunder Toothpicks"
-							/>
-						</motion.div>
-
-						<Subheader stopper="!">{`Toothpicks? Yes, toothpicks`}</Subheader>
-						<Paragraph>
-							{`During my time at university, I wanted to build something real. Luckily, I shared that desire with two childhood friends, Alex and Daniel. `}
-						</Paragraph>
-						<Paragraph>
-							{`Flavoured toothpicks were all the rage during my friends\’ military service. We thought we could make them better! `}
-						</Paragraph>
-						<Paragraph>
-							{`We started production by hand in 2016. The local mailboxes almost burst with all the envelopes we stuffed in there. `}
-						</Paragraph>
-						<Paragraph>
-							{`We have come a long way since then. ABA Amriswil now transforms ordinary toothpicks into the product our customers love. ABA is a social enterprise offering jobs and housing to people with disabilities. Packaged and ready to go, the toothpicks travel all over the world to their final destination. `}
-						</Paragraph>
-						<Paragraph>
-							{`During my time at Zunder, I had many responsibilities. I negotiated with manufacturers, implemented systems and orchestrated a host of freelancers. Yet, my main task was to lead the marketing efforts of Zunder.`}
-						</Paragraph>
-						<Paragraph>
-							{`I realized I thrived in thinking of efficient systems to manage our resources and data. This led me to go my own way and start programming. `}
-						</Paragraph>
-						<Paragraph>
-							{`I still act in an advisory capacity as a board member at Zunder. `}
-						</Paragraph>
-					</motion.div>
-				</motion.section>
-
-				<motion.section className="flex flex-col md:flex-row w-full justify-between space-y-4 md:space-y-0 md:space-x-4">
-					<motion.div
-						className="flex flex-col w-full md:w-1/2 space-y-4"
-						variants={blockVariants}
-						whileInView="visible"
-						initial="hidden"
-						viewport={{ once: true }}>
-						<Subheader>{`Photography`}</Subheader>
-						<Paragraph>
-							{`I like making things. Especially beautiful things. Web design scratches that itch and photography teaches me composition and colours. It also helps me to decompress and be attentive and explore my surroundings.`}
-						</Paragraph>
-						<motion.div>
-							<Image
-								lazyBoundary="2000px"
-								placeholder="blur"
-								src={images.cliffside}
-								layout="responsive"
-								alt="A cliffside in the swiss alps"
-							/>
-						</motion.div>
-						<motion.div>
-							<Image
-								lazyBoundary="2000px"
-								placeholder="blur"
-								src={images.split_facade}
-								layout="responsive"
-								alt="A blue and white building facade"
-							/>
-						</motion.div>
-					</motion.div>
-					<motion.div
-						className="flex flex-col md:w-1/2 space-y-4"
-						variants={blockVariants}
-						whileInView="visible"
-						initial="hidden"
-						viewport={{ once: true }}>
-						<motion.div>
-							<Image
-								lazyBoundary="2000px"
-								placeholder="blur"
-								src={images.windows}
-								layout="responsive"
-								alt="A green building facade with windows down the middle"
-							/>
-						</motion.div>
-						<motion.div>
-							<Image
-								lazyBoundary="2000px"
-								placeholder="blur"
-								src={images.train_station}
-								layout="responsive"
-								alt="A single woman with a jellow jacket waiting for a train"
-							/>
-						</motion.div>
-						<motion.div>
-							<Image
-								lazyBoundary="2000px"
-								placeholder="blur"
-								src={images.glass_ceiling}
-								layout="responsive"
-								alt="A roof with many oddly shaped windows captured from the inside"
-							/>
-						</motion.div>
-						<motion.div className="flex items-center justify-center h-full w-full border-2 border-orange">
-							<motion.a
-								className="font-text font-bold text-lg sm:text-xl text-primary text-center md:whitespace-pre-line lg:whitespace-normal"
-								href="https://www.instagram.com/noelcserepy/"
-								target="_blank"
-								rel="noreferrer"
-								whileHover={{
-									letterSpacing: "0.05em",
-									transition: {
-										type: "spring",
-										duration: 0.3,
-										bounce: 0.5,
-									},
-								}}
-								whileTap={{
-									letterSpacing: "0.04em",
-									transition: {
-										type: "spring",
-										duration: 0.3,
-										bounce: 0.5,
-									},
-								}}>
-								{`@noelcserepy \non \nInstagram`}
-							</motion.a>
-						</motion.div>
-					</motion.div>
+								objectFit: "cover",
+								objectPosition: "center",
+							}}
+						/>
+					</div>
 				</motion.section>
 			</ContentWrapper>
 		</>

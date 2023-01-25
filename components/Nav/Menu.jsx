@@ -10,10 +10,18 @@ const overlay = {
 			duration: 0.2,
 			ease: "easeOut",
 		},
+		transitionEnd: {
+			display: "none",
+		},
 	},
 	open: {
 		scaleX: 1,
+		display: "block",
 		transition: {
+			display: {
+				delay: 0,
+				duration: 0,
+			},
 			duration: 0.2,
 			ease: "easeOut",
 		},
@@ -24,6 +32,9 @@ const overlay = {
 			delay: 0.2,
 			duration: 0.2,
 			ease: "easeOut",
+		},
+		transitionEnd: {
+			display: "none",
 		},
 	},
 };
@@ -63,7 +74,7 @@ function Menu({ showMenu, setShowMenu }) {
 		<motion.div
 			layout
 			key="overlay"
-			className="bg-orange h-screen w-screen fixed top-0 left-0 overflow-hidden z-30"
+			className="fixed top-0 left-0 z-30 h-screen w-screen overflow-clip bg-orange"
 			style={{ originX: "0%" }}
 			variants={overlay}
 			initial="closed"

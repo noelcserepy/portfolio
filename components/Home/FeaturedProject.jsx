@@ -95,35 +95,36 @@ function FeaturedProject({ project, imageRight }) {
 
 	return (
 		<motion.section
-			className={`flex flex-col space-y-4 lg:flex-row w-full items-center justify-between`}
+			className={`wide flex flex-col items-center justify-end gap-8 lg:flex-row`}
 			variants={mainVariants}
 			initial="hidden"
 			whileInView="visible"
 			viewport={{ once: true, amount: 0.4 }}>
 			<motion.div
-				className={`w-[90%] lg:w-[60%] origin-[0%_50%] ${
-					imageRight
-						? "lg:order-last lg:translate-x-[9%]"
-						: "lg:-translate-x-[9%]"
-				}`}
+				className={`relative flex h-[40vh] w-full origin-[0%_50%] justify-center md:h-[50vh] md:justify-end lg:w-full
+				${imageRight ? "lg:order-last lg:translate-x-[9%]" : "lg:-translate-x-[9%]"}
+				`}
 				variants={imageVariants}>
 				<Image
 					src={current.image}
-					layout="responsive"
-					width={594.26}
-					height={350}
+					fill
+					sizes="100vw"
 					alt={`A mockup showing the app ${current.name}`}
+					style={{
+						objectPosition: "right",
+						objectFit: "contain",
+					}}
 				/>
 			</motion.div>
 
-			<div className="flex flex-col w-full lg:w-[40%]">
+			<div className="flex w-full flex-col lg:w-[50%]">
 				<motion.div variants={subHeaderVariants}>
 					<Subheader>{current.name}</Subheader>
 				</motion.div>
 
 				<div className="flex space-x-4 ">
 					<motion.div variants={toolsVariants}>
-						<ul className="text-primary font-header text-base">
+						<ul className="font-header text-base text-primary">
 							{current.tools.map((t, i) => (
 								<li key={t + i}>{t}</li>
 							))}
@@ -134,11 +135,16 @@ function FeaturedProject({ project, imageRight }) {
 						style={{ originY: "0%" }}
 						variants={lineVariants}
 					/>
-					<motion.div className="flex flex-col" variants={descriptionVariants}>
+					<motion.div
+						className="flex flex-col"
+						variants={descriptionVariants}>
 						<Paragraph>{current.description}</Paragraph>
 						<div className="flex">
 							{current.github !== "" && (
-								<a href={current.github} target="_blank" rel="noreferrer">
+								<a
+									href={current.github}
+									target="_blank"
+									rel="noreferrer">
 									<motion.svg
 										aria-label="Github Icon"
 										role="link"

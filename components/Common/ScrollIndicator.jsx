@@ -56,7 +56,7 @@ function ScrollIndicator() {
 
 	return (
 		<motion.div
-			className="flex flex-col justify-end items-center fixed left-8 bottom-16 sm:absolute sm:left-0 sm:bottom-6 z-10 pointer-events-none w-min"
+			className="pointer-events-none fixed left-8 bottom-16 z-10 flex w-min flex-col items-center justify-end sm:absolute sm:left-0 sm:bottom-6"
 			style={{ opacity: scrollOp }}
 			variants={containerVariants}
 			layout

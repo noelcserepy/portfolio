@@ -113,29 +113,36 @@ function Hero({ showMenu, title, subtitle }) {
 	}, []);
 
 	return (
-		<div className="text-primary h-screen w-full whitespace-nowrap relative">
+		<div className="wide relative h-screen w-full whitespace-nowrap text-primary">
 			<ScrollIndicator />
-			<div className="flex flex-col w-min relative top-1/2 -translate-y-3/4 md:-translate-y-1/2 mx-auto lg:mx-0">
-				<div className="flex items-end w-full whitespace-pre">
+			<div className="relative top-1/2 mx-auto flex w-min -translate-y-3/4 flex-col md:-translate-y-1/2 lg:mx-0">
+				<div className="flex w-full items-end whitespace-pre">
 					{/* Page title */}
 					<motion.h1
-						className="font-title text-7xl sm:text-8xl w-full"
+						className="w-full font-title text-7xl sm:text-8xl"
 						variants={titleVariants}
 						initial="hidden"
 						animate={titleControls}>
 						{title.split("").map((letter, i) => {
 							if (letter === "\n") {
-								return <br key={letter + i} className="lg:hidden" />;
+								return (
+									<br
+										key={letter + i}
+										className="lg:hidden"
+									/>
+								);
 							} else {
 								return (
-									<motion.span key={letter + i} variants={titleLetters}>
+									<motion.span
+										key={letter + i}
+										variants={titleLetters}>
 										{letter}
 									</motion.span>
 								);
 							}
 						})}
 						<motion.span
-							className="text-orange font-title text-8xl"
+							className="font-title text-8xl text-orange"
 							variants={dotVariants}
 							initial="hidden"
 							animate={dotControls}>
@@ -145,7 +152,7 @@ function Hero({ showMenu, title, subtitle }) {
 
 					{/* Maze Backgrund */}
 					<motion.div
-						className="relative w-0 h-0 -z-10  -left-2 -top-4 sm:-top-6 sm:-left-3 pointer-events-none stroke-lowContrastBlue"
+						className="pointer-events-none relative -left-2 -top-4  -z-10 h-0 w-0 stroke-lowContrastBlue sm:-top-6 sm:-left-3"
 						variants={mazeVariants}
 						initial="hidden"
 						animate={mazeControls}>
@@ -155,7 +162,7 @@ function Hero({ showMenu, title, subtitle }) {
 
 				{/* Subtitle */}
 				<div
-					className={`flex justify-between items-center ${
+					className={`flex items-center justify-between ${
 						subtitle && "space-x-2"
 					}`}>
 					<motion.div
@@ -163,15 +170,17 @@ function Hero({ showMenu, title, subtitle }) {
 						variants={subtitleVariants}
 						initial="hidden"
 						animate={subtitleControls}>
-						<h2 className="font-header text-lg sm:text-2xl md:text-2xl w-max h-min">
+						<h2 className="h-min w-max font-header text-lg sm:text-2xl md:text-2xl">
 							{subtitle}
 						</h2>
 					</motion.div>
 
 					{/* Line */}
 					<motion.div
-						className={`w-full h-0 border-t-[2px] ${
-							showMenu ? "border-white" : "border-primary"
+						className={`h-0 w-full border-t-[2px] ${
+							showMenu
+								? "border-white"
+								: "border-primary dark:border-background"
 						}`}
 						variants={lineVariants}
 						initial="hidden"

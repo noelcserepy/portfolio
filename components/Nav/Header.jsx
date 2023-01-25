@@ -36,25 +36,25 @@ const navVariants = {
 function Header({ showMenu, setShowMenu }) {
 	return (
 		<motion.div
-			className={`fixed top-8 left-8 right-8 sm:left-16 sm:right-16 flex h-8 justify-between z-40 space-x-2 sm:space-x-4 select-none font-text font-bold text-lg sm:text-xl ${
-				showMenu ? "text-white" : "text-primary"
+			className={`fixed top-8 left-8 right-8 z-40 flex h-8 select-none justify-between space-x-2 font-text text-lg font-bold sm:left-16 sm:right-16 sm:space-x-4 sm:text-xl ${
+				showMenu ? "text-white" : ""
 			}`}
 			variants={navVariants}
 			initial="hidden"
 			animate="visible"
 			exit="exit">
-			<div className="flex justify-start space-x-2 sm:space-x-4 items-center">
+			<div className="flex items-center justify-start space-x-2 sm:space-x-4">
 				<Link href="/">
-					<a>
-						<Logo showMenu={showMenu} />
-					</a>
+					<Logo showMenu={showMenu} />
 				</Link>
 				<div
-					className={`w-0 h-2/3 border-l-[1px] ${
-						showMenu ? "border-white" : "border-primary"
+					className={`h-2/3 w-0 border-l-[1px] ${
+						showMenu
+							? "border-white"
+							: "border-primary dark:border-background"
 					}`}
 				/>
-				<div className="flex items-center w-16 h-full">
+				<div className="flex h-full w-16 items-center">
 					<MenuToggle showMenu={showMenu} setShowMenu={setShowMenu} />
 				</div>
 			</div>

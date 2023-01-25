@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer components {
+    .text-p {
+      @apply font-text text-xl leading-7;
+    }
+    .text-s {
+      @apply font-title text-4xl;
+    }
+    .narrow {
+			@apply max-w-full px-8 sm:px-0 sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-5xl;
+    }
+    .wide {
+			@apply w-full px-8 md:px-16 lg:px-32 ;
+    }
+}

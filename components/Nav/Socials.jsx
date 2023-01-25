@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { useEffect } from "react";
 
 const socialsVariants = {
 	hidden: {
@@ -7,7 +6,6 @@ const socialsVariants = {
 	},
 	open: {
 		opacity: 1,
-		fill: "#FFFFFF",
 		transition: {
 			delayChildren: 2,
 			staggerChildren: 0.3,
@@ -16,7 +14,6 @@ const socialsVariants = {
 	},
 	closed: {
 		opacity: 1,
-		fill: "#0D1823",
 		transition: {
 			delayChildren: 2,
 			staggerChildren: 0.3,
@@ -79,22 +76,26 @@ function Socials({ showMenu }) {
 
 	return (
 		<motion.div
-			className={`fixed ${
-				showMenu ? "flex" : "hidden"
-			} lg:flex flex-col-reverse justify-end items-center bottom-4 left-16 w-min h-1/6 z-40 space-y-3 space-y-reverse`}
+			className={`fixed bottom-4 left-16 z-40 h-1/6 w-min flex-col-reverse items-center justify-end space-y-3 space-y-reverse lg:flex ${
+				showMenu
+					? "flex fill-white"
+					: "hidden fill-primary dark:fill-background"
+			}`}
 			variants={socialsVariants}
 			initial="hidden"
 			exit="exit"
 			animate={showMenu ? "open" : "closed"}>
 			<motion.div
 				style={{ originY: "100%" }}
-				className={`w-0 h-full mx-auto border-l-[1px] transition-all duration-300 ${
-					showMenu ? "border-white" : "border-primary"
+				className={`mx-auto h-full w-0 border-l-[1px] transition-all duration-300 ${
+					showMenu
+						? "border-white"
+						: "border-primary dark:border-background"
 				}`}
 				variants={lineVariants}
 			/>
 
-			<motion.div className="w-fill h-min">
+			<motion.div className="h-min w-full">
 				<a
 					href="https://github.com/noelcserepy"
 					target="_blank"

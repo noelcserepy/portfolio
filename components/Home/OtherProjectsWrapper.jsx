@@ -31,17 +31,19 @@ const lineVariants = {
 function OtherProjectsWrapper() {
 	return (
 		<motion.section
-			className="flex w-full lg:w-[80%] relative self-center"
+			className="relative flex w-full self-center lg:w-[80%]"
 			initial="hidden"
 			whileInView="visible"
 			viewport={{ once: true, amount: 0.2 }}>
 			<motion.div
-				className="w-0 h-full border-l-2 border-primary absolute lg:left-1/2"
+				className="absolute h-full w-0 border-l-2 border-primary lg:left-1/2"
 				style={{ originY: "0%" }}
 				variants={lineVariants}
 			/>
 
-			<motion.ul className="flex flex-col space-y-16" variants={listVariants}>
+			<motion.ul
+				className="flex flex-col space-y-16"
+				variants={listVariants}>
 				<OtherProject project="Memr" />
 				<OtherProject project="Eye" />
 				<OtherProject project="Lazy-Torrent" />

@@ -167,7 +167,7 @@ const outerLineVariants = {
 
 function MazeLoader({ setMazeAnimDone }) {
 	const [percentage, setPercentage] = useState(0);
-	const [abort, setAbort] = useState(false);
+	const [abort, setAbort] = useState(true);
 	const mainControls = useAnimationControls();
 	const lineControls = useAnimationControls();
 	const ballControls = useAnimationControls();

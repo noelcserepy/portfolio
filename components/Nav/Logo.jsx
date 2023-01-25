@@ -26,7 +26,9 @@ function Logo({ showMenu }) {
 			initial="visible"
 			animate="visible"
 			className={`h-8 w-8 transition-all duration-300 ${
-				showMenu ? "stroke-white" : "stroke-primary"
+				showMenu
+					? "stroke-white"
+					: "stroke-primary dark:stroke-background"
 			}`}
 			viewBox="0 0 38 38"
 			fill="none"

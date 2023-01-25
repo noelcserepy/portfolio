@@ -52,7 +52,7 @@ function MenuToggle({ showMenu, setShowMenu }) {
 			{showMenu ? (
 				<motion.a
 					key="close"
-					className="text-white cursor-pointer"
+					className="cursor-pointer text-white"
 					onClick={() => setShowMenu(!showMenu)}
 					variants={closeVariants}
 					animate="visible"
@@ -79,7 +79,7 @@ function MenuToggle({ showMenu, setShowMenu }) {
 			) : (
 				<motion.a
 					key="menu"
-					className="text-primary cursor-pointer"
+					className="cursor-pointer"
 					onClick={() => setShowMenu()}
 					variants={menuVariants}
 					animate="visible"

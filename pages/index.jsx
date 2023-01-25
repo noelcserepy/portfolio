@@ -34,18 +34,20 @@ export default function Home({ showMenu, setShowMenu }) {
 				/>
 
 				<motion.section
-					className="w-full lg:w-5/12"
+					className="wide"
 					variants={blockVariants}
 					whileInView="visible"
 					initial="hidden"
 					viewport={{ once: true }}>
-					<Subheader>{`Work`}</Subheader>
-					<Paragraph>
-						{`I am constantly looking to improve. From Spotify web apps to 3D
+					<div className="flex w-full flex-col md:w-1/2">
+						<Subheader>{`Work`}</Subheader>
+						<Paragraph>
+							{`I am constantly looking to improve. From Spotify web apps to 3D
 						rendering optimization, from Discord bots to robotic eyes, I build
 						ever more challenging things to get better at my craft.`}
-					</Paragraph>
-					<Paragraph>{`Here are some of the things I made.`}</Paragraph>
+						</Paragraph>
+						<Paragraph>{`Here are some of the things I made.`}</Paragraph>
+					</div>
 				</motion.section>
 
 				<FeaturedProject project="ShufflePlus" imageRight={false} />

@@ -68,7 +68,7 @@ const MenuItem = ({ href, text, blog = false }) => {
 				<a href={href}>{text}</a>
 			) : (
 				<Link href={href} scroll={false}>
-					<a>{text}</a>
+					{text}
 				</Link>
 			)}
 		</motion.li>

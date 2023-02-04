@@ -16,6 +16,7 @@ function App({ Component, pageProps }) {
 	const handleOnExitComplete = () => {
 		window.scrollTo(0, 0);
 		setShowMenu(false);
+		setTheme("light");
 	};
 
 	const toggleTheme = () => {

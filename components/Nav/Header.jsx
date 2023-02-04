@@ -35,7 +35,7 @@ const navVariants = {
 
 function Header({ showMenu, setShowMenu }) {
 	return (
-		<motion.div
+		<motion.nav
 			className={`fixed top-8 left-8 right-8 z-40 flex h-8 select-none justify-between space-x-2 font-text text-lg font-bold sm:left-16 sm:right-16 sm:space-x-4 sm:text-xl ${
 				showMenu ? "text-white" : ""
 			}`}
@@ -49,9 +49,7 @@ function Header({ showMenu, setShowMenu }) {
 				</Link>
 				<div
 					className={`h-2/3 w-0 border-l-[1px] ${
-						showMenu
-							? "border-white"
-							: "border-primary dark:border-background"
+						showMenu ? "border-white" : "border-primary dark:border-background"
 					}`}
 				/>
 				<div className="flex h-full w-16 items-center">
@@ -59,7 +57,7 @@ function Header({ showMenu, setShowMenu }) {
 				</div>
 			</div>
 			<Contact showMenu={showMenu} />
-		</motion.div>
+		</motion.nav>
 	);
 }
 

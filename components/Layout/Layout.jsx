@@ -8,11 +8,12 @@ import { useContext } from "react";
 function Layout({ url, mazeAnimDone, setMazeAnimDone, children }) {
 	const { theme } = useContext(ThemeContext);
 
+	setMazeAnimDone(true);
 	return (
 		<div className={`${theme}`}>
 			<SEO url={url} />
 			<ScreenBorder />
-			<motion.div className="bg-background text-primary border-primary dark:border-background dark:bg-primary  dark:text-background transition-colors duration-300 w-full h-full min-h-screen -z-10 overflow-hidden">
+			<motion.div className="-z-10 h-full min-h-screen w-full overflow-hidden  border-primary bg-background text-primary transition-colors duration-300 dark:border-background dark:bg-primary dark:text-background">
 				{mazeAnimDone ? (
 					children
 				) : (

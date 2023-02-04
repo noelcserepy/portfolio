@@ -101,8 +101,12 @@ function FeaturedProject({ project, imageRight }) {
 			whileInView="visible"
 			viewport={{ once: true, amount: 0.4 }}>
 			<motion.div
-				className={`relative flex h-[40vh] w-full origin-[0%_50%] justify-center md:h-[50vh] md:justify-end lg:w-full
-				${imageRight ? "lg:order-last lg:translate-x-[9%]" : "lg:-translate-x-[9%]"}
+				className={`relative flex h-[40vh] w-full origin-[0%_50%] justify-center md:h-[50vh]  lg:w-full
+				${
+					imageRight
+						? "md:justify-between lg:order-last "
+						: "md:justify-between lg:-translate-x-[9%]"
+				}
 				`}
 				variants={imageVariants}>
 				<Image
@@ -135,16 +139,11 @@ function FeaturedProject({ project, imageRight }) {
 						style={{ originY: "0%" }}
 						variants={lineVariants}
 					/>
-					<motion.div
-						className="flex flex-col"
-						variants={descriptionVariants}>
+					<motion.div className="flex flex-col" variants={descriptionVariants}>
 						<Paragraph>{current.description}</Paragraph>
 						<div className="flex">
 							{current.github !== "" && (
-								<a
-									href={current.github}
-									target="_blank"
-									rel="noreferrer">
+								<a href={current.github} target="_blank" rel="noreferrer">
 									<motion.svg
 										aria-label="Github Icon"
 										role="link"

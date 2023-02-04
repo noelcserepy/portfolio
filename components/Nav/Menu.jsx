@@ -72,6 +72,7 @@ function Menu({ showMenu, setShowMenu }) {
 
 	return (
 		<motion.div
+			role="menu"
 			layout
 			key="overlay"
 			className="fixed top-0 left-0 z-30 h-screen w-screen overflow-clip bg-orange"

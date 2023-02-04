@@ -6,6 +6,8 @@ import FeaturedProject from "../components/Home/FeaturedProject";
 import OtherProjectsWrapper from "../components/Home/OtherProjectsWrapper";
 import Nav from "../components/Nav/Nav";
 import ContentWrapper from "../components/Common/ContentWrapper";
+import { Canvas } from "@react-three/fiber";
+import WorkAnim from "../components/Home/workAnim";
 
 const blockVariants = {
 	hidden: {
@@ -34,12 +36,12 @@ export default function Home({ showMenu, setShowMenu }) {
 				/>
 
 				<motion.section
-					className="wide"
+					className="wide flex items-center justify-between gap-4"
 					variants={blockVariants}
 					whileInView="visible"
 					initial="hidden"
 					viewport={{ once: true }}>
-					<div className="flex w-full flex-col md:w-1/2">
+					<div className="flex w-full flex-col">
 						<Subheader>{`Work`}</Subheader>
 						<Paragraph>
 							{`I am constantly looking to improve. From Spotify web apps to 3D
@@ -48,6 +50,7 @@ export default function Home({ showMenu, setShowMenu }) {
 						</Paragraph>
 						<Paragraph>{`Here are some of the things I made.`}</Paragraph>
 					</div>
+					<WorkAnim />
 				</motion.section>
 
 				<FeaturedProject project="ShufflePlus" imageRight={false} />

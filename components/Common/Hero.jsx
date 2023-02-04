@@ -113,7 +113,7 @@ function Hero({ showMenu, title, subtitle }) {
 	}, []);
 
 	return (
-		<div className="wide relative h-screen w-full whitespace-nowrap text-primary">
+		<div className="narrow relative h-screen w-full whitespace-nowrap text-primary">
 			<ScrollIndicator />
 			<div className="relative top-1/2 mx-auto flex w-min -translate-y-3/4 flex-col md:-translate-y-1/2 lg:mx-0">
 				<div className="flex w-full items-end whitespace-pre">
@@ -125,17 +125,10 @@ function Hero({ showMenu, title, subtitle }) {
 						animate={titleControls}>
 						{title.split("").map((letter, i) => {
 							if (letter === "\n") {
-								return (
-									<br
-										key={letter + i}
-										className="lg:hidden"
-									/>
-								);
+								return <br key={letter + i} className="lg:hidden" />;
 							} else {
 								return (
-									<motion.span
-										key={letter + i}
-										variants={titleLetters}>
+									<motion.span key={letter + i} variants={titleLetters}>
 										{letter}
 									</motion.span>
 								);

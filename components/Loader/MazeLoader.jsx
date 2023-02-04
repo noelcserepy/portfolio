@@ -167,7 +167,7 @@ const outerLineVariants = {
 
 function MazeLoader({ setMazeAnimDone }) {
 	const [percentage, setPercentage] = useState(0);
-	const [abort, setAbort] = useState(true);
+	const [abort, setAbort] = useState(false);
 	const mainControls = useAnimationControls();
 	const lineControls = useAnimationControls();
 	const ballControls = useAnimationControls();
@@ -246,11 +246,11 @@ function MazeLoader({ setMazeAnimDone }) {
 	]);
 
 	return (
-		<div className="fixed top-0 left-0 w-full h-full overflow-clip">
-			<div className="w-[90%] h-[90%] top-1/2 left-1/2 absolute -translate-x-1/2 -translate-y-1/2">
+		<div className="fixed top-0 left-0 h-full w-full overflow-clip">
+			<div className="absolute top-1/2 left-1/2 h-[90%] w-[90%] -translate-x-1/2 -translate-y-1/2">
 				<motion.div
 					animate={textControls}
-					className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-title text-lg text-orange mix-blend-difference text-center">
+					className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center font-title text-lg text-orange mix-blend-difference">
 					{`${percentage}%`}
 				</motion.div>
 				<motion.svg
@@ -258,7 +258,7 @@ function MazeLoader({ setMazeAnimDone }) {
 					animate={mainControls}
 					style={{ originX: "50%", originY: "50%" }}
 					initial="hidden"
-					className="w-full h-full"
+					className="h-full w-full"
 					fill="none"
 					viewBox="0 0 1160 1160"
 					xmlns="http://www.w3.org/2000/svg"

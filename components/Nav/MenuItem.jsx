@@ -36,7 +36,8 @@ const MenuItem = ({ href, text, blog = false }) => {
 
 	return (
 		<motion.li
-			className="font-title text-8xl text-white origin-center cursor-pointer list-none select-none relative"
+			role="menuitem"
+			className="relative origin-center cursor-pointer select-none list-none font-title text-8xl text-white"
 			style={{ letterSpacing: "0em" }}
 			variants={itemVariants}
 			whileHover={{
@@ -57,7 +58,7 @@ const MenuItem = ({ href, text, blog = false }) => {
 			}}>
 			{router.pathname === href && (
 				<motion.div
-					className={`w-0 h-full border-l-[2px] absolute -left-4`}
+					className={`absolute -left-4 h-full w-0 border-l-[2px]`}
 					style={{ originY: "0%" }}
 					layoutId="menuLine"
 					transition={{ delay: 1 }}

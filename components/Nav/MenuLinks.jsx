@@ -28,7 +28,8 @@ const linkVariants = {
 function MenuLinks({ setShowMenu }) {
 	return (
 		<motion.ul
-			className="flex flex-col mt-16 fixed left-16 top-16 h-1/3 justify-between z-[1] w-min"
+			role="group"
+			className="fixed left-16 top-16 z-[1] mt-16 flex h-1/3 w-min flex-col justify-between"
 			variants={linkVariants}>
 			<MenuItem setShowMenu={setShowMenu} href="/" text="Work" />
 			<MenuItem setShowMenu={setShowMenu} href="/about" text="About" />

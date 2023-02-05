@@ -1,127 +1,61 @@
 import { Canvas } from "@react-three/fiber";
-import {
-	Box,
-	Float,
-	OrbitControls,
-	OrthographicCamera,
-} from "@react-three/drei";
-import { useSpring, animated, config, easings } from "@react-spring/three";
-import { useEffect, useRef, useState } from "react";
-import * as THREE from "three";
+import { Float, MeshWobbleMaterial } from "@react-three/drei";
+import { useRef, useState } from "react";
 import AnimBox from "./animBox";
+import {
+	Bloom,
+	DepthOfField,
+	EffectComposer,
+} from "@react-three/postprocessing";
+import { useControls } from "leva";
+import { Perf } from "r3f-perf";
+import { MeshStandardMaterial } from "three";
+import BoxGroup from "./boxGroup";
 
-const AnimatedBox = animated(Box);
-
-const colors = {
-	white: "#FFFFFF",
-	background: "#EAEEF5",
-	lowContrastBlue: "#D4DBE8",
-	lowContrastOrange: "#ECDED4",
-	primary: "#0D1823",
-	secondary: "#556883",
-	orange: "#BF4D00",
-};
-
-export default function WorkAnim() {
+export default function WorkAnim({ hidden }) {
 	const [hovered, setHovered] = useState(false);
 
 	const boxes = [
-		{ args: [100, 100, 300], position: [0, 0, 0] },
-		{ args: [200, 100, 100], position: [50, 100, 100] },
-		{ args: [100, 100, 100], position: [100, 100, 0] },
-		{ args: [100, 200, 100], position: [0, 150, 0] },
-		{ args: [100, 100, 200], position: [100, 0, -50] },
-		{ args: [100, 300, 100], position: [200, 100, -100] },
-		{ args: [100, 100, 100], position: [100, 0, 100] },
-		{ args: [100, 100, 200], position: [200, 0, 50] },
-		{ args: [100, 100, 300], position: [100, 200, 0] },
-		{ args: [100, 100, 100], position: [0, 200, 100] },
-		{ args: [100, 100, 100], position: [200, 200, 0] },
-		{ args: [100, 100, 100], position: [200, 100, 0] },
-		{ args: [100, 200, 100], position: [200, 150, 100] },
-		{ args: [100, 100, 100], position: [0, 200, -100] },
-		{ args: [200, 100, 100], position: [50, 100, -100] },
+		{ args: [100, 100, 100], position: [100, 100, 0], isCenter: true }, // center cube
+		{ args: [100, 100, 300], position: [0, 0, 0], isCenter: false },
+		{ args: [200, 100, 100], position: [50, 100, 100], isCenter: false },
+		{ args: [100, 200, 100], position: [0, 150, 0], isCenter: false },
+		{ args: [100, 100, 200], position: [100, 0, -50], isCenter: false },
+		{ args: [100, 300, 100], position: [200, 100, -100], isCenter: false },
+		{ args: [100, 100, 100], position: [100, 0, 100], isCenter: false },
+		{ args: [100, 100, 200], position: [200, 0, 50], isCenter: false },
+		{ args: [100, 100, 300], position: [100, 200, 0], isCenter: false },
+		{ args: [100, 100, 100], position: [0, 200, 100], isCenter: false },
+		{ args: [100, 100, 100], position: [200, 200, 0], isCenter: false },
+		{ args: [100, 100, 100], position: [200, 100, 0], isCenter: false },
+		{ args: [100, 200, 100], position: [200, 150, 100], isCenter: false },
+		{ args: [100, 100, 100], position: [0, 200, -100], isCenter: false },
+		{ args: [200, 100, 100], position: [50, 100, -100], isCenter: false },
 	];
 
+	// const { fd, fl, bs } = useControls({
+	// 	fd: { value: 2500, min: 1, max: 5000 },
+	// 	fl: { value: 500, min: 1, max: 2000 },
+	// 	bs: { value: 6, min: 0, max: 20 },
+	// });
+
 	return (
-		<div className="h-96 w-full">
-			<Canvas>
-				<ambientLight intensity={0.25} />
+		<div className={`fixed top-0 left-0 h-full w-full ${hidden && "hidden"}`}>
+			<Canvas
+				orthographic
+				camera={{ position: [0, 400, 2500], far: 5000, zoom: 1 }}>
+				<Perf style={{ top: "100px", right: "100px" }} />
+				<ambientLight intensity={0.15} />
 				<pointLight intensity={0.75} position={[500, 500, 1000]} />
+				<pointLight intensity={2} position={[100, 100, 0]} />
 
-				<Float>
-					<group
-						onPointerEnter={() => setHovered(true)}
-						onPointerLeave={() => setHovered(false)}>
-						{boxes.map((box, i) => (
-							<AnimBox
-								key={i}
-								hovered={hovered}
-								args={box.args}
-								position={box.position}
-							/>
-						))}
-						{/* <AnimatedBox args={[100, 100, 300]} position={[0, 0, 0]}>
-							<meshStandardMaterial color={colors.primary} />
-						</AnimatedBox>
-						<Box args={[200, 100, 100]} position={[50, 100, 100]}>
-							<meshStandardMaterial color={colors.secondary} />
-						</Box>
-						<Box args={[100, 100, 100]} position={[100, 100, 0]}>
-							<meshStandardMaterial color={colors.orange} />
-						</Box>
-						<Box args={[100, 200, 100]} position={[0, 150, 0]}>
-							<meshStandardMaterial color={colors.orange} />
-						</Box>
-						<Box args={[100, 100, 200]} position={[100, 0, -50]}>
-							<meshStandardMaterial color={colors.secondary} />
-						</Box>
-						<Box args={[100, 300, 100]} position={[200, 100, -100]}>
-							<meshStandardMaterial color={colors.orange} />
-						</Box>
-						<Box args={[100, 100, 100]} position={[100, 0, 100]}>
-							<meshStandardMaterial color={colors.primary} />
-						</Box>
-						<Box args={[100, 100, 200]} position={[200, 0, 50]}>
-							<meshStandardMaterial color={colors.secondary} />
-						</Box>
-						<Box args={[100, 100, 300]} position={[100, 200, 0]}>
-							<meshStandardMaterial color={colors.primary} />
-						</Box>
-						<Box args={[100, 100, 100]} position={[0, 200, 100]}>
-							<meshStandardMaterial color={colors.orange} />
-						</Box>
-						<Box args={[100, 100, 100]} position={[200, 200, 0]}>
-							<meshStandardMaterial color={colors.secondary} />
-						</Box>
-						<Box args={[100, 100, 100]} position={[200, 100, 0]}>
-							<meshStandardMaterial color={colors.primary} />
-						</Box>
-						<Box args={[100, 200, 100]} position={[200, 150, 100]}>
-							<meshStandardMaterial color={colors.primary} />
-						</Box>
-						<Box args={[100, 100, 100]} position={[0, 200, -100]}>
-							<meshStandardMaterial color={colors.primary} />
-						</Box>
-						<Box args={[200, 100, 100]} position={[50, 100, -100]}>
-							<meshStandardMaterial color={colors.secondary} />
-						</Box> */}
-					</group>
-				</Float>
+				<BoxGroup />
 
-				<OrbitControls />
-
-				<OrthographicCamera
-					makeDefault
-					zoom={1}
-					top={200}
-					bottom={-200}
-					left={200}
-					right={-200}
-					near={1}
-					far={10000}
-					position={[400, 200, 1200]}
-				/>
+				{/* <OrbitControls /> */}
+				<EffectComposer>
+					<Bloom mipmapBlur />
+					<DepthOfField focusDistance={50} focalLength={300} bokehScale={4} />
+				</EffectComposer>
 			</Canvas>
 		</div>
 	);

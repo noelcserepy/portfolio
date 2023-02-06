@@ -24,21 +24,22 @@ export default function BoxGroup() {
 	];
 
 	return (
-		<Float floatIntensity={2} speed={2} floatingRange={[-0.5, 0.5]}>
-			<group
-				position={[150, -100, 0]}
-				onPointerEnter={() => setHovered(true)}
-				onPointerLeave={() => setHovered(false)}>
-				{boxes.map((box, i) => (
-					<AnimBox
-						key={i}
-						hovered={hovered}
-						args={box.args}
-						position={box.position}
-						isCenter={box.isCenter}
-					/>
-				))}
-			</group>
-		</Float>
+		// <Float floatIntensity={2} speed={2} floatingRange={[-0.5, 0.5]}>
+		<group
+			position={[150, -100, 0]}
+			rotation={[0, 0, 0]}
+			onPointerEnter={() => setHovered(true)}
+			onPointerLeave={() => setHovered(false)}>
+			{boxes.map((box, i) => (
+				<AnimBox
+					key={i}
+					hovered={hovered}
+					args={box.args}
+					position={box.position}
+					isCenter={box.isCenter}
+				/>
+			))}
+		</group>
+		// </Float>
 	);
 }

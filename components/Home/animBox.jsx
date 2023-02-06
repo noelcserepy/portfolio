@@ -1,7 +1,8 @@
-import { Box, MeshWobbleMaterial } from "@react-three/drei";
+import { Box, MeshWobbleMaterial, shaderMaterial } from "@react-three/drei";
 import { useSpring, animated, config } from "@react-spring/three";
 import { useEffect } from "react";
 import { Vector3 } from "three";
+import { MeshToonMaterial } from "three";
 
 const AnimatedBox = animated(Box);
 
@@ -54,7 +55,12 @@ export default function AnimBox({ args, position, hovered, isCenter }) {
 					emissiveIntensity={20}
 				/>
 			) : (
-				<meshStandardMaterial color={colors.orange} />
+				// <meshStandardMaterial color={colors.orange} />
+				<meshToonMaterial
+					color={colors.primary}
+					wireframe={true}
+					wireframeLinewidth={10}
+				/>
 			)}
 		</AnimatedBox>
 	);

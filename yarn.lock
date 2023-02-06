@@ -3291,7 +3291,7 @@
     "picocolors" "^1.0.0"
     "source-map-js" "^1.0.2"
 
-"postprocessing@^6.29.0", "postprocessing@>=6.28.0":
+"postprocessing@^6.29.0", "postprocessing@^6.29.3", "postprocessing@>=6.28.0":
   "integrity" "sha512-gxXC6LKLRwI4eSySdmxqEfQBMKEdQtxg5aYrdvJ/tPHDOS4aZAb/bY4ulQnL5YGKqCC6SmgNmU4dNIc68TTVMw=="
   "resolved" "https://registry.npmjs.org/postprocessing/-/postprocessing-6.29.3.tgz"
   "version" "6.29.3"

@@ -22,30 +22,18 @@ const blockVariants = {
 
 export default function WorkSection() {
 	const { theme, setTheme } = useContext(ThemeContext);
-	const [hideWorkAnim, setHideWorkAnim] = useState(true);
-
-	const enterView = () => {
-		setTheme("dark");
-		setHideWorkAnim(false);
-	};
-	const leaveView = () => {
-		setTheme("light");
-		setHideWorkAnim(true);
-	};
 
 	return (
 		<motion.section className="wide flex h-[50vh] items-center justify-between gap-4">
-			<WorkAnim hidden={hideWorkAnim} />
+			<WorkAnim />
 			<motion.div
-				className="flex w-1/2 flex-col"
-				onViewportEnter={enterView}
-				onViewportLeave={leaveView}
+				className="flex w-full flex-col md:w-4/12"
 				variants={blockVariants}
 				whileInView="visible"
 				initial="hidden"
 				// viewport={{ once: true }}
 			>
-				<Subheader>{`Work`}</Subheader>
+				<Subheader>{`Bias for Action`}</Subheader>
 				<Paragraph>
 					{`I am constantly looking to improve. From Spotify web apps to 3D
 						rendering optimization, from Discord bots to robotic eyes, I build

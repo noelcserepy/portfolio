@@ -1,10 +1,7 @@
-import { Box, MeshWobbleMaterial, shaderMaterial } from "@react-three/drei";
-import { useSpring, animated, config } from "@react-spring/three";
-import { useEffect } from "react";
+import { MeshWobbleMaterial } from "@react-three/drei";
 import { Vector3 } from "three";
-import { MeshToonMaterial } from "three";
-
-const AnimatedBox = animated(Box);
+import { motion } from "framer-motion-3d";
+import { useCallback, useEffect } from "react";
 
 const colors = {
 	white: "#FFFFFF",
@@ -17,36 +14,53 @@ const colors = {
 	blue: "#0496FF",
 };
 
-export default function AnimBox({ args, position, hovered, isCenter }) {
+export default function AnimBox({ args, position, hovered, isCenter, stage }) {
 	const centerPos = new Vector3(50, 50, -50);
 	const posVec = new Vector3(position[0], position[1], position[2]);
 	const distance = 1.8;
-	const dest = posVec.sub(centerPos).multiplyScalar(distance).toArray();
+	const dest = posVec.sub(centerPos).multiplyScalar(distance);
 
-	const [spring, api] = useSpring(
-		() => ({
-			position: position,
-			config: config.wobbly,
-		}),
-		[]
-	);
+	const meshVariants = {
+		hidden: {
+			x: dest.x,
+			y: dest.y + 1000,
+			z: dest.z,
+		},
+		hover: {
+			x: dest.x,
+			y: dest.y,
+			z: dest.z,
+		},
+		idle: {
+			x: dest.x,
+			y: dest.y,
+			z: dest.z,
+		},
+	};
 
-	useEffect(() => {
-		if (hovered) {
-			api.start({
-				position: dest,
-				config: { ...config.wobbly, clamp: false },
-			});
-		} else {
-			api.start({
-				position: position,
-				config: { ...config.stiff, clamp: false },
-			});
+	const getVariant = useCallback(() => {
+		console.log("stage: ", stage);
+		switch (stage) {
+			case 0:
+				return "hidden";
+			case 1:
+				if (position[1] < 100) return "idle";
+				return "hidden";
+			case 2:
+				if (position[1] <= 100) return "idle";
+				return "hidden";
+			case 3:
+				return "idle";
 		}
-	}, [hovered]);
+	}, [stage]);
 
 	return (
-		<AnimatedBox args={args} position={position} {...spring}>
+		<motion.mesh
+			position={position}
+			variants={meshVariants}
+			initial="hidden"
+			animate={() => getVariant()}>
+			<boxGeometry args={args} />
 			{isCenter ? (
 				<MeshWobbleMaterial
 					toneMapped={false}
@@ -55,13 +69,14 @@ export default function AnimBox({ args, position, hovered, isCenter }) {
 					emissiveIntensity={20}
 				/>
 			) : (
-				// <meshStandardMaterial color={colors.orange} />
 				<meshToonMaterial
-					color={colors.primary}
-					wireframe={true}
+					color={colors.orange}
+					wireframe={false}
 					wireframeLinewidth={10}
+					attach={"material"}
 				/>
 			)}
-		</AnimatedBox>
+		</motion.mesh>
+		// </AnimatedBox>
 	);
 }

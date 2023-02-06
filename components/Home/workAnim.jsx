@@ -5,18 +5,10 @@ import {
 	EffectComposer,
 	Outline,
 } from "@react-three/postprocessing";
-import { BlendFunction } from "postprocessing";
-import { useControls } from "leva";
 import { Perf } from "r3f-perf";
 import BoxGroup from "./boxGroup";
 
-export default function WorkAnim({}) {
-	// const { fd, fl, bs } = useControls({
-	// 	fd: { value: 50, min: 1, max: 5000, step: 10 },
-	// 	fl: { value: 500, min: 1, max: 2000, step: 50 },
-	// 	bs: { value: 13, min: 0, max: 20, step: 1 },
-	// });
-
+export default function WorkAnim({ stage = 0 }) {
 	return (
 		<div className={`fixed top-0 left-0 h-full w-full`}>
 			<Canvas
@@ -28,24 +20,17 @@ export default function WorkAnim({}) {
 				}}>
 				<Perf style={{ top: "100px", right: "100px" }} />
 				<ambientLight intensity={0.15} />
-				<pointLight intensity={0.75} position={[500, 500, 1000]} />
-				<pointLight intensity={2} position={[100, 100, 0]} />
+				<pointLight intensity={0.45} position={[2000, 3000, 1000]} />
+				<pointLight intensity={1} position={[100, 100, 0]} />
 
-				<BoxGroup />
+				<BoxGroup stage={stage} />
 
 				{/* <OrbitControls /> */}
-				<EffectComposer>
-					<Outline
-						edgeStrength={100}
-						visibleEdgeColor={"black"}
-						hiddenEdgeColor={"black"}
-						blur={0}
-						opacity={1}
-						blendFunction={BlendFunction.SCREEN}
-					/>
+				{/* <EffectComposer>
+					<Outline edgeStrength={10} visibleEdgeColor={"black"} />
 					<Bloom mipmapBlur />
 					<DepthOfField focusDistance={50} focalLength={500} bokehScale={13} />
-				</EffectComposer>
+				</EffectComposer> */}
 			</Canvas>
 		</div>
 	);

@@ -2,9 +2,8 @@ import { Float } from "@react-three/drei";
 import { useState } from "react";
 import AnimBox from "./animBox";
 
-export default function BoxGroup() {
+export default function BoxGroup({ stage }) {
 	const [hovered, setHovered] = useState(false);
-
 	const boxes = [
 		{ args: [100, 100, 100], position: [100, 100, 0], isCenter: true }, // center cube
 		{ args: [100, 100, 300], position: [0, 0, 0], isCenter: false },
@@ -28,11 +27,12 @@ export default function BoxGroup() {
 		<group
 			position={[150, -100, 0]}
 			rotation={[0, 0, 0]}
-			onPointerEnter={() => setHovered(true)}
-			onPointerLeave={() => setHovered(false)}>
+			onPointerOver={() => setHovered(true)}
+			onPointerOut={() => setHovered(false)}>
 			{boxes.map((box, i) => (
 				<AnimBox
 					key={i}
+					stage={stage}
 					hovered={hovered}
 					args={box.args}
 					position={box.position}

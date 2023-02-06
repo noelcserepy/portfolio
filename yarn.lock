@@ -2062,12 +2062,12 @@
   "resolved" "https://registry.npmjs.org/fraction.js/-/fraction.js-4.2.0.tgz"
   "version" "4.2.0"
 
-"framer-motion-3d@^8.4.3":
-  "integrity" "sha512-mItJ9OhO+dqssUInirJ73eKaRPFF3KoODF50CjvS5YFzKWa94JBPlFeQERURo3Ih0c5C/TgtiObbBvZgKk8tBA=="
-  "resolved" "https://registry.npmjs.org/framer-motion-3d/-/framer-motion-3d-8.4.3.tgz"
-  "version" "8.4.3"
+"framer-motion-3d@^8.5.5":
+  "integrity" "sha512-B8XTjhwRPQjEB5sGQcdtB0RhHg6WPwZi6UqIlzp0+/T1J7/dVRahihU5Yw/vJJqM9POt6sj8/qj59KkIN8znXA=="
+  "resolved" "https://registry.npmjs.org/framer-motion-3d/-/framer-motion-3d-8.5.5.tgz"
+  "version" "8.5.5"
   dependencies:
-    "framer-motion" "^8.4.3"
+    "framer-motion" "^8.5.5"
     "react-merge-refs" "^2.0.1"
 
 "framer-motion@^6.5.1":
@@ -2084,10 +2084,10 @@
   optionalDependencies:
     "@emotion/is-prop-valid" "^0.8.2"
 
-"framer-motion@^8.4.3":
-  "integrity" "sha512-UMfJ8hEOlIObdJgI+U/VgaSSKY+W9/E0YtnFHPDsIE9rNPglaFZ+oycB0gj8ERuRBInGaIgNCFsil8iaJHZFgA=="
-  "resolved" "https://registry.npmjs.org/framer-motion/-/framer-motion-8.4.3.tgz"
-  "version" "8.4.3"
+"framer-motion@^8.5.5":
+  "integrity" "sha512-5IDx5bxkjWHWUF3CVJoSyUVOtrbAxtzYBBowRE2uYI/6VYhkEBD+rbTHEGuUmbGHRj6YqqSfoG7Aa1cLyWCrBA=="
+  "resolved" "https://registry.npmjs.org/framer-motion/-/framer-motion-8.5.5.tgz"
+  "version" "8.5.5"
   dependencies:
     "@motionone/dom" "^10.15.3"
     "hey-listen" "^1.0.8"

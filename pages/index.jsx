@@ -3,10 +3,12 @@ import FeaturedProject from "../components/Home/FeaturedProject";
 import OtherProjectsWrapper from "../components/Home/OtherProjectsWrapper";
 import Nav from "../components/Nav/Nav";
 import ContentWrapper from "../components/Common/ContentWrapper";
-
 import WorkSection from "../components/Home/workSection";
+import { useState } from "react";
 
 export default function Home({ showMenu, setShowMenu }) {
+	const [stage, setStage] = useState(0);
+
 	return (
 		<>
 			<Nav showMenu={showMenu} setShowMenu={setShowMenu} />

@@ -10,7 +10,7 @@ import BoxGroup from "./boxGroup";
 
 export default function WorkAnim({ stage = 0 }) {
 	return (
-		<div className={`fixed top-0 left-0 h-full w-full`}>
+		<div className={`fixed top-0 left-0 z-0 h-full w-full`}>
 			<Canvas
 				orthographic
 				camera={{
@@ -18,7 +18,7 @@ export default function WorkAnim({ stage = 0 }) {
 					far: 5000,
 					zoom: 1,
 				}}>
-				<Perf style={{ top: "100px", right: "100px" }} />
+				{/* <Perf style={{ top: "100px", right: "100px" }} /> */}
 				<ambientLight intensity={0.15} />
 				<pointLight intensity={0.45} position={[2000, 3000, 1000]} />
 				<pointLight intensity={1} position={[100, 100, 0]} />

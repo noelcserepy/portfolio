@@ -39,7 +39,6 @@ export default function AnimBox({ args, position, hovered, isCenter, stage }) {
 	};
 
 	const getVariant = useCallback(() => {
-		console.log("stage: ", stage);
 		switch (stage) {
 			case 0:
 				return "hidden";

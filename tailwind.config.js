@@ -25,5 +25,8 @@ module.exports = {
 			text: ["Rasa", "serif"],
 		},
 	},
-	plugins: [require("prettier-plugin-tailwindcss")],
+	plugins: [
+		require("prettier-plugin-tailwindcss"),
+		require("tailwind-scrollbar-hide"),
+	],
 };

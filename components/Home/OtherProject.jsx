@@ -2,24 +2,24 @@ import { motion } from "framer-motion";
 import Paragraph from "../Common/Paragraph";
 import Subheader from "../Common/Subheader";
 import { useMediaQuery } from "../../hooks/useMediaQuery.jsx";
+import { useEffect } from "react";
 
 const data = require("/data.json");
 
 const descriptionVariants = {
-	hidden: isLg => ({
+	hidden: {
 		opacity: 0,
-		x: isLg ? 40 : -40,
-	}),
+	},
 	visible: {
 		opacity: 1,
 		x: 0,
 		transition: {
 			duration: 0.5,
-			ease: "easeOut",
+			ease: "easeIn",
 		},
 	},
 };
-const infoVariants = {
+const titleVariants = {
 	hidden: {
 		opacity: 0,
 		x: -40,
@@ -43,31 +43,29 @@ const liVariants = {
 };
 
 export default function OtherProject({ project }) {
-	const isLg = useMediaQuery("lg");
 	const current = data.projects.find(
 		p => p.name.toString() === project.toString()
 	);
 
 	return (
 		<motion.li
-			className="flex flex-col-reverse items-start pl-4 lg:pl-0 lg:flex-row lg:justify-between lg:items-center"
+			className="flex flex-col-reverse items-start pl-4 lg:flex-row lg:items-center lg:justify-between lg:pl-0"
 			variants={liVariants}>
 			<motion.div
-				className="mt-4 lg:mt-0 lg:text-right lg:w-[48%]"
-				variants={descriptionVariants}
-				custom={isLg}>
+				className={`mt-4 lg:mt-0 lg:w-[48%] lg:text-right`}
+				variants={descriptionVariants}>
 				<Paragraph>{current.description}</Paragraph>
 			</motion.div>
-			<motion.div className="flex flex-col lg:w-[48%]" variants={infoVariants}>
+			<motion.div className="flex flex-col lg:w-[48%]" variants={titleVariants}>
 				<Subheader>{current.name}</Subheader>
-				<p className="text-primary font-header text-base">
+				<p className="font-header text-base text-primary">
 					{current.tools.map((t, i) => (
 						<span key={current.name + t + i}>
 							{`${t}${i + 1 < current.tools.length ? "," : ""} `}
 						</span>
 					))}
 				</p>
-				<div className="flex mt-2">
+				<div className="mt-2 flex">
 					{current.github !== "" && (
 						<motion.div className="w-fill h-min">
 							<a href={current.github} target="_blank" rel="noreferrer">

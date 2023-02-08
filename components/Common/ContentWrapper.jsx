@@ -13,7 +13,7 @@ const wrapperVariants = {
 function ContentWrapper({ children }) {
 	return (
 		<motion.main
-			className="mx-auto flex flex-col items-center gap-y-80 px-4 pb-32"
+			className="mx-auto flex flex-col items-center gap-y-80 overflow-y-scroll px-4 pb-32"
 			initial={false}
 			exit="exit"
 			variants={wrapperVariants}>

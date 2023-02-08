@@ -7,7 +7,7 @@ import ThemeContext from "../components/Common/themeContext";
 
 function App({ Component, pageProps }) {
 	const [showMenu, setShowMenu] = useState(false);
-	const [mazeAnimDone, setMazeAnimDone] = useState(false);
+	const [mazeAnimDone, setMazeAnimDone] = useState(true);
 	const [theme, setTheme] = useState("light");
 
 	const router = useRouter();

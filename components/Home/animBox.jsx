@@ -61,16 +61,22 @@ export default function AnimBox({ args, position, hovered, isCenter, stage }) {
 			animate={() => getVariant()}>
 			<boxGeometry args={args} />
 			{isCenter ? (
-				<MeshWobbleMaterial
-					toneMapped={false}
-					color={colors.orange}
-					emissive={colors.orange}
-					emissiveIntensity={20}
+				// <MeshWobbleMaterial
+				// 	toneMapped={false}
+				// 	color={colors.orange}
+				// 	emissive={colors.orange}
+				// 	emissiveIntensity={20}
+				// />
+				<meshToonMaterial
+					color={colors.primary}
+					wireframe={true}
+					wireframeLinewidth={10}
+					attach={"material"}
 				/>
 			) : (
 				<meshToonMaterial
-					color={colors.orange}
-					wireframe={false}
+					color={colors.primary}
+					wireframe={true}
 					wireframeLinewidth={10}
 					attach={"material"}
 				/>

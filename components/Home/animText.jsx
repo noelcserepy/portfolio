@@ -1,22 +1,38 @@
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import Subheader from "../Common/Subheader";
 import Paragraph from "../Common/Paragraph";
-import useScrollIn from "../../hooks/useScrollIn";
+import { useRef } from "react";
+import { useEffect } from "react";
+
+const blockVariants = {
+	hidden: {
+		opacity: 0,
+	},
+	visible: {
+		opacity: 1,
+	},
+};
 
 export default function AnimText({ title, text, vpEnter }) {
-	const { ref, scrollIn } = useScrollIn();
+	const ref = useRef(null);
+	const isInView = useInView(ref, { amount: 0.6 });
+
+	useEffect(() => {
+		if (isInView) {
+			vpEnter();
+		}
+	}, [isInView]);
 
 	return (
-		<motion.section
-			className="wide flex h-screen items-center"
-			ref={ref}
-			onViewportEnter={scrollIn}>
+		<motion.div className="h-screen w-screen" ref={ref}>
 			<motion.div
-				className="flex  w-full flex-col justify-center md:w-4/12"
-				onViewportEnter={vpEnter}>
+				className="wide fixed top-1/2 flex flex-col justify-center"
+				variants={blockVariants}
+				initial="hidden"
+				animate={isInView ? "visible" : "hidden"}>
 				<Subheader>{title}</Subheader>
 				<Paragraph>{text}</Paragraph>
 			</motion.div>
-		</motion.section>
+		</motion.div>
 	);
 }

@@ -1,31 +1,22 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { Suspense, useCallback, useContext, useState } from "react";
-import Subheader from "../Common/Subheader";
-import Paragraph from "../Common/Paragraph";
+import { motion, useInView } from "framer-motion";
+import { Suspense, useEffect, useState, useRef } from "react";
 import WorkAnim from "./workAnim";
-import { useRef } from "react";
 import AnimText from "./animText";
-
-const blockVariants = {
-	hidden: {
-		opacity: 0,
-		x: -40,
-	},
-	visible: {
-		opacity: 1,
-		x: 0,
-		transition: {
-			duration: 0.5,
-			ease: "easeOut",
-		},
-	},
-};
 
 export default function WorkSection() {
 	const [stage, setStage] = useState(0);
+	const ref = useRef(null);
+	const isInView = useInView(ref, { amount: 0.1 });
+
+	useEffect(() => {
+		console.log("isInView", isInView);
+		if (!isInView) {
+			setStage(0);
+		}
+	}, [isInView]);
 
 	return (
-		<motion.div className="h-full w-full" onViewportLeave={() => setStage(0)}>
+		<motion.div ref={ref} className="h-[400vh] w-screen">
 			<AnimText
 				title="Bias for Action"
 				text="I am constantly looking to improve. From Spotify web apps to 3D"

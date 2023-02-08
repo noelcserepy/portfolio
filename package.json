@@ -15,7 +15,6 @@
     "e2e:headless": "start-server-and-test start http://localhost:3000 cypress:headless"
   },
   "dependencies": {
-    "@react-spring/three": "^9.6.1",
     "@react-three/drei": "^9.56.12",
     "@react-three/fiber": "^8.10.0",
     "@react-three/postprocessing": "^2.7.0",

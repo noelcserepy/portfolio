@@ -33,10 +33,6 @@ export default function AnimText({ title, text, vpEnter }) {
 		offset: ["start end", "end start"],
 	});
 
-	scrollYProgress.onChange(v => {
-		console.log(v);
-	});
-
 	useEffect(() => {
 		if (isInView) {
 			controls.start("visible");
@@ -51,7 +47,7 @@ export default function AnimText({ title, text, vpEnter }) {
 	return (
 		<motion.div className="h-screen w-screen" ref={ref}>
 			<motion.div
-				className="wide fixed top-1/2 flex max-w-[700px] flex-col justify-center"
+				className="wide fixed top-[40%] flex max-w-[700px] flex-col justify-center"
 				variants={blockVariants}
 				initial="hidden"
 				animate={controls}>

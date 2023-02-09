@@ -18,6 +18,12 @@ export default function WorkSection() {
 	return (
 		<motion.div ref={ref} className="h-[400vh] w-screen">
 			<AnimText
+				title="So this is me"
+				text={`With a background in software development, hospitality, and marketing, I bring a unique and creative approach to web development as a freelance professional.
+My passion for programming and design is reflected in my commitment to delivering one-of-a-kind and engaging web experiences for clients.`}
+				vpEnter={() => setStage(1)}
+			/>
+			<AnimText
 				title="Bias for Action"
 				text="I am constantly looking to improve. From Spotify web apps to 3D"
 				vpEnter={() => setStage(1)}

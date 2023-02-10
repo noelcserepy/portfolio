@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
  * @param {string} breakpoint A Tailwind breakpoint (e.g. "sm") or media query (e.g. "(min-width: 640px)").
  * @return {boolean} True if the viewport width matches the breakpoint.
  */
-export function useMediaQuery(breakpoint) {
+export default function useMediaQuery(breakpoint) {
 	const [matches, setMatches] = useState(false);
 	const twQueries = {
 		xs: "(max-width: 639px)",

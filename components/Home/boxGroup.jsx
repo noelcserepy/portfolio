@@ -1,36 +1,35 @@
-import { Float, Image } from "@react-three/drei";
 import { useEffect, useState } from "react";
 import AnimBox from "./animBox";
 import { motion } from "framer-motion-3d";
-import { useAnimationControls, useSpring } from "framer-motion";
-import { Texture, TextureLoader } from "three";
+import { useAnimationControls } from "framer-motion";
+import { TextureLoader } from "three";
 import { useLoader } from "@react-three/fiber";
 
 const boxVariants = {
 	stage0: {
-		x: 250,
-		y: 1000,
+		x: 0,
+		y: 0,
 		z: 0,
-		rotateX: 0,
+		rotateX: 0.035,
 		rotateY: 0,
 	},
 	stage1: {
-		x: 250,
-		y: -120,
+		x: 0,
+		y: 0,
 		z: 0,
-		rotateX: 0,
-		rotateY: 0,
+		rotateX: 0.035,
+		rotateY: -0.038,
 	},
 	stage2: {
-		x: 250,
-		y: -120,
+		x: 0,
+		y: 0,
 		z: 0,
 		rotateX: 0.2,
 		rotateY: -0.3,
 	},
 	stage6: {
-		x: 250,
-		y: -120,
+		x: 0,
+		y: 0,
 		z: 0,
 		rotateX: 0.2,
 		rotateY: -0.3,
@@ -87,11 +86,10 @@ export default function BoxGroup({ stage }) {
 				boxControls.start("stage6");
 				return;
 		}
-	}, [stage]);
+	}, [stage, boxControls, imageControls]);
 
 	return (
 		<motion.group
-			position={[250, -120, 0]}
 			onPointerOver={() => setHovered(true)}
 			onPointerOut={() => setHovered(false)}
 			initial="stage0"
@@ -110,7 +108,7 @@ export default function BoxGroup({ stage }) {
 			))}
 			<mesh position={[100, 100, 151]}>
 				<planeGeometry args={[300, 300]} />
-				<motion.meshStandardMaterial
+				<motion.meshBasicMaterial
 					map={noelTexture}
 					transparent
 					opacity={1}

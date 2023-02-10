@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import { MeshToonMaterial, Vector3, BoxGeometry, Mesh } from "three";
 import { extend } from "@react-three/fiber";
 import { motion } from "framer-motion-3d";
@@ -16,16 +16,7 @@ const colors = {
 	blue: "#0496FF",
 };
 
-export default function AnimBox({
-	args,
-	position,
-	hovered,
-	isCenter,
-	stage,
-	index,
-}) {
-	// 250, -120;
-	// 50, 50, -50;
+export default function AnimBox({ args, position, stage }) {
 	const centerPos = new Vector3(50, 50, -50);
 	const posVec = new Vector3(position[0], position[1], position[2]);
 	const near = posVec.sub(centerPos).multiplyScalar(1.8);
@@ -91,9 +82,6 @@ export default function AnimBox({
 				wireframe: true,
 			},
 		},
-		none: {
-			opacity: 0,
-		},
 	};
 
 	useEffect(() => {
@@ -141,7 +129,7 @@ export default function AnimBox({
 				materialControls.start("texture");
 				break;
 		}
-	}, [stage]);
+	}, [stage, boxControls, materialControls, position]);
 
 	return (
 		<motion.mesh
@@ -160,6 +148,5 @@ export default function AnimBox({
 				opacity={1}
 			/>
 		</motion.mesh>
-		// </AnimatedBox>
 	);
 }

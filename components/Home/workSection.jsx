@@ -2,6 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { Suspense, useEffect, useState, useRef } from "react";
 import AnimText from "./animText";
 import dynamic from "next/dynamic";
+import useMediaQuery from "../../hooks/useMediaQuery";
 const WorkAnim = dynamic(() => import("./workAnim"), { ssr: false });
 
 const containerVariants = {
@@ -17,6 +18,7 @@ export default function WorkSection() {
 	const [stage, setStage] = useState(0);
 	const ref = useRef(null);
 	const isInView = useInView(ref, { amount: 0.05 });
+	const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
 	useEffect(() => {
 		if (!isInView) {
@@ -25,7 +27,7 @@ export default function WorkSection() {
 	}, [isInView]);
 
 	return (
-		<motion.div ref={ref} className="2xl:wide mb-40 h-[600vh] lg:w-full">
+		<motion.div ref={ref} className="mb-40 h-[600vh] w-screen ">
 			<AnimText
 				title="So this is me"
 				text={`I am a Zürich-based web developer with a background in marketing, e-commerce and hospitality.`}
@@ -57,11 +59,11 @@ export default function WorkSection() {
 				setStage={() => setStage(6)}
 			/>
 			<motion.div
-				className={`fixed top-1/2 z-0 aspect-square w-full -translate-y-1/2 lg:right-0 xl:left-1/2 xl:h-[800px] xl:w-[800px]`}
+				className={`fixed bottom-1/3 left-1/2 z-0 aspect-square w-full -translate-x-1/2 lg:right-0 lg:top-1/2 xl:left-1/2 xl:h-[800px] xl:w-[800px] xl:-translate-y-1/2`}
 				variants={containerVariants}
 				initial="hidden"
 				animate={stage > 0 ? "visible" : "hidden"}>
-				<WorkAnim stage={stage} />
+				<WorkAnim stage={stage} isMobile={isMobile} />
 			</motion.div>
 		</motion.div>
 	);

@@ -42,12 +42,12 @@ export default function AnimText({ title, text, setStage }) {
 		} else {
 			controls.start("hiddenUp");
 		}
-	}, [isInView]);
+	}, [isInView, scrollYProgress, controls, setStage]);
 
 	return (
-		<motion.div className="h-screen w-screen" ref={ref}>
+		<motion.div className="h-screen w-full" ref={ref}>
 			<motion.div
-				className="fixed bottom-8 left-16 z-50 flex max-w-[500px] flex-col justify-center gap-4 xl:top-[40%]"
+				className="fixed top-2/3 left-16 z-50 flex h-min max-w-[500px] flex-col justify-center gap-4 xl:top-[40%]"
 				variants={blockVariants}
 				initial="hidden"
 				animate={controls}>

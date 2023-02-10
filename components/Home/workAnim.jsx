@@ -5,19 +5,7 @@ import { OrthographicCamera } from "@react-three/drei";
 
 export default function WorkAnim({ stage = 0 }) {
 	return (
-		<Canvas
-		// orthographic
-		// camera={{
-		// 	far: 5000,
-		// 	near: 0.1,
-		// 	zoom: 1.5,
-		// 	position: [3000, 0, 2500],
-		// left: 0,
-		// right: 5000,
-		// top: 5000,
-		// bottom: 0,
-		// }}
-		>
+		<Canvas>
 			<OrthographicCamera
 				makeDefault
 				position={[350, 0, 2000]}
@@ -28,7 +16,7 @@ export default function WorkAnim({ stage = 0 }) {
 				left={-1000}
 				right={2500}
 			/>
-			{/* <Perf style={{ top: "100px", right: "100px" }} /> */}
+			{/* <Perf /> */}
 			<ambientLight intensity={0.75} />
 			<pointLight intensity={0.45} position={[2000, 3000, 1000]} />
 			{/* <pointLight intensity={1} position={[100, 100, 0]} /> */}

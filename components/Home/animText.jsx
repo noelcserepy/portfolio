@@ -24,7 +24,7 @@ const blockVariants = {
 	},
 };
 
-export default function AnimText({ title, text, vpEnter }) {
+export default function AnimText({ title, text, setStage }) {
 	const ref = useRef(null);
 	const isInView = useInView(ref, { amount: 0.5 });
 	const controls = useAnimationControls();
@@ -36,7 +36,7 @@ export default function AnimText({ title, text, vpEnter }) {
 	useEffect(() => {
 		if (isInView) {
 			controls.start("visible");
-			vpEnter();
+			setStage();
 		} else if (scrollYProgress.get() < 0.5) {
 			controls.start("hidden");
 		} else {
@@ -47,7 +47,7 @@ export default function AnimText({ title, text, vpEnter }) {
 	return (
 		<motion.div className="h-screen w-screen" ref={ref}>
 			<motion.div
-				className="wide fixed top-[40%] flex max-w-[700px] flex-col justify-center"
+				className="fixed bottom-8 left-16 z-50 flex max-w-[500px] flex-col justify-center gap-4 xl:top-[40%]"
 				variants={blockVariants}
 				initial="hidden"
 				animate={controls}>

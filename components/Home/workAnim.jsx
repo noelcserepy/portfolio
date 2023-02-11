@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import BoxGroup from "./boxGroup";
-import { OrthographicCamera } from "@react-three/drei";
+import { OrthographicCamera, SpotLight } from "@react-three/drei";
 
 export default function WorkAnim({ stage = 0, isMobile = true }) {
 	return (
@@ -13,6 +13,15 @@ export default function WorkAnim({ stage = 0, isMobile = true }) {
 				far={5000}
 			/>
 
+			<SpotLight
+				distance={30000}
+				angle={0.15}
+				attenuation={5}
+				anglePower={5}
+				intensity={2}
+				color="#ffffff"
+				position={[-2000, 3000, 7000]}
+			/>
 			<ambientLight intensity={0.15} />
 			<pointLight intensity={0.45} position={[2000, 3000, 1000]} />
 			<BoxGroup stage={stage} isMobile={isMobile} />

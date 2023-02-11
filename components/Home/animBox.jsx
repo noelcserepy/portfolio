@@ -19,6 +19,8 @@ const colors = {
 export default function AnimBox({ args, position, stage }) {
 	const centerPos = new Vector3(50, 50, -50);
 	const posVec = new Vector3(position[0], position[1], position[2]);
+	const origin = new Vector3();
+	origin.copy(posVec).sub(centerPos).multiplyScalar(1.00001);
 	const near = posVec.sub(centerPos).multiplyScalar(1.8);
 	const far = new Vector3();
 	far.copy(near).multiplyScalar(1.4);

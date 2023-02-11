@@ -4,26 +4,38 @@ import { motion } from "framer-motion-3d";
 import { useAnimationControls } from "framer-motion";
 import { TextureLoader } from "three";
 import { useLoader } from "@react-three/fiber";
+import { BBAnchor } from "@react-three/drei";
 
 const boxVariants = {
 	stage0: {
 		x: 0,
 		y: 0,
 		z: 0,
-		rotateX: 0.035,
+		scale: 1,
+		rotateX: 0,
 		rotateY: 0,
 	},
 	stage1: {
 		x: 0,
 		y: 0,
 		z: 0,
-		rotateX: 0.035,
-		rotateY: -0.038,
+		scale: 1,
+		rotateX: 0,
+		rotateY: 0,
 	},
 	stage2: {
-		x: 0,
-		y: 0,
+		x: 50,
+		y: 50,
 		z: 0,
+		scale: 0.6,
+		rotateX: 0.2,
+		rotateY: -0.3,
+	},
+	stage5: {
+		x: 50,
+		y: 50,
+		z: 0,
+		scale: 0.6,
 		rotateX: 0.2,
 		rotateY: -0.3,
 	},
@@ -31,6 +43,7 @@ const boxVariants = {
 		x: 0,
 		y: 0,
 		z: 0,
+		scale: 1,
 		rotateX: 0.2,
 		rotateY: -0.3,
 	},
@@ -55,7 +68,6 @@ const boxes = [
 ];
 
 export default function BoxGroup({ stage }) {
-	const [hovered, setHovered] = useState(false);
 	const boxControls = useAnimationControls();
 	const imageControls = useAnimationControls();
 
@@ -82,6 +94,9 @@ export default function BoxGroup({ stage }) {
 					opacity: 0,
 				});
 				return;
+			case 5:
+				boxControls.start("stage5");
+				return;
 			case 6:
 				boxControls.start("stage6");
 				return;
@@ -89,33 +104,32 @@ export default function BoxGroup({ stage }) {
 	}, [stage, boxControls, imageControls]);
 
 	return (
-		<motion.group
-			onPointerOver={() => setHovered(true)}
-			onPointerOut={() => setHovered(false)}
-			initial="stage0"
-			variants={boxVariants}
-			animate={boxControls}>
-			{boxes.map((box, i) => (
-				<AnimBox
-					key={i}
-					index={i}
-					stage={stage}
-					hovered={hovered}
-					args={box.args}
-					position={box.position}
-					isCenter={box.isCenter}
-				/>
-			))}
-			<mesh position={[100, 100, 151]}>
-				<planeGeometry args={[300, 300]} />
-				<motion.meshBasicMaterial
-					map={noelTexture}
-					transparent
-					opacity={1}
-					animate={imageControls}
-					toneMapped={false}
-				/>
-			</mesh>
-		</motion.group>
+		<BBAnchor position={[0.5, 0.5, 0.5]}>
+			<motion.group
+				initial="stage0"
+				variants={boxVariants}
+				animate={boxControls}>
+				{boxes.map((box, i) => (
+					<AnimBox
+						key={i}
+						index={i}
+						stage={stage}
+						args={box.args}
+						position={box.position}
+						isCenter={box.isCenter}
+					/>
+				))}
+				<mesh position={[100, 100, 151]}>
+					<planeGeometry args={[300, 300]} />
+					<motion.meshBasicMaterial
+						map={noelTexture}
+						transparent
+						opacity={1}
+						animate={imageControls}
+						toneMapped={false}
+					/>
+				</mesh>
+			</motion.group>
+		</BBAnchor>
 	);
 }

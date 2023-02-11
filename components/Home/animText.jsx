@@ -12,15 +12,27 @@ import { useEffect } from "react";
 const blockVariants = {
 	hidden: {
 		opacity: 0,
-		y: 200,
+		y: 40,
+		transition: {
+			duration: 0.1,
+			ease: "easeIn",
+		},
 	},
 	hiddenUp: {
 		opacity: 0,
-		y: -200,
+		y: -40,
+		transition: {
+			duration: 0.1,
+			ease: "easeIn",
+		},
 	},
 	visible: {
 		opacity: 1,
 		y: 0,
+		transition: {
+			delay: 0.1,
+			ease: "easeOut",
+		},
 	},
 };
 
@@ -47,12 +59,14 @@ export default function AnimText({ title, text, setStage }) {
 	return (
 		<motion.div className="h-screen w-full" ref={ref}>
 			<motion.div
-				className="fixed top-2/3 left-16 z-50 flex h-min max-w-[500px] flex-col justify-center gap-4 xl:top-[40%]"
+				className="fixed top-[60%] left-0 w-full px-8 xl:top-[40%]"
 				variants={blockVariants}
 				initial="hidden"
 				animate={controls}>
-				<Subheader>{title}</Subheader>
-				<Paragraph>{text}</Paragraph>
+				<div className="mx-auto flex h-min max-w-[500px] flex-col  justify-center gap-4">
+					<Subheader>{title}</Subheader>
+					<Paragraph>{text}</Paragraph>
+				</div>
 			</motion.div>
 		</motion.div>
 	);

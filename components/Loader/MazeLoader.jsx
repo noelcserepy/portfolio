@@ -243,6 +243,7 @@ function MazeLoader({ setMazeAnimDone }) {
 		concentricControls,
 		radialControls,
 		outerLineControls,
+		textControls,
 	]);
 
 	return (

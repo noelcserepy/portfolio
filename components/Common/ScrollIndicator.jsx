@@ -52,7 +52,7 @@ function ScrollIndicator() {
 			repeatDelay: 1.5,
 			ease: "linear",
 		});
-	}, []);
+	}, [maxAnimHeight, y]);
 
 	return (
 		<motion.div

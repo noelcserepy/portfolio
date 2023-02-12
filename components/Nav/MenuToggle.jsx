@@ -48,7 +48,7 @@ function MenuToggle({ showMenu, setShowMenu }) {
 	useEffect(() => {}, [showMenu]);
 
 	return (
-		<AnimatePresence exitBeforeEnter>
+		<AnimatePresence mode="wait">
 			{showMenu ? (
 				<motion.a
 					key="close"

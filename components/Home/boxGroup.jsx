@@ -112,11 +112,9 @@ export default function BoxGroup({ stage }) {
 				{boxes.map((box, i) => (
 					<AnimBox
 						key={i}
-						index={i}
-						stage={stage}
 						args={box.args}
 						position={box.position}
-						isCenter={box.isCenter}
+						stage={stage}
 					/>
 				))}
 				<mesh position={[100, 100, 151]}>

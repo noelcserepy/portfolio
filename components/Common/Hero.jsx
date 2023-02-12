@@ -110,7 +110,13 @@ function Hero({ showMenu, title, subtitle }) {
 			await mazeControls.start("visible");
 		};
 		enter();
-	}, []);
+	}, [
+		titleControls,
+		subtitleControls,
+		lineControls,
+		dotControls,
+		mazeControls,
+	]);
 
 	return (
 		<div className="narrow relative h-screen w-full whitespace-nowrap text-primary">

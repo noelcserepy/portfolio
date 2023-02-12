@@ -33,7 +33,7 @@ function App({ Component, pageProps }) {
 				url={url}
 				mazeAnimDone={mazeAnimDone}
 				setMazeAnimDone={() => setMazeAnimDone(true)}>
-				<AnimatePresence exitBeforeEnter onExitComplete={handleOnExitComplete}>
+				<AnimatePresence mode="wait" onExitComplete={handleOnExitComplete}>
 					<Component
 						{...pageProps}
 						key={url}

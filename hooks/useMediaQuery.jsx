@@ -17,16 +17,20 @@ export default function useMediaQuery(breakpoint) {
 	};
 
 	let query = breakpoint;
+
 	if (Object.keys(twQueries).find(key => key === breakpoint)) {
 		query = twQueries[breakpoint];
 	}
 
 	const matchMedia = () => {
 		if (typeof window === "undefined") return;
+
 		const media = window.matchMedia(query);
+
 		if (media.matches !== matches) {
 			setMatches(media.matches);
 		}
+
 		return media;
 	};
 
@@ -34,10 +38,13 @@ export default function useMediaQuery(breakpoint) {
 
 	useEffect(() => {
 		const media = matchMedia();
+
 		const listener = () => {
 			setMatches(media.matches);
 		};
+
 		media.addEventListener("change", listener);
+
 		return () => media.removeEventListener("change", listener);
 	}, [matches, query]);
 

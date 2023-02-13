@@ -140,10 +140,11 @@ export default function AnimBox({ args, position, stage }) {
 			variants={meshVariants}
 			animate={boxControls}>
 			<boxGeometry args={args} />
-			<motion.meshStandardMaterial
+			<motion.meshToonMaterial
 				color={colors.orange}
 				wireframe={false}
 				wireframeLinewidth={10}
+				initial="texture"
 				variants={materialVariants}
 				animate={materialControls}
 				transparent

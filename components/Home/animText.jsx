@@ -59,11 +59,11 @@ export default function AnimText({ title, text, setStage }) {
 	return (
 		<motion.div className="h-screen w-full" ref={ref}>
 			<motion.div
-				className="fixed top-[60%] left-0 w-full px-8 lg:top-[40%]"
+				className="fixed top-[60%] left-0 w-full lg:top-[40%]"
 				variants={blockVariants}
 				initial="hidden"
 				animate={controls}>
-				<div className="mx-auto flex h-min max-w-[500px] flex-col justify-center gap-4 lg:ml-32 lg:mr-auto">
+				<div className="lg: left-1/4 mx-auto flex h-min max-w-[500px] flex-col justify-center gap-4 px-8 lg:absolute lg:mr-auto lg:-translate-x-1/2">
 					<Subheader>{title}</Subheader>
 					<Paragraph>{text}</Paragraph>
 				</div>

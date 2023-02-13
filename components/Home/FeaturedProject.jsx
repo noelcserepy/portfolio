@@ -112,7 +112,7 @@ function FeaturedProject({ project, imageRight }) {
 				<Image
 					src={current.image}
 					fill
-					sizes="100vw"
+					sizes="99vw"
 					alt={`A mockup showing the app ${current.name}`}
 					style={{
 						objectPosition: "right",

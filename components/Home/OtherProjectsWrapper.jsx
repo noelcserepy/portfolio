@@ -42,7 +42,7 @@ function OtherProjectsWrapper() {
 			/>
 
 			<motion.ul
-				className="flex flex-col space-y-16"
+				className="flex w-full flex-col gap-y-16 lg:justify-center"
 				variants={listVariants}>
 				<OtherProject project="Memr" />
 				<OtherProject project="Eye" />

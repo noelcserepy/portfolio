@@ -1,17 +1,22 @@
 import { useEffect, useState } from "react";
 import AnimBox from "./animBox";
 import { motion } from "framer-motion-3d";
-import { useAnimationControls } from "framer-motion";
+import {
+	useAnimationControls,
+	useMotionValue,
+	useSpring,
+	useTransform,
+} from "framer-motion";
 import { TextureLoader } from "three";
-import { useLoader } from "@react-three/fiber";
+import { useLoader, useThree } from "@react-three/fiber";
 import { BBAnchor } from "@react-three/drei";
+import useMediaQuery from "../../hooks/useMediaQuery";
 
 const boxVariants = {
 	stage0: {
 		x: 0,
 		y: 0,
 		z: 0,
-		scale: 1,
 		rotateX: 0,
 		rotateY: 0,
 	},
@@ -19,7 +24,6 @@ const boxVariants = {
 		x: 0,
 		y: 0,
 		z: 0,
-		scale: 1,
 		rotateX: 0,
 		rotateY: 0,
 	},
@@ -27,7 +31,6 @@ const boxVariants = {
 		x: 50,
 		y: 50,
 		z: 0,
-		scale: 0.6,
 		rotateX: 0.2,
 		rotateY: -0.3,
 	},
@@ -35,7 +38,6 @@ const boxVariants = {
 		x: 50,
 		y: 50,
 		z: 0,
-		scale: 0.6,
 		rotateX: 0.2,
 		rotateY: -0.3,
 	},
@@ -43,7 +45,6 @@ const boxVariants = {
 		x: 0,
 		y: 0,
 		z: 0,
-		scale: 1,
 		rotateX: 0.2,
 		rotateY: -0.3,
 	},
@@ -68,44 +69,76 @@ const boxes = [
 ];
 
 export default function BoxGroup({ stage }) {
+	const noelTexture = useLoader(TextureLoader, "/img/noel_portrait.png");
 	const boxControls = useAnimationControls();
 	const imageControls = useAnimationControls();
+	const { viewport } = useThree();
+	const scaleFactor = useMotionValue(1);
+	const smoothScaleFactor = useSpring(scaleFactor, {
+		stiffness: 100,
+		damping: 10,
+		mass: 0.1,
+	});
 
-	const noelTexture = useLoader(TextureLoader, "/img/noel_portrait.png");
+	const setScaleFactor = objectScale => {
+		if (viewport.width > 1920) {
+			scaleFactor.set(objectScale * 2.5);
+		}
+		if (viewport.width > 1280 && viewport.width < 1920) {
+			scaleFactor.set(objectScale * 2.5);
+		}
+		if (viewport.width > 768 && viewport.width < 1280) {
+			scaleFactor.set(objectScale * 1.5);
+		}
+		if (viewport.width < 768) {
+			scaleFactor.set(objectScale * 1);
+		}
+		if (viewport.width < 500) {
+			scaleFactor.set(objectScale * 0.7);
+		}
+	};
 
 	useEffect(() => {
-		console.log("stage: ", stage);
-		switch (stage) {
-			case 0:
-				boxControls.start("stage0");
-				return;
-			case 1:
-				boxControls.start("stage1");
-				imageControls.start({
-					opacity: 1,
-					transition: {
-						delay: 0.5,
-					},
-				});
-				return;
-			case 2:
-				boxControls.start("stage2");
-				imageControls.start({
-					opacity: 0,
-				});
-				return;
-			case 5:
-				boxControls.start("stage5");
-				return;
-			case 6:
-				boxControls.start("stage6");
-				return;
-		}
-	}, [stage, boxControls, imageControls]);
+		const switchStage = async () => {
+			switch (stage) {
+				case 0:
+					setScaleFactor(1);
+					boxControls.start("stage0");
+					return;
+				case 1:
+					boxControls.start("stage1");
+					setScaleFactor(1);
+					imageControls.start({
+						opacity: 1,
+						transition: {
+							delay: 0.5,
+						},
+					});
+					return;
+				case 2:
+					await boxControls.start("stage2");
+					setScaleFactor(0.6);
+					imageControls.start({
+						opacity: 0,
+					});
+					return;
+				case 5:
+					boxControls.start("stage5");
+					setScaleFactor(0.6);
+					return;
+				case 6:
+					boxControls.start("stage6");
+					setScaleFactor(1);
+					return;
+			}
+		};
+		switchStage();
+	}, [stage, boxControls, imageControls, viewport.width]);
 
 	return (
 		<BBAnchor position={[0.5, 0.5, 0.5]}>
 			<motion.group
+				scale={smoothScaleFactor}
 				initial="stage0"
 				variants={boxVariants}
 				animate={boxControls}>

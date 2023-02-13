@@ -59,7 +59,7 @@ export default function WorkSection() {
 				setStage={() => setStage(6)}
 			/>
 			<motion.div
-				className={`fixed bottom-[40%] left-4 right-4 aspect-square sm:left-1/2 sm:right-auto sm:h-[60vh] sm:-translate-x-1/2 lg:left-1/2 lg:top-1/2 lg:h-auto lg:w-[50vw] lg:-translate-x-0 lg:-translate-y-1/2 `}
+				className={`fixed bottom-[40%] left-4 right-4 aspect-square sm:left-1/2 sm:right-auto sm:h-[60vh] sm:-translate-x-1/2 lg:left-1/2 lg:top-1/2 lg:h-auto lg:w-[45vw] lg:-translate-x-0 lg:-translate-y-1/2 2xl:w-[800px] `}
 				variants={containerVariants}
 				initial="hidden"
 				animate={stage > 0 ? "visible" : "hidden"}>

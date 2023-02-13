@@ -2,13 +2,13 @@ import Image from "next/image";
 
 function Belief({ img, title, text }) {
 	return (
-		<div className="flex flex-col p-4 border-l-[1px] justify-start w-full h-min gap-32 last:border-r-[1px]">
-			<h4 className="text-s uppercase">{title}</h4>
-			<div className="flex flex-col gap-8 justify-end">
-				<div className="w-32 h-44 rounded-t-full relative overflow-hidden">
+		<div className="flex h-min w-full flex-col justify-between gap-16 border-l-[1px] border-primary p-4 last:border-r-[1px] dark:border-background ">
+			<h4 className="text-s whitespace-pre-line uppercase">{title}</h4>
+			<div className="flex flex-col justify-start gap-8">
+				<div className="relative h-64 w-44 overflow-hidden rounded-t-full">
 					<Image
 						src={img}
-						alt="A gif of a plant growing"
+						alt="A gif"
 						fill
 						style={{
 							objectFit: "cover",

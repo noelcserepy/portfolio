@@ -12,7 +12,7 @@
 	.narrow {
 		@apply max-w-full px-8 sm:max-w-lg sm:px-0 md:max-w-xl lg:max-w-3xl xl:max-w-5xl;
 	}
-	.wide {
+	/* .wide {
 		@apply w-full px-8 md:px-16 lg:px-32;
-	}
+	} */
 }

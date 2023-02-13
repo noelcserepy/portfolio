@@ -18,6 +18,10 @@ module.exports = {
 			borderWidth: {
 				16: "16px",
 			},
+			maxWidth: {
+				centered: "1280px",
+				wide: "1536px",
+			},
 		},
 		fontFamily: {
 			header: ["Roboto Slab", "serif"],

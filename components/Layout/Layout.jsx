@@ -11,7 +11,7 @@ function Layout({ url, mazeAnimDone, setMazeAnimDone, children }) {
 		<div className={`${theme}`}>
 			<SEO url={url} />
 			<ScreenBorder />
-			<div className="-z-10 h-full min-h-screen w-full overflow-hidden  border-primary bg-background text-primary transition-colors duration-300 dark:border-background dark:bg-primary dark:text-background">
+			<div className="-z-10 h-full min-h-screen w-full overflow-hidden border-primary bg-background text-primary transition-colors duration-300 dark:border-background dark:bg-primary dark:text-background">
 				{mazeAnimDone ? (
 					children
 				) : (

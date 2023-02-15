@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import Paragraph from "../Common/Paragraph";
 
 const skipVariants = {
 	hidden: {
@@ -37,7 +36,7 @@ function Skip({ setAbort }) {
 					bounce: 0.5,
 				},
 			}}>
-			<Paragraph>Skip Animation</Paragraph>
+			<P>Skip Animation</P>
 		</motion.div>
 	);
 }

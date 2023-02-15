@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import Paragraph from "../Common/Paragraph";
-import Subheader from "../Common/Subheader";
 import Image from "next/image";
+import Title from "../ui/Title";
+import P from "../ui/P";
 
 const data = require("/data.json");
 
@@ -101,7 +101,7 @@ function FeaturedProject({ project, imageRight }) {
 			whileInView="visible"
 			viewport={{ once: true, amount: 0.4 }}>
 			<motion.div
-				className={`relative flex h-[40vh] w-full origin-[0%_50%] justify-center md:h-[50vh]  lg:w-full
+				className={`relative flex h-[40vh] w-full origin-[0%_50%] justify-center px-4 md:h-[50vh]  lg:w-full
 				${
 					imageRight
 						? "md:justify-between lg:order-last "
@@ -121,12 +121,12 @@ function FeaturedProject({ project, imageRight }) {
 				/>
 			</motion.div>
 
-			<div className="flex w-full flex-col lg:w-[50%]">
+			<div className="flex w-full flex-col px-8 lg:w-[50%] lg:px-0">
 				<motion.div variants={subHeaderVariants}>
-					<Subheader>{current.name}</Subheader>
+					<Title>{current.name + "."}</Title>
 				</motion.div>
 
-				<div className="flex space-x-4 ">
+				<div className="flex space-x-4">
 					<motion.div variants={toolsVariants}>
 						<ul className="font-header text-base text-primary">
 							{current.tools.map((t, i) => (
@@ -140,7 +140,7 @@ function FeaturedProject({ project, imageRight }) {
 						variants={lineVariants}
 					/>
 					<motion.div className="flex flex-col" variants={descriptionVariants}>
-						<Paragraph>{current.description}</Paragraph>
+						<P>{current.description}</P>
 						<div className="flex">
 							{current.github !== "" && (
 								<a href={current.github} target="_blank" rel="noreferrer">

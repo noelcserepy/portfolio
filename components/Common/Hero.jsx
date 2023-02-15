@@ -119,7 +119,7 @@ function Hero({ showMenu, title, subtitle }) {
 	]);
 
 	return (
-		<div className="narrow relative h-screen w-full whitespace-nowrap text-primary">
+		<div className="relative h-screen w-full max-w-full whitespace-nowrap px-8 text-primary sm:max-w-lg sm:px-0 md:max-w-xl lg:max-w-3xl xl:max-w-5xl">
 			<ScrollIndicator />
 			<div className="relative top-1/2 mx-auto flex w-min -translate-y-3/4 flex-col md:-translate-y-1/2 lg:mx-0">
 				<div className="flex w-full items-end whitespace-pre">

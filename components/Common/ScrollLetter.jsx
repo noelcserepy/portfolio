@@ -1,26 +1,4 @@
-import {
-	animate,
-	motion,
-	useMotionValue,
-	useScroll,
-	useTransform,
-} from "framer-motion";
-import { useEffect } from "react";
-
-const containerVariants = {
-	hidden: {
-		y: 200,
-	},
-	visible: {
-		y: 0,
-		transition: {
-			delay: 4,
-			duration: 0.7,
-			when: "beforeChildren",
-			type: "spring",
-		},
-	},
-};
+import { motion, useTransform } from "framer-motion";
 
 export default function ScrollLetter({
 	letter,
@@ -37,7 +15,7 @@ export default function ScrollLetter({
 
 	return (
 		<motion.div
-			className="h-[16px] justify-self-end font-header font-semibold text-sm md:text-lg text-primary"
+			className="h-[16px] justify-self-end font-header text-sm font-semibold text-primary md:text-lg"
 			style={{
 				y: yT,
 			}}

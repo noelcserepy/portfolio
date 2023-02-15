@@ -19,14 +19,6 @@ function App({ Component, pageProps }) {
 		setTheme("light");
 	};
 
-	const toggleTheme = () => {
-		if (theme === "light") {
-			setTheme("dark");
-		} else {
-			setTheme("light");
-		}
-	};
-
 	return (
 		<ThemeContext.Provider value={{ theme, setTheme }}>
 			<Layout

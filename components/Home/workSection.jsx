@@ -29,32 +29,32 @@ export default function WorkSection() {
 	return (
 		<motion.div ref={ref} className="mb-40 h-[600vh] w-screen ">
 			<AnimText
-				title="So this is me"
+				title="So this is me."
 				text={`I am a Zürich-based web developer with a background in marketing, e-commerce and hospitality.`}
 				setStage={() => setStage(1)}
 			/>
 			<AnimText
-				title="Unique Web Experiences"
+				title="Unique Web Experiences."
 				text={`I am passionate about programming and design and am committed to delivering engaging, one-of-a-kind web experiences.`}
 				setStage={() => setStage(2)}
 			/>
 			<AnimText
-				title="Your Vision"
+				title="Your Vision."
 				text={`Every project has its own set of requirements. In close collaboration with my clients, I bring their vision to life on the web.`}
 				setStage={() => setStage(3)}
 			/>
 			<AnimText
-				title="Latest Tech"
+				title="Latest Tech."
 				text={`I use cutting-edge tools like Next.js and TypeScript to craft highly performant web applications. I deliver a seamless, intuitive, and joyful user experience by implementing modern design principles.`}
 				setStage={() => setStage(4)}
 			/>
 			<AnimText
-				title="End-to-End"
+				title="End-to-End."
 				text={`I bring expertise in design, marketing and content creation to every project. This allows me to offer a complete and integrated solution from start to finish.`}
 				setStage={() => setStage(5)}
 			/>
 			<AnimText
-				title="My Work"
+				title="My Work."
 				text={`Below is a selection of my work.`}
 				setStage={() => setStage(6)}
 			/>

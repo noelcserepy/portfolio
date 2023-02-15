@@ -2,7 +2,7 @@ import Hero from "../components/Common/Hero";
 import FeaturedProject from "../components/Home/FeaturedProject";
 import OtherProjectsWrapper from "../components/Home/OtherProjectsWrapper";
 import Nav from "../components/Nav/Nav";
-import ContentWrapper from "../components/Common/ContentWrapper";
+import ContentWrapper from "../components/ui/ContentWrapper";
 import WorkSection from "../components/Home/workSection";
 import { useState } from "react";
 

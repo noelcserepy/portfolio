@@ -1,3 +1,5 @@
+const { fontFamily } = require("tailwindcss/defaultTheme");
+
 module.exports = {
 	darkMode: "class",
 	content: [
@@ -24,9 +26,9 @@ module.exports = {
 			},
 		},
 		fontFamily: {
-			header: ["Roboto Slab", "serif"],
-			title: ["Squada One", "cursive"],
-			text: ["Rasa", "serif"],
+			header: ["var(--font-roboto-slab)", fontFamily.sans],
+			title: ["var(--font-squada-one)", fontFamily.sans],
+			text: ["var(--font-rasa)", fontFamily.serif],
 		},
 	},
 	plugins: [

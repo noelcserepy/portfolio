@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
-import Paragraph from "../Common/Paragraph";
-import Subheader from "../Common/Subheader";
 import { useMediaQuery } from "../../hooks/useMediaQuery.jsx";
 import { useEffect } from "react";
+import Title from "../ui/Title";
+import P from "../ui/P";
 
 const data = require("/data.json");
 
@@ -54,10 +54,10 @@ export default function OtherProject({ project }) {
 			<motion.div
 				className={`mt-4 lg:mt-0 lg:w-[48%] lg:text-right`}
 				variants={descriptionVariants}>
-				<Paragraph>{current.description}</Paragraph>
+				<P>{current.description}</P>
 			</motion.div>
 			<motion.div className="flex flex-col lg:w-[48%]" variants={titleVariants}>
-				<Subheader>{current.name}</Subheader>
+				<Title>{current.name + "."}</Title>
 				<p className="font-header text-base text-primary">
 					{current.tools.map((t, i) => (
 						<span key={current.name + t + i}>

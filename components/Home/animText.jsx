@@ -4,10 +4,10 @@ import {
 	useInView,
 	useScroll,
 } from "framer-motion";
-import Subheader from "../Common/Subheader";
-import Paragraph from "../Common/Paragraph";
 import { useRef } from "react";
 import { useEffect } from "react";
+import Title from "../ui/Title";
+import P from "../ui/P";
 
 const blockVariants = {
 	hidden: {
@@ -64,8 +64,8 @@ export default function AnimText({ title, text, setStage }) {
 				initial="hidden"
 				animate={controls}>
 				<div className="lg: left-1/4 mx-auto flex h-min max-w-[500px] flex-col justify-center gap-4 px-8 lg:absolute lg:mr-auto lg:-translate-x-1/2">
-					<Subheader>{title}</Subheader>
-					<Paragraph>{text}</Paragraph>
+					<Title>{title}</Title>
+					<P>{text}</P>
 				</div>
 			</motion.div>
 		</motion.div>

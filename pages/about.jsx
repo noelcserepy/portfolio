@@ -11,21 +11,7 @@ import Belief from "../components/About/belief";
 import P from "../components/ui/P";
 import Title from "../components/ui/Title";
 import SectionWrapper from "../components/ui/SectionWrapper";
-
-const blockVariants = {
-	hidden: {
-		opacity: 0,
-		y: 50,
-	},
-	visible: {
-		opacity: 1,
-		y: 0,
-		transition: {
-			duration: 0.5,
-			ease: "easeOut",
-		},
-	},
-};
+import ProcessSection from "../components/About/ProcessSection";
 
 export default function About({ showMenu, setShowMenu, url }) {
 	return (
@@ -43,23 +29,24 @@ export default function About({ showMenu, setShowMenu, url }) {
 					<div className="flex h-min max-w-centered flex-col items-start justify-center gap-24 xl:flex-row xl:gap-0">
 						<Belief
 							img={handshake}
-							title={"First impressions\nmatter"}
+							title={"First\nimpressions\nmatter"}
 							text={`Your website is likely the first interaction users have with you. Creating memorable and enjoyable experiences will set the tone for all future interactions.`}
 						/>
 						<Belief
 							img={unique}
-							title={"unique you,\nunique experience"}
-							text={`You are not like everybody else. Your online presence should reflect that. Be it bold or subtle, modern or classic,  your message deserves its own voice.`}
+							title={"unique you,\nunique\nexperience"}
+							text={`You are not like everybody else. Your online presence should reflect that. Be it bold or subtle, modern or classic, your message deserves its own voice.`}
 						/>
 						<Belief
 							img={bye}
-							title={"bad ux is\ncostly"}
-							text={`The user judges you on every click and every scroll. Long load times, frustrating interactions and hard-to-find information will cost drive away users.`}
+							title={"great design\ndrives engagement"}
+							text={`Aesthetics are not just superficial, they are a key driver of user engagement and loyalty. A well-designed website is essential to brand value and customer retention.`}
 						/>
 					</div>
 				</motion.section>
 
-				{/* <SectionWrapper>
+				<ProcessSection />
+				<SectionWrapper>
 					<div className="flex flex-col gap-4 md:w-1/2">
 						<Title>Why all the mazes?</Title>
 						<P>
@@ -70,10 +57,6 @@ export default function About({ showMenu, setShowMenu, url }) {
 							ideas to life on the web. That, and mazes look cool.
 						</P>
 					</div>
-				</SectionWrapper> */}
-
-				<SectionWrapper>
-					<Title>My Process.</Title>
 				</SectionWrapper>
 			</ContentWrapper>
 		</>

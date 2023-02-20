@@ -13,6 +13,24 @@ const coverVariants = {
 		opacity: 1,
 	},
 };
+const bannerVariants = {
+	active: {
+		height: "256px",
+		borderBottomWidth: "1px",
+		transition: {
+			bounce: 0.7,
+			duration: 0.2,
+		},
+	},
+	inActive: {
+		opacity: "1px",
+		borderBottomWidth: "0px",
+		transition: {
+			bounce: 0.7,
+			duration: 0.2,
+		},
+	},
+};
 
 function Belief({ img, title, text }) {
 	const [isHovered, setIsHovered] = useState(false);
@@ -20,31 +38,35 @@ function Belief({ img, title, text }) {
 
 	return (
 		<motion.div
-			className="flex h-min  w-full max-w-sm flex-col items-center justify-between gap-16 border-b-[1px] border-primary p-4 text-center  dark:border-background xl:border-b-0 xl:border-l-[1px] xl:last:border-r-[1px]"
+			className="flex h-min w-full max-w-sm flex-col items-start justify-between gap-4 p-4 text-left"
 			onHoverStart={() => setIsHovered(true)}
 			onHoverEnd={() => setIsHovered(false)}>
-			<UpperTitle> {title} </UpperTitle>
-			<div className="flex flex-col items-center justify-start gap-8">
-				<div className="relative h-64 w-44 overflow-hidden rounded-t-full border-[1px] border-primary">
-					<Image
-						src={img}
-						alt="A gif"
-						fill
-						style={{
-							objectFit: "cover",
-							objectPosition: "center",
-						}}
-					/>
-					{isXl && (
-						<motion.div
-							className="absolute inset-0 bg-background"
-							variants={coverVariants}
-							animate={isHovered ? "active" : "inActive"}
-						/>
-					)}
-				</div>
+			<motion.div className="flex h-80 flex-col justify-start gap-y-4 border-l-[1px] border-primary px-4">
+				<UpperTitle> {title} </UpperTitle>
 				<P>{text}</P>
-			</div>
+			</motion.div>
+
+			<motion.div
+				className="relative h-[1px] w-44 overflow-hidden rounded-b-full border-[1px] border-primary"
+				animate={isHovered ? "active" : "inActive"}
+				variants={bannerVariants}>
+				<Image
+					src={img}
+					alt="A gif"
+					fill
+					style={{
+						objectFit: "cover",
+						objectPosition: "center",
+					}}
+				/>
+				{isXl && (
+					<motion.div
+						className="absolute inset-0 bg-background"
+						variants={coverVariants}
+						animate={isHovered ? "active" : "inActive"}
+					/>
+				)}
+			</motion.div>
 		</motion.div>
 	);
 }

@@ -1,16 +1,56 @@
-import { motion } from "framer-motion";
+import {
+	motion,
+	useAnimationControls,
+	useMotionValueEvent,
+	useScroll,
+	useSpring,
+	useTransform,
+} from "framer-motion";
 import UpperTitle from "../ui/UpperTitle";
 import P from "../ui/P";
+import { useEffect, useRef, useState } from "react";
 
-const lineVariants = {
+const circleVariants = {
 	hidden: {
-		bottom: "100%",
+		scale: 0.7,
+		x: "-48%",
+		scaleX: 0,
+		opacity: 0,
+		backgroundColor: "#EAEEF5",
+		border: "0px solid #0D1823",
+		transition: {
+			duration: 0,
+		},
 	},
 	visible: {
-		bottom: "0%",
+		scale: 1,
+		x: "-48%",
+		opacity: 1,
+		scaleX: 1,
+		backgroundColor: "#EAEEF5",
+		border: "1px solid #0D1823",
 		transition: {
-			duration: 1,
-			ease: "easeInOut",
+			opacity: {
+				duration: 0,
+			},
+		},
+	},
+	active: {
+		scale: 1.18,
+		scaleX: 1,
+		x: "-48%",
+		opacity: 1,
+		originX: 0.5,
+		originY: 0.5,
+		backgroundColor: "#BF4D00",
+		border: "1px solid #BF4D00",
+		transition: {
+			duration: 0.01,
+			scale: {
+				type: "spring",
+				stiffness: 1000,
+				mass: 0.5,
+			},
 		},
 	},
 };
@@ -18,48 +58,95 @@ const lineVariants = {
 const textVariants = {
 	hidden: {
 		opacity: 0,
-		x: -100,
+		x: -20,
+		y: -15,
 	},
 	visible: {
 		opacity: 1,
 		x: 0,
+		y: -15,
 		transition: {
-			delay: 0.5,
+			delay: 0.1,
 			duration: 0.3,
 			ease: "easeOut",
 		},
 	},
 };
 
-export default function ProcessItem({ title, text }) {
+export default function ProcessItem({
+	title,
+	text,
+	noLine = false,
+	inView = false,
+}) {
+	const circleControls = useAnimationControls();
+	const textControls = useAnimationControls();
+
+	// Scroll source
+	const ref = useRef(null);
+	const { scrollYProgress } = useScroll({
+		target: ref,
+		offset: ["start 55%", "end 55%"],
+	});
+
+	// Line animation
+	const springScroll = useSpring(scrollYProgress, {
+		damping: 22,
+		stiffness: 350,
+		restSpeed: 0.5,
+	});
+	const orangeLineHeight = useTransform(springScroll, [0, 1], ["0%", "100%"]);
+
+	useMotionValueEvent(scrollYProgress, "change", value => {
+		console.log(value);
+		if (value > 0.01) {
+			circleControls.start("active");
+			textControls.start("visible");
+		} else {
+			if (!text && !title) {
+				circleControls.start("hidden");
+			} else {
+				circleControls.start("visible");
+			}
+			textControls.start("hidden");
+		}
+	});
+
+	useEffect(() => {
+		if (inView) {
+			circleControls.start("visible");
+		}
+	}, [inView]);
+
 	return (
-		<motion.li
-			className="relative w-[500px]"
-			initial="hidden"
-			animate="hidden"
-			whileInView="visible">
+		<motion.li className="relative h-[40vh] w-[500px]" ref={ref}>
+			{!noLine && (
+				<motion.div
+					className="absolute left-0 z-10 w-0 -translate-x-[2px] border-l-[5px] border-orange"
+					style={{ height: orangeLineHeight, strokeLinecap: "round" }}
+				/>
+			)}
+
 			<motion.div
-				className="absolute left-0 top-0 border-l-[1px] border-primary"
-				variants={lineVariants}
+				className="absolute left-0 z-20 h-6 w-6 rounded-full border-[1px] border-primary bg-background"
+				style={{
+					x: "-48%",
+					scale: 0.7,
+				}}
+				variants={circleVariants}
+				animate={circleControls}
 			/>
-			<motion.div className="absolute left-0 h-6 w-6 -translate-x-1/2 rounded-full border-[1px] border-primary bg-background" />
-			<motion.div
-				className="flex -translate-y-3 flex-col gap-4 pl-16 pb-16"
-				variants={textVariants}
-				initial="hidden"
-				animate="hidden"
-				whileInView="visible"
-				onAnimationComplete={() => {
-					console.log("hey");
-				}}>
-				<UpperTitle>Consultation</UpperTitle>
-				<P>
-					Discuss the project requirements and client's objectives. During this
-					consultation, you will ask detailed questions to understand the
-					client's business, target audience, competitors, and overall vision
-					for the website.
-				</P>
-			</motion.div>
+
+			{text && title && (
+				<motion.div
+					className="flex flex-col gap-4 pl-16"
+					variants={textVariants}
+					initial="hidden"
+					animate={textControls}>
+					<UpperTitle>{title}</UpperTitle>
+					<P>{text}</P>
+				</motion.div>
+			)}
 		</motion.li>
 	);
 }

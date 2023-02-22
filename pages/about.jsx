@@ -24,7 +24,7 @@ export default function About({ showMenu, setShowMenu, url }) {
 					subtitle="And what I believe."
 				/>
 
-				{/* <motion.section className="flex min-h-screen w-full flex-col items-center gap-24">
+				<motion.section className="flex min-h-screen w-full flex-col items-center gap-24">
 					<Title>What I believe.</Title>
 					<div className="flex h-min max-w-centered flex-col items-start justify-center gap-24 xl:flex-row xl:gap-0">
 						<Belief
@@ -43,7 +43,7 @@ export default function About({ showMenu, setShowMenu, url }) {
 							text={`Aesthetics are not just superficial, they are a key driver of user engagement and loyalty. A well-designed website is essential to brand value and customer retention.`}
 						/>
 					</div>
-				</motion.section> */}
+				</motion.section>
 
 				<ProcessSection />
 				<SectionWrapper>

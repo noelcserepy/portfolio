@@ -77,7 +77,8 @@ export default function ProcessItem({
 	title,
 	text,
 	noLine = false,
-	inView = false,
+	orangeStart = false,
+	setOrangeStart,
 }) {
 	const circleControls = useAnimationControls();
 	const textControls = useAnimationControls();
@@ -98,10 +99,12 @@ export default function ProcessItem({
 	const orangeLineHeight = useTransform(springScroll, [0, 1], ["0%", "100%"]);
 
 	useMotionValueEvent(scrollYProgress, "change", value => {
-		console.log(value);
 		if (value > 0.01) {
 			circleControls.start("active");
 			textControls.start("visible");
+			if (setOrangeStart) {
+				setOrangeStart(true);
+			}
 		} else {
 			if (!text && !title) {
 				circleControls.start("hidden");
@@ -109,26 +112,33 @@ export default function ProcessItem({
 				circleControls.start("visible");
 			}
 			textControls.start("hidden");
+			if (setOrangeStart) {
+				setOrangeStart(false);
+			}
 		}
 	});
 
 	useEffect(() => {
-		if (inView) {
+		if (orangeStart) {
 			circleControls.start("visible");
+		} else {
+			circleControls.start("hidden");
 		}
-	}, [inView]);
+	}, [orangeStart]);
 
 	return (
 		<motion.li className="relative h-[40vh] w-[500px]" ref={ref}>
 			{!noLine && (
 				<motion.div
-					className="absolute left-0 z-10 w-0 -translate-x-[2px] border-l-[5px] border-orange"
+					className="absolute left-0 z-10 mt-2 w-0 -translate-x-[2px] border-l-[5px] border-orange"
 					style={{ height: orangeLineHeight, strokeLinecap: "round" }}
 				/>
 			)}
 
 			<motion.div
-				className="absolute left-0 z-20 h-6 w-6 rounded-full border-[1px] border-primary bg-background"
+				className={`absolute left-0 z-20 h-6 w-6 rounded-full border-[1px] border-primary bg-background ${
+					!text && !title && "opacity-0"
+				}`}
 				style={{
 					x: "-48%",
 					scale: 0.7,
@@ -137,7 +147,7 @@ export default function ProcessItem({
 				animate={circleControls}
 			/>
 
-			{text && title && (
+			{(text || title) && (
 				<motion.div
 					className="flex flex-col gap-4 pl-16"
 					variants={textVariants}

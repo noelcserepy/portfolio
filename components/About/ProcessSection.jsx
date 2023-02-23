@@ -2,6 +2,7 @@ import { motion, useAnimationControls, useInView } from "framer-motion";
 import Title from "../ui/Title";
 import ProcessItem from "./ProcessItem";
 import { useEffect, useRef, useState } from "react";
+import useMediaQuery from "../../hooks/useMediaQuery";
 
 const ulVariants = {
 	hidden: {
@@ -34,6 +35,7 @@ const lineVariants = {
 export default function ProcessSection() {
 	const lineControls = useAnimationControls();
 	const [orangeStart, setOrangeStart] = useState(false);
+	const isLg = useMediaQuery("lg");
 
 	useEffect(() => {
 		if (orangeStart) {
@@ -45,24 +47,32 @@ export default function ProcessSection() {
 
 	return (
 		<motion.section className="relative flex h-[240vh] w-full flex-col items-center gap-24">
-			<div className="absolute right-[49.25%] -top-[46px] whitespace-nowrap text-end">
-				<motion.h3 className="font-title text-7xl" layout>
-					{`My Process`}
-					{orangeStart && <motion.span> </motion.span>}
-					<motion.span layout className="text-orange">
-						.
-					</motion.span>
-				</motion.h3>
-			</div>
+			{isLg ? (
+				<div className="absolute right-[49.25%] -top-[46px] whitespace-nowrap text-end">
+					<motion.h3 className="font-title text-7xl" layout>
+						{`My Process`}
+						{orangeStart && <motion.span> </motion.span>}
+						<motion.span layout className="text-orange">
+							.
+						</motion.span>
+					</motion.h3>
+				</div>
+			) : (
+				<div className="absolute left-4 flex w-full -translate-y-full items-center">
+					<Title>My Process.</Title>
+				</div>
+			)}
 
 			<motion.div
-				className="absolute left-1/2 mt-[15px] h-full w-0 border-l-[1px] border-primary"
+				className="absolute left-4 mt-[15px] h-full w-0 border-l-[1px] border-primary lg:left-1/2"
 				variants={lineVariants}
 				animate={lineControls}
 				initial="hidden"
 			/>
 
-			<motion.ul className="ml-auto w-1/2" variants={ulVariants}>
+			<motion.ul
+				className="ml-4 mr-auto w-full lg:mr-0 lg:ml-auto lg:w-1/2"
+				variants={ulVariants}>
 				<ProcessItem
 					orangeStart={orangeStart}
 					setOrangeStart={setOrangeStart}

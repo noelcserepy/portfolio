@@ -127,7 +127,7 @@ export default function ProcessItem({
 	}, [orangeStart]);
 
 	return (
-		<motion.li className="relative h-[40vh] w-[500px]" ref={ref}>
+		<motion.li className="relative h-[40vh] max-w-[500px]" ref={ref}>
 			{!noLine && (
 				<motion.div
 					className="absolute left-0 z-10 mt-2 w-0 -translate-x-[2px] border-l-[5px] border-orange"
@@ -149,7 +149,7 @@ export default function ProcessItem({
 
 			{(text || title) && (
 				<motion.div
-					className="flex flex-col gap-4 pl-16"
+					className="flex flex-col gap-4 pl-8 lg:pl-16"
 					variants={textVariants}
 					initial="hidden"
 					animate={textControls}>

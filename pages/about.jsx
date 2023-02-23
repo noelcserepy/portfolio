@@ -46,6 +46,7 @@ export default function About({ showMenu, setShowMenu, url }) {
 				</motion.section>
 
 				<ProcessSection />
+
 				<SectionWrapper>
 					<div className="flex flex-col gap-4 md:w-1/2">
 						<Title>Why all the mazes?</Title>

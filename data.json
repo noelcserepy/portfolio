@@ -1,94 +1,119 @@
 {
-	"projects": [
-		{
-			"name": "ShufflePlus",
-			"description": "Web app that can sort, merge and fill tracks in Spotify playlists to quickly freshen up old playlists.",
-			"tools": ["JavaScript", "React", "NextJS", "Spotify API", "NextAuth"],
-			"image": "/img/ShufflePlus_Mockup.png",
-			"github": "https://github.com/noelcserepy/shuffle_plus",
-			"link": "https://shuffle-plus.vercel.app/"
-		},
-		{
-			"name": "Packer",
-			"description": "Windows desktop tool for 3D artists that optimizes texture assets for real-time rendering.",
-			"tools": ["Python", "SQLite", "PIL", "PyQT"],
-			"image": "/img/Packer_Mockup.png",
-			"github": "https://github.com/noelcserepy/Packer",
-			"link": ""
-		},
-		{
-			"name": "Memr",
-			"description": "Discord bot that allows users to create and play audio snippets during live chat.",
-			"tools": [
-				"Python",
-				"Discord API",
-				"MongoDB",
-				"GoogleCloud",
-				"ffmpeg",
-				"pytube"
-			],
-			"image": "",
-			"github": "https://github.com/noelcserepy/memr",
-			"link": ""
-		},
-		{
-			"name": "Lazy-Torrent",
-			"description": "A tool for downloading whole shows. It selects torrents based on certain criteria and adds them to your torrent client.",
-			"tools": ["Python", "BeautifulSoup4"],
-			"image": "",
-			"github": "https://github.com/noelcserepy/lazy-torrent",
-			"link": ""
-		},
-		{
-			"name": "Eye",
-			"description": "Computer vision project that detects your face and renders an eye that is always watching you.",
-			"tools": ["Python", "OpenCV", "numpy", "PIL"],
-			"image": "",
-			"github": "https://github.com/noelcserepy/Eye",
-			"link": ""
-		},
-		{
-			"name": "My_Ls",
-			"description": "Recreation of \"ls\" linux command in C.",
-			"tools": ["C"],
-			"image": "",
-			"github": "https://github.com/noelcserepy/Edu/tree/main/Season01_Arc02/my_ls",
-			"link": ""
-		},
-		{
-			"name": "Spotifile",
-			"description": "Script to locate aiff files on your hard drive and add them to a new Spotify playlist.",
-			"tools": ["Python", "Spotify API"],
-			"image": "",
-			"github": "https://github.com/noelcserepy/Spotifile",
-			"link": ""
-		}
-	],
-	"posts": [
-		{
-			"title": "5 Mistakes I Made, So You Won't Have To",
-			"date": "20.7.2022",
-			"description": "I decided to re-work one of my very first projects I ever coded; ShufflePlus. It's a web app that re-orders tracks in your Spotify playlist based on the sound of the tracks, to make your playlist feel more like a mix and less like a random collection of songs that you used to like."
-		},
-		{
-			"title": "VSCode Shorcuts I Wish I Knew when I started",
-			"date": "20.7.2022",
-			"description": "I decided to re-work one of my very first projects I ever coded; ShufflePlus. It's a web app that re-orders tracks in your Spotify playlist based on the sound of the tracks, to make your playlist feel more like a mix and less like a random collection of songs that you used to like."
-		},
-		{
-			"title": "How to build jaw-dropping loading animations with framer motion",
-			"date": "20.7.2022",
-			"description": "I decided to re-work one of my very first projects I ever coded; ShufflePlus. It's a web app that re-orders tracks in your Spotify playlist based on the sound of the tracks, to make your playlist feel more like a mix and less like a random collection of songs that you used to like."
-		},
-		{
-			"title": "A Collection of useful animations",
-			"date": "20.7.2022",
-			"description": "I decided to re-work one of my very first projects I ever coded; ShufflePlus. It's a web app that re-orders tracks in your Spotify playlist based on the sound of the tracks, to make your playlist feel more like a mix and less like a random collection of songs that you used to like."
-		},
-		{
-			"title": "Lessons from starting a business with friends",
-			"date": "20.7.2022",
-			"description": "I decided to re-work one of my very first projects I ever coded; ShufflePlus. It's a web app that re-orders tracks in your Spotify playlist based on the sound of the tracks, to make your playlist feel more like a mix and less like a random collection of songs that you used to like."
-		}
-	]
+  "projects": [
+    {
+      "name": "Nakarin",
+      "description": "A client project to display a photographers portfolio.",
+      "tools": ["TypeScript", "React", "NextJS", "Framer Motion"],
+      "images": ["/img/ShufflePlus_Mockup.png"],
+      "github": "https://github.com/noelcserepy/nakarin",
+      "link": "https://nakarin.vercel.app/"
+    },
+    {
+      "name": "Stake.New",
+      "description": "A client project that allows users to easily stake Aptos Native.",
+      "tools": ["TypeScript", "Vue", "Nuxt", "Aptos API", "web3"],
+      "images": [
+        "/img/work/stakenew/stakenew1.png",
+        "/img/work/stakenew/stakenew2.png",
+        "/img/work/stakenew/stakenew3.png",
+        "/img/work/stakenew/stakenew4.png",
+        "/img/work/stakenew/stakenew5.png",
+        "/img/work/stakenew/stakenew6.png",
+        "/img/work/stakenew/stakenew7.png",
+        "/img/work/stakenew/stakenew8.png"
+      ],
+      "github": "",
+      "link": "https://stake.new/"
+    },
+    {
+      "name": "ShufflePlus",
+      "description": "Web app that can sort, merge and fill tracks in Spotify playlists to quickly freshen up old playlists.",
+      "tools": ["JavaScript", "React", "NextJS", "Spotify API", "NextAuth"],
+      "image": "/img/ShufflePlus_Mockup.png",
+      "github": "https://github.com/noelcserepy/shuffle_plus",
+      "link": "https://shuffle-plus.vercel.app/"
+    },
+    {
+      "name": "Packer",
+      "description": "Windows desktop tool for 3D artists that optimizes texture assets for real-time rendering.",
+      "tools": ["Python", "SQLite", "PIL", "PyQT"],
+      "image": "/img/Packer_Mockup.png",
+      "github": "https://github.com/noelcserepy/Packer",
+      "link": ""
+    },
+    {
+      "name": "Memr",
+      "description": "Discord bot that allows users to create and play audio snippets during live chat.",
+      "tools": [
+        "Python",
+        "Discord API",
+        "MongoDB",
+        "GoogleCloud",
+        "ffmpeg",
+        "pytube"
+      ],
+      "image": "",
+      "github": "https://github.com/noelcserepy/memr",
+      "link": ""
+    },
+    {
+      "name": "Lazy-Torrent",
+      "description": "A tool for downloading whole shows. It selects torrents based on certain criteria and adds them to your torrent client.",
+      "tools": ["Python", "BeautifulSoup4"],
+      "image": "",
+      "github": "https://github.com/noelcserepy/lazy-torrent",
+      "link": ""
+    },
+    {
+      "name": "Eye",
+      "description": "Computer vision project that detects your face and renders an eye that is always watching you.",
+      "tools": ["Python", "OpenCV", "numpy", "PIL"],
+      "image": "",
+      "github": "https://github.com/noelcserepy/Eye",
+      "link": ""
+    },
+    {
+      "name": "My_Ls",
+      "description": "Recreation of \"ls\" linux command in C.",
+      "tools": ["C"],
+      "image": "",
+      "github": "https://github.com/noelcserepy/Edu/tree/main/Season01_Arc02/my_ls",
+      "link": ""
+    },
+    {
+      "name": "Spotifile",
+      "description": "Script to locate aiff files on your hard drive and add them to a new Spotify playlist.",
+      "tools": ["Python", "Spotify API"],
+      "image": "",
+      "github": "https://github.com/noelcserepy/Spotifile",
+      "link": ""
+    }
+  ],
+  "posts": [
+    {
+      "title": "5 Mistakes I Made, So You Won't Have To",
+      "date": "20.7.2022",
+      "description": "I decided to re-work one of my very first projects I ever coded; ShufflePlus. It's a web app that re-orders tracks in your Spotify playlist based on the sound of the tracks, to make your playlist feel more like a mix and less like a random collection of songs that you used to like."
+    },
+    {
+      "title": "VSCode Shorcuts I Wish I Knew when I started",
+      "date": "20.7.2022",
+      "description": "I decided to re-work one of my very first projects I ever coded; ShufflePlus. It's a web app that re-orders tracks in your Spotify playlist based on the sound of the tracks, to make your playlist feel more like a mix and less like a random collection of songs that you used to like."
+    },
+    {
+      "title": "How to build jaw-dropping loading animations with framer motion",
+      "date": "20.7.2022",
+      "description": "I decided to re-work one of my very first projects I ever coded; ShufflePlus. It's a web app that re-orders tracks in your Spotify playlist based on the sound of the tracks, to make your playlist feel more like a mix and less like a random collection of songs that you used to like."
+    },
+    {
+      "title": "A Collection of useful animations",
+      "date": "20.7.2022",
+      "description": "I decided to re-work one of my very first projects I ever coded; ShufflePlus. It's a web app that re-orders tracks in your Spotify playlist based on the sound of the tracks, to make your playlist feel more like a mix and less like a random collection of songs that you used to like."
+    },
+    {
+      "title": "Lessons from starting a business with friends",
+      "date": "20.7.2022",
+      "description": "I decided to re-work one of my very first projects I ever coded; ShufflePlus. It's a web app that re-orders tracks in your Spotify playlist based on the sound of the tracks, to make your playlist feel more like a mix and less like a random collection of songs that you used to like."
+    }
+  ]
 }

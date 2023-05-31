@@ -5,6 +5,7 @@ import Nav from "../components/Nav/Nav";
 import ContentWrapper from "../components/ui/ContentWrapper";
 import WorkSection from "../components/Home/workSection";
 import { useState } from "react";
+import Carousel from "../components/ui/Carousel";
 
 export default function Home({ showMenu, setShowMenu }) {
 	const [stage, setStage] = useState(0);
@@ -20,8 +21,8 @@ export default function Home({ showMenu, setShowMenu }) {
 				/>
 				<WorkSection />
 
-				<FeaturedProject project="ShufflePlus" imageRight={false} />
-				<FeaturedProject project="Packer" imageRight={true} />
+				<FeaturedProject project="Stake.New" imageRight={false} />
+				<FeaturedProject project="Nakarin" imageRight={true} />
 
 				<OtherProjectsWrapper />
 			</ContentWrapper>

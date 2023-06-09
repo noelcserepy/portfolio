@@ -9,18 +9,19 @@ import { AnimatePresence, motion, useAnimationControls } from "framer-motion";
 import { useEffect, useState } from "react";
 import type { WheelEventHandler } from "react";
 import data from "data";
+import Lines from "components/graphics/lines";
 
 const contentVariants = {
   hidden: {
     opacity: 0,
-    x: -20,
+    x: -10,
   },
   enter: {
     opacity: 1,
     x: 0,
     transition: {
       delay: 1.2,
-      duration: 0.45,
+      duration: 0.2,
       ease: "easeOut",
     },
   },
@@ -28,13 +29,13 @@ const contentVariants = {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 0.45,
+      duration: 0.2,
       ease: "easeOut",
     },
   },
   exit: {
     opacity: 0,
-    x: -20,
+    x: -10,
     transition: {
       duration: 0.2,
       ease: "easeIn",
@@ -162,6 +163,9 @@ const Home: NextPage = () => {
               );
           })}
         </AnimatePresence>
+        <div className="absolute left-12 top-1/2 flex h-1/3 w-1/3 -translate-y-1/2 flex-col items-start  justify-center">
+          <Lines />
+        </div>
       </main>
     </>
   );

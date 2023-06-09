@@ -1,17 +1,20 @@
 import { type Config } from "tailwindcss";
 
 export default {
-  content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  content: ["./src/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
         fontFamily: {
-            sans: ["var(--font-montserrat)", "sans-serif"],
-            title: ["var(--font-bebas)", "sans-serif"],
+            text: ["var(--font-montserrat)"],
+            title: ["var(--font-bebas)"],
         },
         colors: {
             dark: "#021112",
             light: "#fffffa",
-        }
+        },
+        aspectRatio: {
+        '1/2': '1 / 2',
+      },
     },
   },
   plugins: [],

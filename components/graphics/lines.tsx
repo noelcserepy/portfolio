@@ -8,7 +8,13 @@ import { type MouseEvent, useState } from "react";
 import Line from "./line";
 import Circle from "./circle";
 
-function Lines({ pagesLength }: { pagesLength: number }) {
+function Lines({
+  pagesLength,
+  indexSelect,
+}: {
+  pagesLength: number;
+  indexSelect: (index: number) => void;
+}) {
   const yFraction = useMotionValue(0);
   const pointerLineIndex = useTransform(yFraction, [0, 1], [0, 32]);
   const [mouseOver, setMouseOver] = useState(false);
@@ -17,13 +23,17 @@ function Lines({ pagesLength }: { pagesLength: number }) {
 
   // Current page based on yFraction
   const currentPage = useTransform(yFraction, (y) => {
-    return Math.round(y * pagesLength);
+    return Math.round(y * (pagesLength - 1));
   });
 
   const onMove = (e: MouseEvent) => {
     // Get mouse y position in percentage of svg height
     const y = e.clientY / e.currentTarget.clientHeight - 1;
     yFraction.set(y);
+  };
+
+  const onClick = () => {
+    indexSelect(currentPage.get());
   };
 
   return (
@@ -40,6 +50,7 @@ function Lines({ pagesLength }: { pagesLength: number }) {
         onMouseLeave={() => {
           setMouseOver(false);
         }}
+        onClick={onClick}
       >
         <defs>
           <style>

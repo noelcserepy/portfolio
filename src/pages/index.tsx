@@ -47,6 +47,7 @@ const Home: NextPage = () => {
   const [scrollIndex, setScrollIndex] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
   const [hasEntered, setHasEntered] = useState(false);
+
   const controls = useAnimationControls();
   const { rive, RiveComponent } = useRive({
     src: "/rive/dial.riv",
@@ -77,22 +78,37 @@ const Home: NextPage = () => {
     rive && rive.play("Back");
   };
 
+  const indexSelect = async (index: number) => {
+    if (index === scrollIndex) return;
+    setHasEntered(true);
+    setIsScrolling(true);
+    await controls.start("exit");
+
+    if (index > scrollIndex) {
+      onForward();
+    } else {
+      onBack();
+    }
+
+    setScrollIndex(index);
+  };
+
   const onScroll = async (e: WheelEvent) => {
     if (isScrolling) return;
     setIsScrolling(true);
     setHasEntered(true);
     if (e.deltaY > 0) {
+      await controls.start("exit");
       if (scrollIndex === pagesLength - 1) {
-        await controls.start("exit");
         setScrollIndex(0);
         onNext();
         return;
       }
-      await controls.start("exit");
       setScrollIndex(scrollIndex + 1);
       onNext();
     }
     if (e.deltaY < 0) {
+      await controls.start("exit");
       if (scrollIndex === 0) {
         setScrollIndex(pagesLength - 1);
         onPrevious();
@@ -164,7 +180,7 @@ const Home: NextPage = () => {
           })}
         </AnimatePresence>
         <div className="absolute left-12 top-1/2 flex aspect-lines h-1/3 -translate-y-1/2 flex-col items-start  justify-center">
-          <Lines pagesLength={pagesLength} />
+          <Lines pagesLength={pagesLength} indexSelect={indexSelect} />
         </div>
       </main>
     </>

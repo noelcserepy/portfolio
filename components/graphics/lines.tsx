@@ -9,6 +9,29 @@ import { type MouseEvent, useState, useEffect } from "react";
 import Line from "./line";
 import Circle from "./circle";
 
+const svgVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  enter: {
+    opacity: 1,
+    transition: {
+      delay: 0,
+      duration: 0.8,
+      ease: "easeOut",
+      staggerChildren: 0.5,
+    },
+  },
+  exit: {
+    opacity: 0,
+    x: -10,
+    transition: {
+      duration: 0.3,
+      ease: "easeIn",
+    },
+  },
+};
+
 function Lines({
   pagesLength,
   indexSelect,
@@ -59,6 +82,10 @@ function Lines({
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 174 289"
         className="cursor-pointer"
+        variants={svgVariants}
+        initial="hidden"
+        animate="enter"
+        exit="exit"
         onMouseMove={(e) => onMove(e)}
         onMouseEnter={() => {
           setMouseOver(true);

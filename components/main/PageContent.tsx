@@ -84,7 +84,6 @@ function PageContent({
   useEffect(() => {
     if (window) {
       const h = window.innerHeight;
-      console.log(h, "h");
       setWindowHeight(h);
     }
   }, []);

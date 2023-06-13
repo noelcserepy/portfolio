@@ -2,7 +2,6 @@ import {
   type AnimationControls,
   motion,
   useSpring,
-  useMotionValueEvent,
   useMotionValue,
   AnimatePresence,
   useTransform,
@@ -12,7 +11,7 @@ import Clickable from "components/ui/Clickable";
 import H1 from "components/ui/H1";
 import H2 from "components/ui/H2";
 import Image, { type StaticImageData } from "next/image";
-import { type MouseEvent, useState, useRef, useEffect } from "react";
+import { type MouseEvent, useState, useEffect } from "react";
 
 const contentVariants = {
   hidden: {
@@ -102,11 +101,7 @@ function PageContent({
   const springX = useSpring(mouseX, { stiffness: 500, damping: 40 });
   const springY = useSpring(mouseYWindow, { stiffness: 500, damping: 40 });
 
-  // useMotionValueEvent(mouseY, "change", (x) => console.log(x));
-
-  const onImageHover = (img: StaticImageData, e: MouseEvent) => {
-    // springX.set(e.clientX - 600);
-    // springY.set(e.clientY / 2);
+  const onImageHover = (img: StaticImageData) => {
     setHoveredImage(img);
   };
 
@@ -147,7 +142,7 @@ function PageContent({
                 width={500}
                 height={500}
                 onMouseMove={onMouseMove}
-                onMouseOver={(e) => onImageHover(img, e)}
+                onMouseOver={() => onImageHover(img)}
                 onMouseLeave={onMouseLeave}
               />
             </motion.div>

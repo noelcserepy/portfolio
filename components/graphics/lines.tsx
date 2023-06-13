@@ -1,27 +1,33 @@
 import {
   motion,
   useMotionTemplate,
-  useMotionValue,
+  useSpring,
   useTransform,
+  type MotionValue,
 } from "framer-motion";
-import { type MouseEvent, useState } from "react";
+import { type MouseEvent, useState, useEffect } from "react";
 import Line from "./line";
 import Circle from "./circle";
 
 function Lines({
   pagesLength,
   indexSelect,
+  scrollIndex,
 }: {
   pagesLength: number;
   indexSelect: (index: number) => Promise<void>;
+  scrollIndex: number;
 }) {
-  const yFraction = useMotionValue(0);
+  const yFraction = useSpring(0, {
+    stiffness: 500,
+    damping: 40,
+  }) as MotionValue<number>;
   const pointerLineIndex = useTransform(yFraction, [0, 1], [0, 32]);
   const [mouseOver, setMouseOver] = useState(false);
   const circleTop = useTransform(yFraction, [0, 1], [0, 100]);
   const circleTopPercent = useMotionTemplate`${circleTop}%`;
 
-  // Current page based on yFraction
+  // Current page based on mouse position
   const currentPage = useTransform(yFraction, (y) => {
     const boundaries = Array.from(
       { length: pagesLength - 1 },
@@ -31,8 +37,12 @@ function Lines({
     return index === -1 ? pagesLength - 1 : index;
   });
 
+  // Get yFraction from scrollIndex
+  useEffect(() => {
+    yFraction.set(scrollIndex / (pagesLength - 1));
+  }, [scrollIndex, yFraction, pagesLength, mouseOver]);
+
   const onMove = (e: MouseEvent) => {
-    // Get mouse y position in percentage of svg height
     const y = e.clientY / e.currentTarget.clientHeight - 1;
     yFraction.set(y);
   };

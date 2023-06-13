@@ -32,7 +32,6 @@ const circleVariants = {
 
 function Circle({
   circleTopPercent,
-  mouseOver,
   currentPage,
 }: {
   circleTopPercent: MotionValue;
@@ -41,30 +40,28 @@ function Circle({
 }) {
   return (
     <AnimatePresence>
-      {mouseOver && (
+      <motion.div
+        className="pointer-events-none absolute -right-2 flex h-12 w-12 -translate-y-1/2 items-center justify-center"
+        style={{
+          top: circleTopPercent,
+        }}
+      >
         <motion.div
-          className="pointer-events-none absolute -right-2 flex h-12 w-12 -translate-y-1/2 items-center justify-center"
+          variants={circleVariants}
+          initial="hidden"
+          animate="enter"
+          exit="exit"
+          className={`h-full w-full rounded-full border-[1px] border-dark bg-light p-1`}
           style={{
-            top: circleTopPercent,
+            originX: 0.5,
+            originY: 0.5,
           }}
         >
-          <motion.div
-            variants={circleVariants}
-            initial="hidden"
-            animate="enter"
-            exit="exit"
-            className={`h-full w-full rounded-full border-[1px] border-dark bg-light p-1`}
-            style={{
-              originX: 0.5,
-              originY: 0.5,
-            }}
-          >
-            <motion.div className="z-10 flex h-full w-full items-center justify-center rounded-full bg-dark pt-[2px] font-title  text-light">
-              {currentPage}
-            </motion.div>
+          <motion.div className="z-10 flex h-full w-full items-center justify-center rounded-full bg-dark pt-[2px] font-title  text-light">
+            {currentPage}
           </motion.div>
         </motion.div>
-      )}
+      </motion.div>
     </AnimatePresence>
   );
 }

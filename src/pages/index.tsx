@@ -123,7 +123,11 @@ const Home: NextPage = () => {
           <RiveComponent />
         </div>
         <div className="absolute left-12 top-1/2 flex aspect-lines h-1/3 -translate-y-1/2 flex-col items-start  justify-center">
-          <Lines pagesLength={pagesLength} indexSelect={indexSelect} />
+          <Lines
+            pagesLength={pagesLength}
+            indexSelect={indexSelect}
+            scrollIndex={scrollIndex}
+          />
         </div>
 
         <AnimatePresence mode="wait">

@@ -28,7 +28,6 @@ const lineVariants = {
 function Line({
   i,
   pointerLineIndex,
-  mouseOver,
 }: {
   i: number;
   pointerLineIndex: MotionValue<number>;
@@ -43,7 +42,6 @@ function Line({
   });
 
   const xShift = useTransform(steppedIndex, (x) => {
-    if (!mouseOver) return 0;
     if (x < 0) return 0;
     if (Math.abs(x - i) > SPREAD) return 0;
 
@@ -53,23 +51,8 @@ function Line({
   const springXShift = useSpring(xShift, {
     damping: 10,
     mass: 0.1,
-    stiffness: 700,
+    stiffness: 600,
   });
-
-  // useEffect(() => {
-  //   if (!mouseOver) {
-  //     console.log("ran");
-  //     const controls = animate(xShift, 0, {
-  //       duration: 0.5,
-  //       ease: "easeInOut",
-  //       onComplete: () => {
-  //         return;
-  //       },
-  //     });
-
-  //     return controls.stop();
-  //   }
-  // }, [mouseOver, xShift, animate]);
 
   return (
     <motion.line

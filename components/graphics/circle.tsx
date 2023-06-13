@@ -43,7 +43,7 @@ function Circle({
     <AnimatePresence>
       {mouseOver && (
         <motion.div
-          className="absolute -right-2 flex h-12 w-12 -translate-y-1/2 items-center justify-center"
+          className="pointer-events-none absolute -right-2 flex h-12 w-12 -translate-y-1/2 items-center justify-center"
           style={{
             top: circleTopPercent,
           }}

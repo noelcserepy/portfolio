@@ -14,7 +14,8 @@ export default {
         },
         aspectRatio: {
         '1/2': '1 / 2',
-        "lines": "174 / 289"
+        "lines": "174 / 289",
+        "mockup": "640 / 480"
       },
     },
   },

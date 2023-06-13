@@ -13,7 +13,7 @@ function Lines({
   indexSelect,
 }: {
   pagesLength: number;
-  indexSelect: (index: number) => void;
+  indexSelect: (index: number) => Promise<void>;
 }) {
   const yFraction = useMotionValue(0);
   const pointerLineIndex = useTransform(yFraction, [0, 1], [0, 32]);
@@ -23,7 +23,12 @@ function Lines({
 
   // Current page based on yFraction
   const currentPage = useTransform(yFraction, (y) => {
-    return Math.round(y * (pagesLength - 1));
+    const boundaries = Array.from(
+      { length: pagesLength - 1 },
+      (_, i) => (i + 1) / pagesLength
+    );
+    const index = boundaries.findIndex((boundary) => y < boundary);
+    return index === -1 ? pagesLength - 1 : index;
   });
 
   const onMove = (e: MouseEvent) => {
@@ -33,7 +38,7 @@ function Lines({
   };
 
   const onClick = () => {
-    indexSelect(currentPage.get());
+    indexSelect(currentPage.get()).catch(console.error);
   };
 
   return (
@@ -43,6 +48,7 @@ function Lines({
         data-name="Layer 1"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 174 289"
+        className="cursor-pointer"
         onMouseMove={(e) => onMove(e)}
         onMouseEnter={() => {
           setMouseOver(true);

@@ -1,47 +1,14 @@
 import Clickable from "components/ui/Clickable";
-import H1 from "components/ui/H1";
-import H2 from "components/ui/H2";
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { useRive } from "@rive-app/react-canvas";
-import { AnimatePresence, motion, useAnimationControls } from "framer-motion";
+import { AnimatePresence, useAnimationControls } from "framer-motion";
 import { useEffect, useState } from "react";
 import type { WheelEventHandler } from "react";
 import data from "data";
 import Lines from "components/graphics/lines";
-
-const contentVariants = {
-  hidden: {
-    opacity: 0,
-    x: -10,
-  },
-  enter: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      delay: 1.2,
-      duration: 0.2,
-      ease: "easeOut",
-    },
-  },
-  reEnter: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.2,
-      ease: "easeOut",
-    },
-  },
-  exit: {
-    opacity: 0,
-    x: -10,
-    transition: {
-      duration: 0.2,
-      ease: "easeIn",
-    },
-  },
-};
+import PageContent from "components/main/PageContent";
 
 const Home: NextPage = () => {
   const [scrollIndex, setScrollIndex] = useState(0);
@@ -78,7 +45,7 @@ const Home: NextPage = () => {
     rive && rive.play("Back");
   };
 
-  const indexSelect = async (index: number) => {
+  const indexSelect = async (index: number): Promise<void> => {
     if (index === scrollIndex) return;
     setHasEntered(true);
     setIsScrolling(true);
@@ -155,33 +122,18 @@ const Home: NextPage = () => {
         <div className="relative flex aspect-1/2 h-screen">
           <RiveComponent />
         </div>
+        <div className="absolute left-12 top-1/2 flex aspect-lines h-1/3 -translate-y-1/2 flex-col items-start  justify-center">
+          <Lines pagesLength={pagesLength} indexSelect={indexSelect} />
+        </div>
 
         <AnimatePresence mode="wait">
           {data.pages.map((page, index) => {
             if (index === scrollIndex)
               return (
-                <motion.div
-                  key={page.title}
-                  className="ml-2 flex h-[92%]  w-2/3 flex-col justify-between"
-                  variants={contentVariants}
-                  animate={controls}
-                  initial="hidden"
-                  exit="exit"
-                >
-                  <Clickable>{page.header}</Clickable>
-                  <div className="flex w-3/5 flex-col space-y-6">
-                    <H1>{page.title}</H1>
-                    <H2>{page.subtitle}</H2>
-                    <p>{page.desciption}</p>
-                  </div>
-                  <Clickable>{page.date}</Clickable>
-                </motion.div>
+                <PageContent page={page} controls={controls} key={page.title} />
               );
           })}
         </AnimatePresence>
-        <div className="absolute left-12 top-1/2 flex aspect-lines h-1/3 -translate-y-1/2 flex-col items-start  justify-center">
-          <Lines pagesLength={pagesLength} indexSelect={indexSelect} />
-        </div>
       </main>
     </>
   );

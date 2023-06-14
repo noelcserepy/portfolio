@@ -19,11 +19,14 @@ export type Page = {
   title: string;
   subtitle: string;
   desciption: string;
+  technologies?: string;
+  responsibilities?: string;
   date: string;
   header: string;
   images?: StaticImageData[];
   github?: string;
   website?: string;
+  buttonText?: string;
 };
 
 const stakenewImages = [
@@ -56,29 +59,47 @@ const data = {
         "I design visually striking, unique web experiences. I portray my client's vision in the best light using performant web pages.",
       date: "2023",
       header: "Portfolio",
-      imageFolder: "/public/noel",
+      website: "mailto:hello@noelcserepy.com?subject=Hi Noël, let's work together",
+      buttonText: "Let's Talk",
+      github: "https://github.com/noelcserepy/"
     },
     {
       title: "Stake.New",
       subtitle: "Staking Platform",
       desciption:
-        "I design visually striking, unique web experiences. I portray my client's vision in the best light using performant web pages.",
+      "Stake.New is an interactive web-based platform designed to make staking on the Aptos blockchain simple. Powered by the Nuxt and Vue.js, the application seamlessly connects users with leading Validators on the Aptos network, providing a comprehensive solution to stake with all their favorite Aptos wallets.",
+      technologies: "Nuxt.js, Vue.js, TypeScript, TailwindCSS, Aptos SDK, Web3.js",
+      responsibilities: "UI/UX Design, Frontend Development, Wallet Integrations, Blockchain Interfacing, State Management",
       date: "2023",
       header: "Project 1",
       images: stakenewImages,
       github: "",
-      website: "",
+      website: "https://stake.new/",
+      buttonText: "View Project",
     },
     {
       title: "Nakarin",
       subtitle: "Photography Portfolio",
       desciption:
-        "I design visually striking, unique web experiences. I portray my client's vision in the best light using performant web pages.",
+        "Nakarin, a captivating portfolio website, is designed and developed exclusively for the professional photographer Nakarin Saisorn. Created with a clear focus on visual artistry and aesthetic appeal, Nakarin exhibits a balance between showcasing film and photography projects.",
+      technologies: "Next.js, TypeScript, TailwindCSS, Framer Motion",
+      responsibilities: "UI/UX Design, Frontend Development, Responsive Design, SEO",
       date: "2023",
       header: "Project 2",
       images: nakarinImages,
       github: "https://github.com/noelcserepy/nakarin",
       website: "https://nakarin.vercel.app/",
+      buttonText: "View Project",
+    },
+    {
+      title: "Blog",
+      subtitle: "Personal Blog",
+      desciption:
+        "My personal blog is a place where I share my thoughts on web development, design, and other topics that interest me.",
+      date: "2022",
+      header: "Blog",
+      website: "https://blog.noelcserepy.com/",
+      buttonText: "View Blog",
     },
   ],
 };

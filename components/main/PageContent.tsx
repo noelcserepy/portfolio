@@ -7,11 +7,12 @@ import {
   useTransform,
 } from "framer-motion";
 import { type Page } from "data";
-import Clickable from "components/ui/Clickable";
+import Upper from "components/ui/Upper";
 import H1 from "components/ui/H1";
 import H2 from "components/ui/H2";
 import Image, { type StaticImageData } from "next/image";
 import { type MouseEvent, useState, useEffect } from "react";
+import UpperSmall from "components/ui/UpperSmall";
 
 const contentVariants = {
   hidden: {
@@ -123,13 +124,49 @@ function PageContent({
       exit="exit"
     >
       <motion.div className="flex h-full w-full flex-col justify-between">
-        <Clickable>{page.header}</Clickable>
-        <div className="flex w-3/5 flex-col space-y-6">
-          <H1>{page.title}</H1>
-          <H2>{page.subtitle}</H2>
-          <p>{page.desciption}</p>
+        <Upper>{page.header}</Upper>
+        <div className="flex w-3/5 flex-col space-y-8">
+          <div className="flex flex-col space-y-2">
+            <H1>{page.title}</H1>
+            <H2>{page.subtitle}</H2>
+          </div>
+          <div className="flex flex-col space-y-2">
+            {(page.technologies || page.responsibilities) && (
+              <UpperSmall>Description</UpperSmall>
+            )}
+            <p>{page.desciption}</p>
+          </div>
+          {page.responsibilities && (
+            <div className="flex flex-col space-y-2">
+              <UpperSmall>Responsibilities</UpperSmall>
+              <p>{page.responsibilities}</p>
+            </div>
+          )}
+          {page.technologies && (
+            <div className="flex flex-col space-y-2">
+              <UpperSmall>Technologies</UpperSmall>
+              <p>{page.technologies}</p>
+            </div>
+          )}
+          <div className="flex space-x-2">
+            {page.website && (
+              <a href={page.website} target="_blank" rel="noreferrer">
+                <button className="rounded-md bg-black px-4 py-2 text-white">
+                  {page.buttonText}
+                </button>
+              </a>
+            )}
+
+            {page.github && (
+              <a href={page.github} target="_blank" rel="noreferrer">
+                <button className="rounded-md bg-black px-4 py-2 text-white">
+                  Github
+                </button>
+              </a>
+            )}
+          </div>
         </div>
-        <Clickable>{page.date}</Clickable>
+        <Upper>{page.date}</Upper>
       </motion.div>
       <motion.div className="flex h-full w-40 flex-col justify-between">
         {page.images &&

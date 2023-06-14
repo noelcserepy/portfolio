@@ -1,4 +1,4 @@
-import Clickable from "components/ui/Clickable";
+import Upper from "components/ui/Upper";
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
@@ -112,7 +112,7 @@ const Home: NextPage = () => {
       </Head>
       <nav className="fixed top-0 flex w-screen justify-end p-6 text-dark">
         <Link href="/">
-          <Clickable>{`Let's Talk`}</Clickable>
+          <Upper>{`Let's Talk`}</Upper>
         </Link>
       </nav>
       <main

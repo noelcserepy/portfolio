@@ -56,7 +56,7 @@ const data = {
       title: "Noël Cserépy",
       subtitle: "Frontend Developer & Designer",
       desciption:
-        "I design visually striking, unique web experiences. I portray my client's vision in the best light using performant web pages.",
+        "I am an independent web developer and designer focusing on interaction and motion design. I specialize in creating unique and performant web experiences that set my clients apart.",
       date: "2023",
       header: "Portfolio",
       website: "mailto:hello@noelcserepy.com?subject=Hi Noël, let's work together",
@@ -67,7 +67,7 @@ const data = {
       title: "Stake.New",
       subtitle: "Staking Platform",
       desciption:
-      "Stake.New is an interactive web-based platform designed to make staking on the Aptos blockchain simple. Powered by the Nuxt and Vue.js, the application seamlessly connects users with leading Validators on the Aptos network, providing a comprehensive solution to stake with all their favorite Aptos wallets.",
+      "Stake.New is an interactive web-based platform that simplifies staking on the Aptos blockchain. Powered by Nuxt and Vue.js, the application seamlessly connects users with leading Validators on the Aptos network, providing a comprehensive solution to stake with all their favourite Aptos wallets.",
       technologies: "Nuxt.js, Vue.js, TypeScript, TailwindCSS, Aptos SDK, Web3.js",
       responsibilities: "UI/UX Design, Frontend Development, Wallet Integrations, Blockchain Interfacing, State Management",
       date: "2023",
@@ -81,7 +81,7 @@ const data = {
       title: "Nakarin",
       subtitle: "Photography Portfolio",
       desciption:
-        "Nakarin, a captivating portfolio website, is designed and developed exclusively for the professional photographer Nakarin Saisorn. Created with a clear focus on visual artistry and aesthetic appeal, Nakarin exhibits a balance between showcasing film and photography projects.",
+        "Nakarin is a captivating portfolio website designed and developed exclusively for the professional photographer Nakarin Saisorn. Created with a clear focus on visual artistry and aesthetic appeal, Nakarin exhibits a balance between showcasing film and photography projects.",
       technologies: "Next.js, TypeScript, TailwindCSS, Framer Motion",
       responsibilities: "UI/UX Design, Frontend Development, Responsive Design, SEO",
       date: "2023",
@@ -95,7 +95,7 @@ const data = {
       title: "Blog",
       subtitle: "Personal Blog",
       desciption:
-        "My personal blog is a place where I share my thoughts on web development, design, and other topics that interest me.",
+        "A place where I share my thoughts on animation, web development, design. ",
       date: "2022",
       header: "Blog",
       website: "https://blog.noelcserepy.com/",

@@ -100,7 +100,7 @@ function Lines({
             {`
       .cls-1 {
         fill: none;
-        stroke: #000;
+        stroke: #021112;
         stroke-miterlimit: 10;
       }`}
           </style>

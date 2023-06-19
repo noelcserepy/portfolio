@@ -119,13 +119,13 @@ function PageContent({
   return (
     <motion.div
       key={page.title}
-      className="mx-2 flex h-full w-full md:h-[92%]"
+      className="mx-2 flex h-full w-full justify-start  md:h-[92%]"
       variants={contentVariants}
       animate={controls}
       initial="hidden"
       exit="exit"
     >
-      <motion.div className="flex h-full w-full flex-col justify-between">
+      <motion.div className="flex h-full w-full max-w-7xl flex-col justify-between">
         <Upper>{page.header}</Upper>
         <div className="flex w-[90%] flex-col space-y-4 lg:w-3/5 lg:space-y-8">
           <div className="flex flex-col space-y-2">

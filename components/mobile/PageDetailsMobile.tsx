@@ -1,7 +1,6 @@
 import Button from "components/ui/Button";
 import H1 from "components/ui/H1";
 import H2 from "components/ui/H2";
-import MouseSpring from "components/ui/MouseSpring";
 import UpperSmall from "components/ui/UpperSmall";
 import { type Page } from "data";
 import { motion } from "framer-motion";

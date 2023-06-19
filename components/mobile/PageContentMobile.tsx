@@ -1,20 +1,7 @@
-import {
-  type AnimationControls,
-  motion,
-  useSpring,
-  useMotionValue,
-  AnimatePresence,
-  useTransform,
-} from "framer-motion";
+import { type AnimationControls, motion, AnimatePresence } from "framer-motion";
 import { type Page } from "data";
-import Upper from "components/ui/Upper";
-import H1 from "components/ui/H1";
-import H2 from "components/ui/H2";
 import Image, { type StaticImageData } from "next/image";
-import { type MouseEvent, useState, useEffect } from "react";
-import UpperSmall from "components/ui/UpperSmall";
-import Button from "components/ui/Button";
-import MouseSpring from "components/ui/MouseSpring";
+import { useState } from "react";
 import PageDetailsMobile from "./PageDetailsMobile";
 import UpperMobile from "components/ui/UpperMobile";
 
@@ -127,10 +114,10 @@ function PageContentMobile({
             >
               <Image
                 src={clicked}
-                alt={`${page.title} large`}
                 fill
+                alt={`${page.title} large`}
                 style={{ objectFit: "contain" }}
-                sizes="100vw"
+                sizes="99vw"
               />
             </motion.div>
           )}

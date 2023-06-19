@@ -1,17 +1,24 @@
 import { type NextPage } from "next";
 import { Alignment, Fit, Layout, useRive } from "@rive-app/react-canvas";
 import { AnimatePresence, useAnimationControls } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-import type { WheelEventHandler } from "react";
+import {
+  type WheelEventHandler,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import data from "data";
-import Lines from "components/graphics/lines";
 import PageContentMobile from "./PageContentMobile";
 import LinesMobile from "./graphics/LinesMobile";
+import IsMobileContext from "components/contexts/isMobileContext";
 
 const Mobile: NextPage = () => {
   const [scrollIndex, setScrollIndex] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
   const [hasEntered, setHasEntered] = useState(false);
+  const { isMobile } = useContext(IsMobileContext);
 
   const isMounted = useRef(true);
   const controls = useAnimationControls();
@@ -66,18 +73,19 @@ const Mobile: NextPage = () => {
   }
 
   // Rive animation handlers
-  const onNext = () => {
+  const onNext = useCallback(() => {
     rive && rive.play("Next");
-  };
-  const onPrevious = () => {
+  }, [rive]);
+  const onPrevious = useCallback(() => {
     rive && rive.play("Previous");
-  };
-  const onForward = () => {
+  }, [rive]);
+
+  const onForward = useCallback(() => {
     rive && rive.play("Forward");
-  };
-  const onBack = () => {
+  }, [rive]);
+  const onBack = useCallback(() => {
     rive && rive.play("Back");
-  };
+  }, [rive]);
 
   // Page index selection
   const indexSelect = async (index: number): Promise<void> => {
@@ -95,36 +103,113 @@ const Mobile: NextPage = () => {
     setScrollIndex(index);
   };
 
+  const nextSequence = useCallback(async () => {
+    await controls.start("exit");
+    if (scrollIndex === pagesLength - 1) {
+      setScrollIndex(0);
+      onNext();
+      return;
+    }
+    setScrollIndex(scrollIndex + 1);
+    onNext();
+  }, [controls, onNext, pagesLength, scrollIndex]);
+
+  const previousSequence = useCallback(async () => {
+    await controls.start("exit");
+    if (scrollIndex === 0) {
+      setScrollIndex(pagesLength - 1);
+      onPrevious();
+      return;
+    }
+    setScrollIndex(scrollIndex - 1);
+    onPrevious();
+  }, [controls, onPrevious, pagesLength, scrollIndex]);
+
   // Scroll handler
   const onScroll = async (e: WheelEvent) => {
     if (isScrolling) return;
     setIsScrolling(true);
     setHasEntered(true);
     if (e.deltaY > 0) {
-      await controls.start("exit");
-      if (scrollIndex === pagesLength - 1) {
-        setScrollIndex(0);
-        onNext();
-        return;
-      }
-      setScrollIndex(scrollIndex + 1);
-      onNext();
+      await nextSequence();
     }
     if (e.deltaY < 0) {
-      await controls.start("exit");
-      if (scrollIndex === 0) {
-        setScrollIndex(pagesLength - 1);
-        onPrevious();
-        return;
-      }
-      setScrollIndex(scrollIndex - 1);
-      onPrevious();
+      await previousSequence();
     }
   };
 
+  // Touch handler
+  useEffect(() => {
+    let startY = 0;
+    let endY = 0;
+    let startX = 0;
+    let endX = 0;
+    let startTime = 0;
+    let endTime = 0;
+
+    function handleTouchStart(e: TouchEvent) {
+      if (!e.touches[0]) return;
+      startY = e.touches[0].clientY;
+      startX = e.touches[0].clientX;
+      endY = e.touches[0].clientY;
+      endX = e.touches[0].clientX;
+      startTime = e.timeStamp;
+    }
+
+    function handleTouchMove(e: TouchEvent) {
+      if (!e.touches[0]) return;
+      endY = e.touches[0].clientY;
+      endX = e.touches[0].clientX;
+      endTime = e.timeStamp;
+    }
+
+    function handleTouchEnd() {
+      if (isScrolling) return;
+      setHasEntered(true);
+      const deltaY = endY - startY;
+      const deltaX = endX - startX;
+      const deltaTime = endTime - startTime;
+
+      // Check if the swipe is long enough and fast enough
+      if (isMobile) {
+        // Uses X if narrow
+        if (Math.abs(deltaX) > 50 && deltaTime < 300) {
+          if (deltaX > 0) {
+            setIsScrolling(true);
+            previousSequence().catch(console.error);
+          } else {
+            setIsScrolling(true);
+            nextSequence().catch(console.error);
+          }
+        }
+      } else {
+        // Uses Y if wide
+        if (Math.abs(deltaY) > 50 && deltaTime < 300) {
+          if (deltaY > 0) {
+            setIsScrolling(true);
+            previousSequence().catch(console.error);
+          } else {
+            setIsScrolling(true);
+            nextSequence().catch(console.error);
+          }
+        }
+      }
+    }
+
+    window.addEventListener("touchstart", handleTouchStart);
+    window.addEventListener("touchmove", handleTouchMove);
+    window.addEventListener("touchend", handleTouchEnd);
+
+    return () => {
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleTouchEnd);
+    };
+  }, [isMobile, isScrolling, nextSequence, previousSequence]);
+
   return (
     <main
-      className="relative flex h-screen w-screen translate-x-0 flex-col-reverse items-center justify-start bg-light text-dark "
+      className="relative flex h-screen w-screen translate-x-0 flex-col-reverse items-center justify-start bg-light text-dark"
       onWheel={onScroll as unknown as WheelEventHandler<HTMLDivElement>}
     >
       <div className="relative flex aspect-2/1 h-min max-h-[30%] w-screen items-center justify-end">
@@ -156,185 +241,3 @@ const Mobile: NextPage = () => {
 };
 
 export default Mobile;
-
-// import { type NextPage } from "next";
-// import { Alignment, Fit, Layout, useRive } from "@rive-app/react-canvas";
-// import { AnimatePresence, useAnimationControls } from "framer-motion";
-// import { useEffect, useRef, useState } from "react";
-// import type { WheelEventHandler } from "react";
-// import data from "data";
-// import Lines from "components/graphics/lines";
-// import PageContentMobile from "components/desktop/PageContent";
-// import { useWindowSize } from "hooks/useWindowSize";
-
-// const Mobile: NextPage = () => {
-//   const [scrollIndex, setScrollIndex] = useState(0);
-//   const [isScrolling, setIsScrolling] = useState(false);
-//   const [hasEntered, setHasEntered] = useState(false);
-
-//   const isMounted = useRef(true);
-//   const size = useWindowSize();
-//   const controls = useAnimationControls();
-//   if (!data) throw new Error("No data");
-//   const pagesLength = data.pages.length;
-
-//   const { rive, RiveComponent } = useRive({
-//     src: "/rive/dial_1.riv",
-//     autoplay: false,
-//     artboard: "Mobile",
-//     layout: new Layout({
-//       fit: Fit.Cover,
-//       alignment: Alignment.TopCenter,
-//     }),
-//     onStop: () => {
-//       if (!isMounted.current) return;
-//       controls?.start("reEnter").catch(console.error);
-//     },
-//   });
-
-//   useEffect(() => {
-//     isMounted.current = true;
-//     return () => {
-//       isMounted.current = false;
-//     };
-//   });
-
-//   // useEffect(() => {
-//   //   const startSequence = async () => {
-//   //     setPlayReEnter(false);
-//   //     await controls?.start("reEnter");
-//   //   };
-
-//   //   if (playReEnter) {
-//   //     startSequence().catch(console.error);
-//   //     return;
-//   //   }
-//   // }, [playReEnter, controls]);
-
-//   // Resize handler
-//   useEffect(() => {
-//     rive?.cleanupInstances();
-//     rive?.resizeToCanvas();
-
-//     return () => {
-//       rive?.cleanupInstances();
-//       rive?.cleanup();
-//     };
-//   }, [rive, size]);
-
-//   // Debounce scroll
-//   useEffect(() => {
-//     const timeout = setTimeout(() => {
-//       setIsScrolling(false);
-//     }, 700);
-//     return () => clearTimeout(timeout);
-//   }, [scrollIndex]);
-
-//   // Content enter animation
-//   useEffect(() => {
-//     const startSequence = async () => {
-//       await controls.start("enter");
-//     };
-
-//     if (!hasEntered) {
-//       startSequence().catch(console.error);
-//       return;
-//     }
-//   }, [controls, hasEntered]);
-
-//   // Rive enter animation
-//   if (!hasEntered) {
-//     rive && rive.play("Enter");
-//   }
-
-//   // Rive animation handlers
-//   const onNext = () => {
-//     rive && rive.play("Next");
-//   };
-//   const onPrevious = () => {
-//     rive && rive.play("Previous");
-//   };
-//   const onForward = () => {
-//     rive && rive.play("Forward");
-//   };
-//   const onBack = () => {
-//     rive && rive.play("Back");
-//   };
-
-//   // Page index selection
-//   const indexSelect = async (index: number): Promise<void> => {
-//     if (index === scrollIndex) return;
-//     setHasEntered(true);
-//     setIsScrolling(true);
-//     await controls.start("exit");
-
-//     if (index > scrollIndex) {
-//       onForward();
-//     } else {
-//       onBack();
-//     }
-
-//     setScrollIndex(index);
-//   };
-
-//   // Scroll handler
-//   const onScroll = async (e: WheelEvent) => {
-//     if (isScrolling) return;
-//     setIsScrolling(true);
-//     setHasEntered(true);
-//     if (e.deltaY > 0) {
-//       await controls.start("exit");
-//       if (scrollIndex === pagesLength - 1) {
-//         setScrollIndex(0);
-//         onNext();
-//         return;
-//       }
-//       setScrollIndex(scrollIndex + 1);
-//       onNext();
-//     }
-//     if (e.deltaY < 0) {
-//       await controls.start("exit");
-//       if (scrollIndex === 0) {
-//         setScrollIndex(pagesLength - 1);
-//         onPrevious();
-//         return;
-//       }
-//       setScrollIndex(scrollIndex - 1);
-//       onPrevious();
-//     }
-//   };
-
-//   return (
-//     <main
-//       className="relative flex h-screen w-screen translate-x-0 flex-col-reverse items-center justify-start bg-light text-dark md:-translate-x-32 md:flex-row lg:translate-x-0"
-//       onWheel={onScroll as unknown as WheelEventHandler<HTMLDivElement>}
-//     >
-//       <div className="relative flex aspect-2/1 h-min w-screen items-center justify-end md:aspect-1/2 md:h-screen md:w-min">
-//         <RiveComponent />
-//       </div>
-//       <div className="absolute left-12 top-1/2 flex aspect-lines h-1/3 -translate-y-1/2 translate-x-24 flex-col items-start  justify-center  lg:translate-x-0">
-//         <Lines
-//           pagesLength={pagesLength}
-//           indexSelect={indexSelect}
-//           scrollIndex={scrollIndex}
-//         />
-//       </div>
-
-//       <AnimatePresence mode="wait">
-//         {data.pages.map((page, index) => {
-//           if (index === scrollIndex) {
-//             return (
-//               <PageContentMobile
-//                 page={page}
-//                 controls={controls}
-//                 key={page.title}
-//               />
-//             );
-//           }
-//         })}
-//       </AnimatePresence>
-//     </main>
-//   );
-// };
-
-// export default Mobile;

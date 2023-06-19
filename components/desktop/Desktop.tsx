@@ -123,7 +123,7 @@ const Desktop: NextPage = () => {
 
   return (
     <main
-      className="relative flex h-screen w-screen translate-x-0 flex-col-reverse items-center justify-start bg-light text-dark md:-translate-x-32 md:flex-row lg:translate-x-0"
+      className="relative flex h-screen w-screen translate-x-0 flex-col-reverse items-center justify-start bg-light text-dark md:w-[110%] md:-translate-x-32 md:flex-row lg:w-screen lg:translate-x-0"
       onWheel={onScroll as unknown as WheelEventHandler<HTMLDivElement>}
     >
       <div className="relative flex aspect-2/1 h-min w-screen items-center justify-end md:aspect-1/2 md:h-screen md:w-min">

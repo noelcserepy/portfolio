@@ -209,9 +209,9 @@ function PageContent({
               <Image
                 src={img}
                 alt={`${page.title}${i}`}
-                width={500}
-                height={500}
-                sizes="20vw"
+                width={200}
+                height={200}
+                sizes="10vw"
                 onMouseMove={onMouseMove}
                 onMouseOver={() => onImageHover(img)}
                 onMouseLeave={onMouseLeave}

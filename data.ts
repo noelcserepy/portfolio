@@ -18,7 +18,7 @@ import { type StaticImageData } from "next/image"
 export type Page = {
   title: string;
   subtitle: string;
-  desciption: string;
+  description: string;
   technologies?: string;
   responsibilities?: string;
   date: string;
@@ -55,7 +55,7 @@ const data = {
     {
       title: "Noël Cserépy",
       subtitle: "Frontend Developer & Designer",
-      desciption:
+      description:
         "I am an independent web developer and designer focusing on interaction and motion design. I specialize in creating unique and performant web experiences that set my clients apart.",
       date: "2023",
       header: "Portfolio",
@@ -66,7 +66,7 @@ const data = {
     {
       title: "Stake.New",
       subtitle: "Staking Platform",
-      desciption:
+      description:
       "Stake.New is an interactive web-based platform that simplifies staking on the Aptos blockchain. Powered by Nuxt and Vue.js, the application seamlessly connects users with leading Validators on the Aptos network, providing a comprehensive solution to stake with all their favourite Aptos wallets.",
       technologies: "Nuxt.js, Vue.js, TypeScript, TailwindCSS, Aptos SDK, Web3.js",
       responsibilities: "UI/UX Design, Frontend Development, Wallet Integrations, Blockchain Interfacing, State Management",
@@ -80,7 +80,7 @@ const data = {
     {
       title: "Nakarin",
       subtitle: "Photography Portfolio",
-      desciption:
+      description:
         "Nakarin is a captivating portfolio website designed and developed exclusively for the professional photographer Nakarin Saisorn. Created with a clear focus on visual artistry and aesthetic appeal, Nakarin exhibits a balance between showcasing film and photography projects.",
       technologies: "Next.js, TypeScript, TailwindCSS, Framer Motion",
       responsibilities: "UI/UX Design, Frontend Development, Responsive Design, SEO",
@@ -94,7 +94,7 @@ const data = {
     {
       title: "Blog",
       subtitle: "Personal Blog",
-      desciption:
+      description:
         "A place where I share my thoughts on animation, web development, design. ",
       date: "2022",
       header: "Blog",

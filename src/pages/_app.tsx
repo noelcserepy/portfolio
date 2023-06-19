@@ -23,7 +23,9 @@ const MyApp: AppType = ({ Component, pageProps }) => {
 
   return (
     <IsMobileContext.Provider value={{ isMobile, setIsMobile }}>
-      <main className={`${bebas.variable} ${montserrat.variable}  font-text`}>
+      <main
+        className={`${bebas.variable} ${montserrat.variable}  font-text text-sm md:text-base`}
+      >
         <style jsx global>{`
           html,
           body {

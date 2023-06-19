@@ -108,7 +108,7 @@ function PageContent({
   };
 
   const onMouseMove = (e: MouseEvent) => {
-    mouseX.set(e.clientX - 640);
+    mouseX.set(e.clientX * 0.45);
     mouseY.set(e.clientY);
   };
 
@@ -119,7 +119,7 @@ function PageContent({
   return (
     <motion.div
       key={page.title}
-      className="ml-2 flex h-[92%] w-2/3"
+      className="mx-2 flex h-full w-full md:h-[92%]"
       variants={contentVariants}
       animate={controls}
       initial="hidden"
@@ -127,26 +127,32 @@ function PageContent({
     >
       <motion.div className="flex h-full w-full flex-col justify-between">
         <Upper>{page.header}</Upper>
-        <div className="flex w-3/5 flex-col space-y-8">
+        <div className="flex w-[90%] flex-col space-y-4 lg:w-3/5 lg:space-y-8">
           <div className="flex flex-col space-y-2">
             <H1>{page.title}</H1>
             <H2>{page.subtitle}</H2>
           </div>
           <div className="flex flex-col space-y-2">
             {(page.technologies || page.responsibilities) && (
-              <UpperSmall>Description</UpperSmall>
+              <h3>
+                <UpperSmall>Description</UpperSmall>
+              </h3>
             )}
-            <p>{page.desciption}</p>
+            <p>{page.description}</p>
           </div>
           {page.responsibilities && (
             <div className="flex flex-col space-y-2">
-              <UpperSmall>Responsibilities</UpperSmall>
+              <h3>
+                <UpperSmall>Responsibilities</UpperSmall>
+              </h3>
               <p>{page.responsibilities}</p>
             </div>
           )}
           {page.technologies && (
             <div className="flex flex-col space-y-2">
-              <UpperSmall>Technologies</UpperSmall>
+              <h3>
+                <UpperSmall>Technologies</UpperSmall>
+              </h3>
               <p>{page.technologies}</p>
             </div>
           )}
@@ -205,6 +211,7 @@ function PageContent({
                 alt={`${page.title}${i}`}
                 width={500}
                 height={500}
+                sizes="20vw"
                 onMouseMove={onMouseMove}
                 onMouseOver={() => onImageHover(img)}
                 onMouseLeave={onMouseLeave}
@@ -216,14 +223,20 @@ function PageContent({
         <AnimatePresence>
           {hoveredImage && (
             <motion.div
-              className="pointer-events-none absolute left-2/3 top-0 h-[480px] w-[640px]"
+              className="pointer-events-none absolute left-2/3 top-0 h-[400px] w-[500px] lg:h-[480px] lg:w-[640px]"
               style={{ top: springY, left: springX }}
               variants={hoveredImageVariants}
               initial="hidden"
               animate="enter"
               exit="exit"
             >
-              <Image src={hoveredImage} alt={`${page.title} hover`} fill />
+              <Image
+                src={hoveredImage}
+                alt={`${page.title} hover`}
+                fill
+                sizes="50vw"
+                quality={100}
+              />
             </motion.div>
           )}
         </AnimatePresence>

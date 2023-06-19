@@ -113,6 +113,7 @@ function PageContentMobile({
               onClick={() => setClicked(null)}
             >
               <Image
+                priority
                 src={clicked}
                 fill
                 alt={`${page.title} large`}

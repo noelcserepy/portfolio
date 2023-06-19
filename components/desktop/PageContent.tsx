@@ -232,6 +232,7 @@ function PageContent({
             >
               <Image
                 src={hoveredImage}
+                priority
                 alt={`${page.title} hover`}
                 fill
                 sizes="50vw"

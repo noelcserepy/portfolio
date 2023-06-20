@@ -236,7 +236,7 @@ const Mobile: NextPage = () => {
           }
         })}
       </AnimatePresence>
-      <p className="absolute bottom-0 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs text-gray-500">
+      <p className="absolute bottom-0 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs text-dark">
         © 2023 Noël Cserépy
       </p>
     </main>

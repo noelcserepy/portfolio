@@ -146,7 +146,7 @@ const Desktop: NextPage = () => {
           }
         })}
       </AnimatePresence>
-      <p className="absolute bottom-0 left-[5%] text-xs text-gray-500">
+      <p className="absolute bottom-0 left-[5%] text-xs text-dark">
         © 2023 Noël Cserépy
       </p>
     </main>

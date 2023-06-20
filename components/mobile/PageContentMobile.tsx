@@ -80,13 +80,13 @@ function PageContentMobile({
   return (
     <motion.div
       key={page.title}
-      className="mx-2 mb-2 flex h-min w-full flex-col space-y-8"
+      className="mx-2 mb-2 flex h-full w-full flex-col space-y-6"
       variants={contentVariants}
       animate={controls}
       initial="hidden"
       exit="exit"
     >
-      <motion.div className="z-10 grid h-full max-h-[20%] w-full grid-cols-4">
+      <motion.div className="z-10 grid h-full w-full grid-cols-4">
         {page.images &&
           page.images.map((img, i) => (
             <motion.div key={i}>
@@ -124,7 +124,7 @@ function PageContentMobile({
           )}
         </AnimatePresence>
       </div>
-      <motion.div className="flex h-full w-full flex-col items-center justify-end space-y-12">
+      <motion.div className="flex h-full w-full flex-col items-center justify-end space-y-6">
         <PageDetailsMobile page={page} />
         <div className="flex w-full justify-between px-3">
           <UpperMobile>{page.header}</UpperMobile>

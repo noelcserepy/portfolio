@@ -209,13 +209,13 @@ const Mobile: NextPage = () => {
 
   return (
     <main
-      className="relative flex h-screen w-screen translate-x-0 flex-col-reverse items-center justify-start bg-light text-dark"
+      className="relative flex h-[calc(100dvh)] w-screen translate-x-0 flex-col-reverse items-center justify-start bg-light text-dark"
       onWheel={onScroll as unknown as WheelEventHandler<HTMLDivElement>}
     >
-      <div className="relative flex aspect-2/1 h-min max-h-[30%] w-screen items-center justify-end">
+      <div className="relative flex aspect-2/1 h-min max-h-[20%] w-screen items-center justify-end">
         <RiveComponent />
       </div>
-      <div className="absolute -bottom-4 flex aspect-lines h-[15%] -rotate-90 flex-col items-start justify-center">
+      <div className="absolute bottom-0 flex aspect-lines h-[15%] -rotate-90 flex-col items-start justify-center">
         <LinesMobile
           pagesLength={pagesLength}
           indexSelect={indexSelect}

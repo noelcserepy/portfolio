@@ -108,7 +108,12 @@ function PageDetailsMobile({ page }: { page: Page }) {
       )}
       <div className="flex items-center space-x-4">
         {page.website && (
-          <a href={page.website} target="_blank" rel="noreferrer">
+          <a
+            href={page.website}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`Visit Website for the ${page.title} project.`}
+          >
             {page.header === "Portfolio" ? (
               <Button>{page.buttonText}</Button>
             ) : (
@@ -128,7 +133,12 @@ function PageDetailsMobile({ page }: { page: Page }) {
         )}
 
         {page.github && (
-          <a href={page.github} target="_blank" rel="noreferrer">
+          <a
+            href={page.github}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`Visit GitHub repo for the ${page.title} project.`}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"

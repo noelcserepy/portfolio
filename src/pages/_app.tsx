@@ -3,6 +3,8 @@ import "~/styles/globals.css";
 import { Bebas_Neue, Montserrat } from "next/font/google";
 import IsMobileContext from "components/contexts/isMobileContext";
 import { useMediaQuery } from "hooks/useMediaQuery";
+import { useRouter } from "next/router";
+import SEO from "components/SEO/SEO";
 
 const bebas = Bebas_Neue({
   weight: "400",
@@ -21,8 +23,12 @@ const montserrat = Montserrat({
 const MyApp: AppType = ({ Component, pageProps }) => {
   const [isMobile, setIsMobile] = useMediaQuery("(max-width: 768px)");
 
+  const router = useRouter();
+  const url = `https://noelcserepy.com${router.route}`;
+
   return (
     <IsMobileContext.Provider value={{ isMobile, setIsMobile }}>
+      <SEO url={url} />
       <main
         className={`${bebas.variable} ${montserrat.variable}  font-text text-sm md:text-base`}
       >

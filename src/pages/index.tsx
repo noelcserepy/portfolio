@@ -8,14 +8,7 @@ import Mobile from "components/mobile/Mobile";
 const Home: NextPage = () => {
   const { isMobile } = useContext(IsMobileContext);
 
-  return (
-    <>
-      <Head>
-        <title>Noël Cserépy</title>
-      </Head>
-      {isMobile ? <Mobile /> : <Desktop />}
-    </>
-  );
+  return <>{isMobile ? <Mobile /> : <Desktop />}</>;
 };
 
 export default Home;

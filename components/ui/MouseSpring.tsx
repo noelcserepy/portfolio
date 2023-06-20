@@ -3,8 +3,8 @@ import { motion, useSpring } from "framer-motion";
 
 function MouseSpring({
   children,
-  w = 150,
-  h = 150,
+  w = 80,
+  h = 80,
 }: {
   children: ReactElement | string | undefined;
   w?: number;

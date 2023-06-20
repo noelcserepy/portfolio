@@ -164,7 +164,7 @@ function PageContent({
                     <Button>{page.buttonText}</Button>
                   </MouseSpring>
                 ) : (
-                  <MouseSpring w={80} h={80}>
+                  <MouseSpring w={50} h={50}>
                     <motion.svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -183,7 +183,7 @@ function PageContent({
 
             {page.github && (
               <a href={page.github} target="_blank" rel="noreferrer">
-                <MouseSpring w={80} h={80}>
+                <MouseSpring w={50} h={50}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"

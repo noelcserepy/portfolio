@@ -24,6 +24,7 @@ export type Page = {
   date: string;
   header: string;
   images?: StaticImageData[];
+  linkedin?: string;
   github?: string;
   website?: string;
   buttonText?: string;
@@ -61,7 +62,8 @@ const data = {
       header: "Portfolio",
       website: "mailto:hello@noelcserepy.com?subject=Hi Noël, let's work together",
       buttonText: "Let's Talk",
-      github: "https://github.com/noelcserepy/"
+      github: "https://github.com/noelcserepy/",
+      linkedin: "https://www.linkedin.com/in/noelcserepy/"
     },
     {
       title: "Stake.New",

@@ -43,7 +43,7 @@ const Desktop: NextPage = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setIsScrolling(false);
-    }, 700);
+    }, 1500);
     return () => clearTimeout(timeout);
   }, [scrollIndex]);
 

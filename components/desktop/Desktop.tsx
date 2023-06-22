@@ -39,6 +39,31 @@ const Desktop: NextPage = () => {
     },
   });
 
+  // Rive enter animation
+  useEffect(() => {
+    if (!hasEntered) {
+      console.log("enter");
+      rive && rive.play("Enter");
+      setTimeout(() => {
+        setHasEntered(true);
+      }, 500);
+    }
+  }, [rive, hasEntered]);
+
+  // Rive animation handlers
+  const onNext = () => {
+    rive && rive.play("Next");
+  };
+  const onPrevious = () => {
+    rive && rive.play("Previous");
+  };
+  const onForward = () => {
+    rive && rive.play("Forward");
+  };
+  const onBack = () => {
+    rive && rive.play("Back");
+  };
+
   // Debounce scroll
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -58,25 +83,6 @@ const Desktop: NextPage = () => {
       return;
     }
   }, [controls, hasEntered]);
-
-  // Rive enter animation
-  if (!hasEntered) {
-    rive && rive.play("Enter");
-  }
-
-  // Rive animation handlers
-  const onNext = () => {
-    rive && rive.play("Next");
-  };
-  const onPrevious = () => {
-    rive && rive.play("Previous");
-  };
-  const onForward = () => {
-    rive && rive.play("Forward");
-  };
-  const onBack = () => {
-    rive && rive.play("Back");
-  };
 
   // Page index selection
   const indexSelect = async (index: number): Promise<void> => {

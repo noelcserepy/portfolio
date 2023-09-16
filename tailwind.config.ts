@@ -10,7 +10,7 @@ export default {
         },
         colors: {
             dark: "#021112",
-            light: "#fffffa",
+            light: "#ffffff",
         },
         aspectRatio: {
         '1/2': '1 / 2',
